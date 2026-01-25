@@ -116,6 +116,21 @@
                 <form id="form-snap"></form>
                 <button class="btn" onclick="calcularSNAP()">Analizar Criterios DSM-5</button>
                 <div id="res-snap" class="result-box"></div>
+                <div class="test-section">
+                <h3>😨 SCARED (Screening de Ansiedad)</h3>
+                <p><strong>Instrucciones:</strong> ¿Su hijo/a se queja de lo siguiente?</p>
+                <div id="form-scared"></div>
+                <button class="btn" style="background-color: #3498db;" onclick="calcularSCARED()">Evaluar Ansiedad</button>
+                <div id="res-scared" class="result-box"></div>
+            </div>
+
+            <div class="test-section">
+                <h3>😡 Escala de Conducta Desafiante (ODD)</h3>
+                <p><strong>Instrucciones:</strong> Marque si presenta estas conductas oposicionistas.</p>
+                <div id="form-odd"></div>
+                <button class="btn" style="background-color: #e74c3c;" onclick="calcularODD()">Evaluar Conducta</button>
+                <div id="res-odd" class="result-box"></div>
+            </div>
             </div>
         </div>
         
@@ -375,6 +390,60 @@
                 : "No cumple criterios de screening para TCA.";
 
             mostrarResultado("res-scoff", msg, color, nota, `Hola Psicólogo. Test SCOFF (Alimentación). Puntaje: ${total}/5. Riesgo: ${positivo?'ALTO':'BAJO'}.`);
+        }
+        // --- NUEVOS TESTS NIÑOS ---
+        // 1. Datos SCARED
+        const qSCARED = [
+            "Se asusta o pone nervioso sin razón aparente",
+            "Tiene dolores de cabeza o estómago cuando va a la escuela",
+            "Tiene miedo de estar solo o separarse de los padres",
+            "Le da miedo dormir solo lejos de sus padres",
+            "Se preocupa excesivamente por cosas del futuro"
+        ];
+        renderPreguntas("form-scared", qSCARED, "scared", optSNAP);
+
+        // 2. Datos ODD
+        const qODD = [
+            "A menudo pierde la calma o se enfada",
+            "Discute a menudo con los adultos",
+            "Desafía activamente o rehúsa cumplir obligaciones",
+            "Molesta deliberadamente a otras personas",
+            "A menudo culpa a otros de sus errores",
+            "Es susceptible o fácilmente molestado por otros",
+            "A menudo está enfadado o resentido",
+            "Es rencoroso o vengativo"
+        ];
+        renderPreguntas("form-odd", qODD, "odd", optSNAP);
+
+        // --- FUNCIONES DE CÁLCULO ---
+        function calcularSCARED() {
+            let total = 0;
+            for(let i=0; i<5; i++) {
+                let els = document.getElementsByName(`scared${i}`);
+                for(let el of els) if(el.checked) total += parseInt(el.value);
+            }
+            let positivo = total >= 3;
+            let msg = positivo ? "Indicadores elevados de Ansiedad." : "Ansiedad dentro de límites normales.";
+            let color = positivo ? "#e67e22" : "#27ae60";
+            mostrarResultado("res-scared", msg, color, positivo ? "SCARED Positivo (>=3)" : "Negativo");
+        }
+
+        function calcularODD() {
+            let total = 0;
+            let sintomas = 0;
+            for(let i=0; i<8; i++) {
+                let els = document.getElementsByName(`odd${i}`);
+                for(let el of els) {
+                    if(el.checked) {
+                        total += parseInt(el.value);
+                        if(parseInt(el.value) >= 2) sintomas++;
+                    }
+                }
+            }
+            let positivo = sintomas >= 4;
+            let msg = positivo ? "Posible Trastorno Negativista Desafiante." : "Conducta normal.";
+            let color = positivo ? "#c0392b" : "#27ae60";
+            mostrarResultado("res-odd", msg, color, positivo ? `ODD Positivo (${sintomas}/8 síntomas)` : "Negativo");
         }
     </script>
     
