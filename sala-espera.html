@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sala de Espera - Psic. Andrés Tello</title>
+    <style>
+        body { font-family: 'Helvetica Neue', sans-serif; background-color: #eef2f3; color: #333; margin: 0; text-align: center; }
+        .container { max-width: 600px; margin: 40px auto; background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        
+        h1 { color: #2c3e50; }
+        .intro-text { font-size: 1.1em; color: #555; margin-bottom: 30px; }
+        
+        /* Lista de Chequeo */
+        .checklist { text-align: left; background: #f8f9fa; padding: 20px; border-radius: 10px; margin-bottom: 30px; border-left: 5px solid #3498db; }
+        .checklist h4 { margin-top: 0; color: #3498db; }
+        .checklist ul { padding-left: 20px; }
+        .checklist li { margin-bottom: 10px; }
+
+        /* Botón de Entrada */
+        .btn-join { 
+            background-color: #3498db; color: white; 
+            padding: 15px 30px; font-size: 20px; font-weight: bold; 
+            text-decoration: none; border-radius: 50px; 
+            display: inline-block; transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+        }
+        .btn-join:hover { transform: scale(1.05); background-color: #2980b9; }
+
+        .emergency-note { font-size: 0.8em; color: #999; margin-top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>🛋️ Sala de Espera Virtual</h1>
+        <p class="intro-text">Bienvenido. Por favor, lea las siguientes indicaciones mientras espera a que inicie su sesión.</p>
+
+        <div class="checklist">
+            <h4>Antes de entrar:</h4>
+            <ul>
+                <li>✅ <strong>Privacidad:</strong> Asegúrese de estar en un lugar tranquilo y sin interrupciones.</li>
+                <li>✅ <strong>Conexión:</strong> Verifique que su internet sea estable.</li>
+                <li>✅ <strong>Audio/Video:</strong> Pruebe que su cámara y micrófono funcionen.</li>
+                <li>✅ <strong>Comodidad:</strong> Tenga a la mano agua y pañuelos si los necesita.</li>
+            </ul>
+        </div>
+
+        <p>Si ya tiene su cita agendada y es la hora acordada:</p>
+        
+        <a href="https://zoom.us/join" target="_blank" class="btn-join">🎥 Entrar a la Sesión</a>
+
+    </div>
+
+    <div class="emergency-note">
+        <p>⚠️ Si está experimentando una crisis o emergencia inmediata, por favor no espere la sesión online. Llame al 911 o acuda al hospital más cercano.</p>
+        <a href="index.html" style="color: #999;">Volver al inicio</a>
+    </div>
+
+</body>
+</html>

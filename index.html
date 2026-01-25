@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Psicología Clínica Integral</title>
+    <style>
+        /* 1. FUENTES Y BASE */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            background-color: #f0f4f8; /* Gris azulado muy suave */
+            color: #334e68; 
+            margin: 0; 
+            line-height: 1.6;
+        }
+/* BARRA DE NAVEGACIÓN MODERNA */
+        .navbar {
+            background-color: #ffffff;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky; /* Se queda pegada arriba */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .brand {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand span {
+            color: #3498db; /* La Psi en azul */
+            font-size: 1.5em;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95em;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-link:hover { color: #3498db; }
+
+        .nav-cta {
+            background-color: #3498db;
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 20px;
+            transition: 0.3s;
+        }
+        .nav-cta:hover { background-color: #2980b9; transform: translateY(-2px); }
+
+        /* Ajuste para móviles */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
+            .nav-menu { gap: 15px; font-size: 0.9em; flex-wrap: wrap; justify-content: center; }
+        }
+        /* 2. ENCABEZADO (HERO) - Estilo Clínico */
+        .hero { 
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center; 
+            border-bottom-left-radius: 50px; /* Curva moderna */
+            border-bottom-right-radius: 50px;
+            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
+            margin-bottom: 40px;
+        }
+        .hero h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        .hero p { font-size: 1.2em; opacity: 0.9; max-width: 600px; margin: 0 auto; }
+
+        /* 3. BOTONES DE ACCIÓN */
+        .btn { 
+            display: inline-block; 
+            padding: 12px 25px; 
+            margin-top: 15px; 
+            background-color: #27ae60; /* Verde Éxito */
+            color: white; 
+            text-decoration: none; 
+            border-radius: 30px; /* Botones redondos = Amabilidad */
+            font-weight: bold; 
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+        }
+        .btn:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4); 
+            background-color: #219150;
+        }
+
+        /* 4. CONTENEDOR Y TARJETAS */
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+
+        .servicios { 
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: 25px; 
+            justify-content: center; 
+        }
+
+        .servicio-card { 
+            background: white; 
+            padding: 30px; 
+            border-radius: 15px; 
+            width: 300px; 
+            text-align: center; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Sombra suave */
+            transition: all 0.3s ease;
+            border-top: 5px solid transparent;
+        }
+
+        /* Efecto al pasar el mouse por las tarjetas */
+        .servicio-card:hover { 
+            transform: translateY(-10px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+        }
+
+        /* Colores específicos para cada tarjeta */
+        .servicio-card:nth-child(1) { border-top-color: #e74c3c; } /* Rojo/Rosa para Tests */
+        .servicio-card:nth-child(2) { border-top-color: #3498db; } /* Azul para Telepsicología */
+        .servicio-card:nth-child(3) { border-top-color: #8e44ad; } /* Morado para Biblioteca */
+
+        .servicio-card h3 { 
+            color: #2c3e50; 
+            font-family: 'Montserrat', sans-serif; 
+            margin-bottom: 15px;
+        }
+
+        /* 5. ZONA ADMIN (Discreta) */
+        .admin-zone {
+            background-color: #fff3cd;
+            color: #856404;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #ffc107;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive para celular */
+        @media (max-width: 768px) {
+            .hero { border-radius: 0 0 30px 30px; padding: 40px 20px; }
+            .hero h2 { font-size: 1.8em; }
+            .servicio-card { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="brand">
+            <span>Ψ</span> Psic. Andrés Tello
+        </a>
+
+        <div class="nav-menu">
+            <a href="index.html" class="nav-link">🏠 Inicio</a>
+            <a href="cuestionarios.html" class="nav-link">🧠 Tests Online</a>
+            <a href="biblioteca.html" class="nav-link">📚 Recursos</a>
+            <a href="https://wa.me/19086361137" class="nav-link nav-cta">📅 Agendar Cita</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        
+        <div class="hero" id="inicio">
+            <h2>Bienvenido a tu espacio de salud mental</h2>
+            <p>Psicología basada en evidencia. Tecnología al servicio de tu bienestar.</p>
+            <br>
+            <a href="https://wa.me/19086361137" class="btn">Agendar por WhatsApp</a>
+        </div>
+
+    <div class="servicios">
+
+        <div class="servicio-card">
+            <h3>🧠 Evaluación (Tests)</h3>
+            <p>Accede a pruebas psicométricas validadas para un diagnóstico preciso.</p>
+            <br>
+            <a href="cuestionarios.html" class="btn" style="font-size: 0.8em;">Ir a los Cuestionarios</a>
+        </div>
+
+        <div class="servicio-card">
+            <h3>💻 Telepsicología</h3>
+            <p>Sesiones seguras y privadas vía Zoom/Teams desde la comodidad de tu hogar.</p>
+            <br>
+            <a href="sala-espera.html" class="btn" style="background-color: #3498db; font-size: 0.8em;">Ir a Sala de Espera</a>
+        </div>
+
+        <div class="servicio-card">
+    <h3>📚 Biblioteca</h3>
+    <p>Artículos actualizados y herramientas de apoyo emocional.</p>
+    <br>
+    <a href="biblioteca.html" class="btn" style="background-color: #8e44ad; font-size: 0.8em;">Explorar Recursos</a>
+</div>
+
+    </div>
+            <h4>🚧 Zona de Desarrollo (Solo Admin)</h4>
+            <p>Estado del sistema: <strong>Conectado</strong></p>
+            <p>Próxima integración: <em>App Móvil para iOS y Android</em></p>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Plataforma de Psicología Integral. Todos los derechos reservados.</p>
+        <p>Desarrollado en Mac con Tecnología Open Source.</p>
+    </footer>
+
+</body>
+<footer style="background-color: #2c3e50; color: #ecf0f1; padding: 40px 20px; text-align: center; margin-top: 50px;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h3 style="margin-bottom: 10px;">Ψ Psic. Andrés Tello</h3>
+            <p style="font-size: 0.9em; opacity: 0.8;">Atención psicológica integral basada en evidencia.</p>
+            
+            <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
+
+            <p><strong>📍 Ubicación:</strong> New Jersey, USA & Quito, Ecuador (Online)</p>
+            <p><strong>📞 Contacto / WhatsApp (EE.UU. 🇺🇸):</strong> +1 (908) 636-1137</p>
+            
+            <br>
+            <p style="font-size: 0.8em; color: #e74c3c; font-weight: bold;">
+                🚑 Si estás en crisis, por favor llama al 911 o acude a emergencias.
+            </p>
+            
+            <p style="margin-top: 20px; font-size: 0.7em; opacity: 0.5;">
+                &copy; 2026 Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+</html>
