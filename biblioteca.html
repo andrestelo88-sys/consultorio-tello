@@ -35,76 +35,65 @@
     </div>
 
     <div class="container">
-
-        <div class="resource-card">
+<div class="resource-card">
             <span class="tag">Ansiedad</span>
-            <h3>🌬️ Guía de Respiración Diafragmática</h3>
-            <p>Aprende la técnica básica para reducir la ansiedad fisiológica en 5 minutos.</p>
-            <a href="#" class="btn-read">Leer Artículo</a>
+            <h3>🌬️ Guía de Respiración</h3>
+            <p>Técnica 4-7-8 para reducir la ansiedad fisiológica en 5 minutos.</p>
+            <a href="https://www.med.navy.mil/Portals/62/Documents/NMFA/NMCPHC/root/Health%20Promotion%20and%20Wellness/Women's%20Health/Relaxation_Techniques_Tactical_Breathing_SPANISH.pdf" target="_blank" class="btn-read">Descargar Guía</a>
         </div>
 
         <div class="resource-card">
             <span class="tag">Sueño</span>
-            <h3>💤 Higiene del Sueño: 10 Reglas de Oro</h3>
-            <p>Estrategias conductuales para combatir el insomnio sin medicación.</p>
-            <a href="#" class="btn-read">Descargar PDF</a>
+            <h3>💤 Higiene del Sueño</h3>
+            <p>10 Reglas de Oro para combatir el insomnio sin medicación.</p>
+            <a href="https://www.nietoenfermera.es/wp-content/uploads/2016/05/Higiene-del-sue%C3%B1o_Consejos.pdf" target="_blank" class="btn-read">Leer Consejos</a>
         </div>
 
         <div class="resource-card">
             <span class="tag">Depresión</span>
             <h3>💡 Activación Conductual</h3>
             <p>Por qué "hacer cosas" mejora tu estado de ánimo, aunque no tengas ganas.</p>
-            <a href="#" class="btn-read">Ver Video</a>
+            <a href="https://infocop.es/view_article.asp?id=5595" target="_blank" class="btn-read">Leer Artículo</a>
+        </div>
         </div>
 
     </div>
 
     <hr style="border: 0; border-top: 1px solid #ddd; margin: 40px 0;">
+    
+    <section class="news-section">
+        <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">📰 Actualidad en Psicología</h2>
+        <div class="news-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+            
+            <article class="news-card" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="https://images.unsplash.com/photo-1504151932400-72d4384f04b3?auto=format&fit=crop&w=800&q=80" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 20px;">
+                    <h3>Nuevos avances en Terapia</h3>
+                    <p>Descubre las últimas investigaciones de la APA sobre ansiedad.</p>
+                    <a href="https://www.apa.org/topics/anxiety" target="_blank" class="btn-read" style="display: inline-block; margin-top: 10px; color: #3498db; text-decoration: none; font-weight: bold;">Leer noticia &rarr;</a>
+                </div>
+            </article>
 
-        <h2 style="color: #2c3e50; text-align: center; margin-bottom: 30px;">
-            📰 Noticias Actualizadas (Psicología y Neurociencias)
-            <script>
-        // URL del Feed de Noticias (Psicología y Mente)
-        const RSS_URL = "https://api.rss2json.com/v1/api.json?rss_url=https%3A%2F%2Fpsicologiaymente.com%2Ffeed";
+            <article class="news-card" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="https://images.unsplash.com/photo-1493836512294-502baa1986e2?auto=format&fit=crop&w=800&q=80" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 20px;">
+                    <h3>Salud Mental Digital</h3>
+                    <p>¿Cómo afectan las redes sociales a nuestra autoestima?</p>
+                    <a href="https://www.psychologytoday.com/us" target="_blank" class="btn-read" style="display: inline-block; margin-top: 10px; color: #3498db; text-decoration: none; font-weight: bold;">Leer noticia &rarr;</a>
+                </div>
+            </article>
 
-        async function cargarNoticias() {
-            try {
-                const response = await fetch(RSS_URL);
-                const data = await response.json();
-                const container = document.getElementById("news-container");
-                
-                // Limpiamos el mensaje de "Cargando..."
-                container.innerHTML = "";
+            <article class="news-card" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" style="width: 100%; height: 200px; object-fit: cover;">
+                <div style="padding: 20px;">
+                    <h3>Bienestar (OMS)</h3>
+                    <p>Guías mundiales sobre cómo mantener una mente sana.</p>
+                    <a href="https://www.who.int/es/health-topics/mental-health" target="_blank" class="btn-read" style="display: inline-block; margin-top: 10px; color: #3498db; text-decoration: none; font-weight: bold;">Leer noticia &rarr;</a>
+                </div>
+            </article>
 
-                // Tomamos solo las 3 primeras noticias
-                data.items.slice(0, 3).forEach(item => {
-                    const card = document.createElement("div");
-                    card.className = "resource-card"; 
-                    card.innerHTML = `
-                        <span class="tag" style="background:#e8f6f3; color:#16a085;">Novedad</span>
-                        <h3 style="margin-top:10px;">${item.title}</h3>
-                        <p>${item.description.replace(/<[^>]*>?/gm, '').substring(0, 150)}...</p>
-                        <a href="${item.link}" target="_blank" class="btn-read" style="background-color: #2c3e50;">Leer Noticia Completa ➡</a>
-                    `;
-                    container.appendChild(card);
-                });
-
-            } catch (error) {
-                console.log("Error cargando noticias:", error);
-                document.getElementById("news-container").innerHTML = "<p>No se pudieron cargar las noticias en este momento.</p>";
-            }
-        }
-
-        cargarNoticias();
-    </script>
-
-        </h2>
-
-        <div id="news-container">
-            <p style="text-align:center; color:#777;">Cargando últimas novedades...</p>
         </div>
-    <footer style="text-align: center; padding: 20px; color: #777; font-size: 0.8em;">
-        &copy; 2026 Psic. Andrés Tello
+    </section>
     </footer>
 
 </body>
