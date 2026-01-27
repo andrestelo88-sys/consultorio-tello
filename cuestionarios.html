@@ -141,309 +141,217 @@
         <br>
         <p>&copy; 2026 Consultorio Psicológico - Psic. Andrés Tello | New York & Ecuador</p>
     </footer>
-    <script>
-        // --- 1. LÓGICA DE PESTAÑAS ---
-        function openTab(evt, tabName) {
-            let i, content, buttons;
-            content = document.getElementsByClassName("tab-content");
-            for (i = 0; i < content.length; i++) { content[i].style.display = "none"; content[i].classList.remove("active-content"); }
-            buttons = document.getElementsByClassName("tab-button");
-            for (i = 0; i < buttons.length; i++) { buttons[i].className = buttons[i].className.replace(" active", ""); }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-        }
+    
+      <script>
+        // --- CONFIGURACIÓN ---
+        // Pon aquí tu número con código de país (Ej: 1908xxxxxxx)
+        const MI_NUMERO = "19086166835"; 
 
-        // --- 2. GENERADOR DE PREGUNTAS ---
-        function renderPreguntas(idDiv, preguntas, nameBase, opciones) {
-            const div = document.getElementById(idDiv);
-            let html = "";
-            preguntas.forEach((p, i) => {
-                html += `<div class="question"><p><strong>${i+1}. ${p}</strong></p>`;
-                opciones.forEach((opt, val) => {
-                    html += `<label><input type="radio" name="${nameBase}${i}" value="${val}"> ${opt}</label>`;
-                });
-                html += `</div>`;
-            });
-            div.innerHTML = html;
-        }
-
-        // --- DATOS GAD-7 y PHQ-9 (ADULTOS) ---
-        const optAdulto = ["Nunca (0)", "Varios días (1)", "Más de la mitad (2)", "Casi todos (3)"];
-        const qGAD = ["Nerviosismo/Ansiedad", "No parar de preocuparse", "Preocupación excesiva", "Dificultad para relajarse", "Inquietud motora", "Irritabilidad", "Miedo a algo terrible"];
-        const qPHQ = ["Poco interés/placer", "Desánimo/Depresión", "Problemas de sueño", "Cansancio/Poca energía", "Apetito (mucho/poco)", "Sentirse mal/fracaso", "Dificultad concentración", "Lentitud/Agitación", "Pensamientos de muerte (⚠️)"];
+        // --- DATOS DE LOS TESTS (PREGUNTAS) ---
         
-        renderPreguntas("form-gad7", qGAD, "gad", optAdulto);
-        renderPreguntas("form-phq9", qPHQ, "phq", optAdulto);
-
-        // --- DATOS SNAP-IV (NIÑOS - INATENCIÓN) ---
-        const qSNAP = [
-            "No presta atención a los detalles o comete errores por descuido",
-            "Tiene dificultad para mantener la atención en tareas o juegos",
-            "Parece no escuchar cuando se le habla directamente",
-            "No sigue instrucciones y no termina las tareas escolares",
-            "Tiene dificultad para organizar tareas y actividades",
-            "Evita o le disgusta tareas que requieren esfuerzo mental sostenido",
-            "Pierde cosas necesarias para tareas o actividades",
-            "Se distrae fácilmente por estímulos externos",
-            "Es olvidadizo en las actividades diarias"
+        // 1. TDAH (Inatención - Criterio A DSM-5)
+        const qTDAH = [
+            "A menudo falla en prestar la debida atención a detalles o por descuido se cometen errores en las tareas escolares.",
+            "A menudo tiene dificultades para mantener la atención en tareas o actividades recreativas.",
+            "A menudo parece no escuchar cuando se le habla directamente.",
+            "A menudo no sigue las instrucciones y no termina las tareas escolares.",
+            "A menudo tiene dificultad para organizar tareas y actividades.",
+            "A menudo evita, le disgusta o se muestra poco entusiasta en iniciar tareas que requieren un esfuerzo mental sostenido.",
+            "A menudo pierde cosas necesarias para tareas o actividades.",
+            "A menudo se distrae con facilidad por estímulos externos.",
+            "A menudo olvida las actividades cotidianas."
         ];
-        const optSNAP = ["Nada (0)", "Un poco (1)", "Bastante (2)", "Mucho (3)"];
-        renderPreguntas("form-snap", qSNAP, "snap", optSNAP);
-        // --- DATOS ADOLESCENTES ---
-        const qPHQA = [
-            "Sentirse deprimido, irritable o desesperanzado",
-            "Poco interés o placer en hacer cosas",
-            "Problemas para dormir o dormir mucho",
-            "Sentirse cansado o con poca energía",
-            "Poco apetito o comer en exceso",
-            "Sentirse mal con uno mismo (fracaso)",
-            "Dificultad para concentrarse",
-            "Moverse/hablar lento o estar muy inquieto",
-            "Pensamientos de muerte o autolesión (⚠️)"
-        ];
-        // Usamos las mismas opciones que adultos para PHQ-A
-        renderPreguntas("form-phqa", qPHQA, "phqa", optAdulto);
 
-        const qCRAFFT = [
-            "C: ¿Alguna vez te has subido a un auto conducido por alguien (o por ti) que había consumido?",
-            "R: ¿Alguna vez has consumido alcohol o drogas para RELAJARTE?",
-            "A: ¿Alguna vez has consumido cuando estabas SOLO/A?",
-            "F: ¿Alguna vez has OLVIDADO (Forget) cosas que hiciste mientras consumías?",
-            "F: ¿Alguna vez tu FAMILIA o amigos te han dicho que deberías bajarle al consumo?",
-            "T: ¿Alguna vez te has metido en PROBLEMAS (Trouble) por consumir?"
+        // 2. SCARED (Ansiedad - Screening Rápido)
+        const qSCARED = [
+            "Se asusta o pone nervioso sin razón aparente.",
+            "Tiene dolores de cabeza o estómago cuando va a la escuela.",
+            "Tiene miedo de estar solo o separarse de las figuras de apego.",
+            "Le da miedo dormir solo o lejos de sus padres.",
+            "Se preocupa excesivamente por cosas del futuro."
         ];
-        // Renderizado especial para Sí/No del CRAFFT
-        const divCrafft = document.getElementById("form-crafft");
-        qCRAFFT.forEach((p, i) => {
-            divCrafft.innerHTML += `
-                <div class="question"><p><strong>${p}</strong></p>
-                <label><input type="radio" name="crafft${i}" value="1"> SÍ</label>
-                <label><input type="radio" name="crafft${i}" value="0"> NO</label>
-                </div>`;
-        });
 
-        // --- CALCULO PHQ-A (ADOLESCENTES) ---
-        function calcularPHQA() {
-            let total = 0; let riesgo = false;
-            for(let i=0; i<9; i++) {
-                let els = document.getElementsByName(`phqa${i}`);
-                for(let el of els) if(el.checked) { total += parseInt(el.value); if(i==8 && parseInt(el.value)>0) riesgo=true; }
-            }
-            let dx = total>14 ? "Depresión Moderada-Severa" : total>9 ? "Depresión Moderada" : "Sin depresión significativa";
-            let nota = riesgo ? "🔴 RIESGO SUICIDA DETECTADO (Ítem 9). Activar protocolo de seguridad y notificar a padres/tutores según legislación." : "Sin riesgo inminente.";
-            
-            mostrarResultado("res-phqa", `Nivel: ${dx} (Puntaje: ${total})`, riesgo?"#c0392b":"#2c3e50", nota, `Hola Psicólogo. Soy adolescente. PHQ-A: ${total}. Riesgo: ${riesgo?'SI':'NO'}`);
+        // 3. ODD (Conducta - Criterio A DSM-5)
+        const qODD = [
+            "A menudo pierde la calma.",
+            "A menudo se molesta o es fácil de molestar.",
+            "A menudo está enfadado y resentido.",
+            "A menudo discute con la autoridad o con los adultos.",
+            "A menudo desafía activamente o rechaza satisfacer la petición por parte de figuras de autoridad.",
+            "A menudo molesta a los demás deliberadamente.",
+            "A menudo culpa a los demás por sus errores o su mal comportamiento.",
+            "Ha sido rencoroso o vengativo por lo menos dos veces en los últimos seis meses."
+        ];
+
+        // Opciones de respuesta (Escala SNAP-IV / Likert)
+        const optSNAP = [
+            {val: 0, text: "Nada (0)"},
+            {val: 1, text: "Un poco (1)"},
+            {val: 2, text: "Bastante (2)"},
+            {val: 3, text: "Mucho (3)"}
+        ];
+
+        // --- FUNCIÓN PARA GENERAR LAS PREGUNTAS EN PANTALLA ---
+        function renderPreguntas(idDiv, preguntas, prefijo, opciones) {
+            let html = "";
+            preguntas.forEach((p, index) => {
+                html += `<div class="question-box" style="margin-bottom: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+                    <p style="margin-bottom: 10px; font-weight: 500;">${index + 1}. ${p}</p>
+                    <div class="options">`;
+                opciones.forEach(opt => {
+                    html += `<label style="margin-right: 15px; cursor: pointer;">
+                        <input type="radio" name="${prefijo}${index}" value="${opt.val}"> ${opt.text}
+                    </label>`;
+                });
+                html += `</div></div>`;
+            });
+            document.getElementById(idDiv).innerHTML = html;
         }
 
-        // --- CALCULO CRAFFT (SUSTANCIAS) ---
-        function calcularCRAFFT() {
+        // Renderizamos los tests al cargar
+        renderPreguntas("form-tdah", qTDAH, "tdah", optSNAP);
+        renderPreguntas("form-scared", qSCARED, "scared", optSNAP);
+        renderPreguntas("form-odd", qODD, "odd", optSNAP);
+
+        // --- CÁLCULO TDAH (INATENCIÓN) ---
+        function calcularTDAH() {
             let total = 0;
-            for(let i=0; i<6; i++) {
-                let els = document.getElementsByName(`crafft${i}`);
-                for(let el of els) if(el.checked) total += parseInt(el.value);
-            }
+            let sintomasClinicos = 0; // Síntomas marcados como "Bastante" o "Mucho"
             
-            let msg = total >= 2 ? "RIESGO ALTO de Trastorno por Uso de Sustancias." : "Riesgo Bajo / Abstinencia.";
-            let color = total >= 2 ? "#c0392b" : "#27ae60";
-            let clinica = total >= 2 ? "⚠️ CRAFFT Positivo (>2). Se requiere Entrevista Motivacional e intervención breve inmediata. Evaluar tipo de sustancia." : "Reforzar conducta positiva (No consumo).";
-
-            mostrarResultado("res-crafft", msg, color, clinica, `Hola Psicólogo. Test CRAFFT (Sustancias). Puntaje: ${total}/6.`);
-        }
-
-
-        // --- 3. LÓGICA DE CÁLCULO Y DSM-5 ---
-
-        function mostrarResultado(id, texto, color, notaClinica, whatsapp) {
-            const div = document.getElementById(id);
-            div.style.display = "block";
-            div.innerHTML = `
-                <h4 style="color:${color}">Resultados del Análisis:</h4>
-                <p>${texto}</p>
-                <div class="clinician-note"><strong>👁️ Ojo Clínico (Privado):</strong> ${notaClinica}</div>
-                <a href="https://wa.me/19086361137?text=${encodeURIComponent(whatsapp)}" class="btn" style="background:#25D366; width:auto; display:inline-block; margin-top:10px;">📲 Enviar al Psicólogo</a>
-            `;
-        }
-
-        // CALCULO GAD-7
-        function calcularGAD7() {
-            let total = 0; 
-            for(let i=0; i<7; i++) {
-                let els = document.getElementsByName(`gad${i}`);
-                for(let el of els) if(el.checked) total += parseInt(el.value);
-            }
-            let dx = total>14 ? "Ansiedad Severa" : total>9 ? "Ansiedad Moderada" : "Ansiedad Leve/Mínima";
-            let code = total>9 ? "Posible F41.1 (CIE-10)" : "Sin hallazgos clínicos";
-            mostrarResultado("res-gad7", `Puntaje: ${total} - ${dx}`, "#2c3e50", `Valorar criterios DSM-5 para Trastorno de Ansiedad Generalizada. ${code}`, `Hola Psic. Andrés. GAD-7 Resultado: ${total} (${dx}).`);
-        }
-
-        // CALCULO PHQ-9
-        function calcularPHQ9() {
-            let total = 0; let riesgo = false;
-            for(let i=0; i<9; i++) {
-                let els = document.getElementsByName(`phq${i}`);
-                for(let el of els) if(el.checked) { total += parseInt(el.value); if(i==8 && parseInt(el.value)>0) riesgo=true; }
-            }
-            let dx = total>14 ? "Depresión Moderada-Severa" : total>9 ? "Depresión Moderada" : "Síntomas Leves";
-            let alerta = riesgo ? "⚠️ ALERTA: Ítem 9 positivo (Riesgo Suicida)." : "Sin riesgo inminente detectado.";
-            mostrarResultado("res-phq9", `Puntaje: ${total} - ${dx}`, riesgo?"red":"#2c3e50", `${alerta} Verificar Criterios A (Estado de ánimo/Anhedonia) del DSM-5.`, `Hola Psic. Andrés. PHQ-9 Resultado: ${total} (${dx}). Riesgo: ${riesgo?'SI':'NO'}.`);
-        }
-
-        // CALCULO SNAP-IV (LOGICA DSM-5)
-        function calcularSNAP() {
-            let total = 0;
-            let sintomasSignificativos = 0; // Cuentan si son 2 o 3 ("Bastante" o "Mucho")
-            
-            for(let i=0; i<9; i++) {
-                let els = document.getElementsByName(`snap${i}`);
+            for(let i=0; i<qTDAH.length; i++) {
+                let els = document.getElementsByName(`tdah${i}`);
+                let contestada = false;
                 for(let el of els) {
                     if(el.checked) {
                         let val = parseInt(el.value);
                         total += val;
-                        if(val >= 2) sintomasSignificativos++;
+                        if(val >= 2) sintomasClinicos++; // Criterio clínico: 2 o 3 cuentan como síntoma presente
+                        contestada = true;
                     }
                 }
+                if(!contestada) { alert("Por favor responde todas las preguntas."); return; }
             }
 
-            // Criterio DSM-5: 6 o más síntomas de inatención para niños
-            let cumpleCriterio = sintomasSignificativos >= 6;
-            let mensaje = cumpleCriterio ? "Elevados indicadores de Inatención." : "Indicadores de inatención dentro del promedio.";
-            let color = cumpleCriterio ? "#c0392b" : "#27ae60";
-
-            let notaPrivada = cumpleCriterio 
-                ? `⚠️ **POSITIVO SCREENING DSM-5 (TDAH Inatento)**. El niño presenta ${sintomasSignificativos}/9 síntomas significativos (Criterio A1). Indagar: Inicio antes de los 12 años (Criterio B) y presencia en 2 contextos (Casa/Escuela - Criterio C).`
-                : `Negativo para Criterio A del DSM-5 (Solo ${sintomasSignificativos}/9 síntomas).`;
-
-            let wa = `Hola Psic. Andrés. Test SNAP-IV (Niños). Puntaje Total: ${total}. Síntomas Significativos: ${sintomasSignificativos}/9. ¿Cumple Screening?: ${cumpleCriterio?'SI':'NO'}.`;
-
-            mostrarResultado("res-snap", mensaje, color, notaPrivada, wa);
-        }
-// --- NUEVOS DATOS (ISI y SCOFF) ---
-        
-        // 1. Datos ISI (Insomnio)
-        const qISI = [
-            "Dificultad para conciliar el sueño",
-            "Dificultad para mantener el sueño",
-            "Despertar demasiado temprano",
-            "¿Qué tan SATISFECHO/A estás con tu patrón de sueño actual?",
-            "¿Qué tan notable es tu problema de sueño para los demás?",
-            "¿Qué tan PREOCUPADO/A estás por tu problema de sueño?",
-            "¿Hasta qué punto el insomnio interfiere con tu funcionamiento diario?"
-        ];
-        const optISI = ["Nada (0)", "Leve (1)", "Moderado (2)", "Severo (3)", "Muy Severo (4)"];
-        renderPreguntas("form-isi", qISI, "isi", optISI);
-
-        // 2. Datos SCOFF (Alimentación)
-        const qSCOFF = [
-            "S: ¿Te provocas el vómito porque te sientes muy lleno/a? (Sick)",
-            "C: ¿Te preocupa haber perdido el Control sobre cuánto comes?",
-            "O: ¿Has perdido más de 6kg (One stone) recientemente?",
-            "F: ¿Crees que estás Gordo/a (Fat) aunque otros digan que estás delgado/a?",
-            "F: ¿La Comida (Food) domina tu vida?"
-        ];
-        const divScoff = document.getElementById("form-scoff");
-        qSCOFF.forEach((p, i) => {
-            divScoff.innerHTML += `
-                <div class="question"><p><strong>${p}</strong></p>
-                <label><input type="radio" name="scoff${i}" value="1"> SÍ</label>
-                <label><input type="radio" name="scoff${i}" value="0"> NO</label>
-                </div>`;
-        });
-
-        // --- LÓGICA DE CÁLCULO (Con Códigos CIE-10) ---
-
-        // CALCULO ISI (Insomnio)
-        function calcularISI() {
-            let total = 0;
-            for(let i=0; i<7; i++) {
-                let els = document.getElementsByName(`isi${i}`);
-                for(let el of els) if(el.checked) total += parseInt(el.value);
-            }
+            // LÓGICA DSM-5: Se requieren 6 o más síntomas para niños (5 para adultos/adolescentes mayores)
+            let cumpleCriterio = sintomasClinicos >= 6;
             
-            let dx = "";
-            let code = "";
-            let color = "#2c3e50";
-
-            if(total <= 7) { dx = "Sin insomnio clínicamente significativo"; code = "Z73.0 (Cansancio)"; }
-            else if(total <= 14) { dx = "Insomnio Subumbral"; code = "R41.8 (Síntomas inespecíficos)"; }
-            else if(total <= 21) { dx = "Insomnio Clínico (Moderado)"; code = "F51.01 (CIE-10)"; color = "#e67e22"; }
-            else { dx = "Insomnio Clínico (Severo)"; code = "F51.01 (CIE-10)"; color = "#c0392b"; }
-
-            let nota = `Posible Dx DSM-5: Trastorno de Insomnio (307.42). Para facturación usar CIE-10: **${code}**. Sugerencia: TCC-I (Cognitivo-Conductual para Insomnio).`;
+            // 1. Mensaje para el PACIENTE (Empático)
+            let msgPaciente = cumpleCriterio 
+                ? "Hemos identificado varios indicadores de inatención que son significativos. Te recomendamos agendar una sesión para evaluar el contexto completo."
+                : "Tus respuestas indican un nivel de atención dentro del rango esperado, aunque si tienes dudas puntuales podemos revisarlas.";
             
-            mostrarResultado("res-isi", `Puntaje: ${total} - ${dx}`, color, nota, `Hola Psicólogo. Test ISI (Sueño). Puntaje: ${total} (${dx}).`);
+            let color = cumpleCriterio ? "#e67e22" : "#27ae60";
+
+            // 2. Mensaje TÉCNICO para TI (WhatsApp)
+            let msgTecnico = `*RESULTADO PRELIMINAR TDAH (Inatención)*%0A` +
+                             `---------------------------------%0A` +
+                             `• Puntaje Total: ${total}/27%0A` +
+                             `• Síntomas Clínicos (Bastante/Mucho): ${sintomasClinicos}/9%0A` +
+                             `• Criterio A DSM-5: ${cumpleCriterio ? "✅ CUMPLE" : "❌ NO CUMPLE"} (Umbral: 6 síntomas)%0A` +
+                             `---------------------------------%0A` +
+                             `Nota: Verificar Criterio B (antes de los 12 años) y D (impacto funcional) en consulta.`;
+
+            mostrarResultado("res-tdah", msgPaciente, color, msgTecnico);
         }
 
-        // CALCULO SCOFF (TCA)
-        function calcularSCOFF() {
-            let total = 0;
-            for(let i=0; i<5; i++) {
-                let els = document.getElementsByName(`scoff${i}`);
-                for(let el of els) if(el.checked) total += parseInt(el.value);
-            }
-
-            let positivo = total >= 2;
-            let msg = positivo ? "Posible Trastorno de Conducta Alimentaria (TCA)." : "Bajo riesgo de TCA.";
-            let color = positivo ? "#c0392b" : "#27ae60";
-            
-            let nota = positivo 
-                ? `⚠️ **ALERTA CLÍNICA:** SCOFF Positivo (>=2). Alta sensibilidad para Anorexia/Bulimia. Verificar criterios DSM-5. Código CIE-10 provisional: **F50.9** (TCA no especificado).` 
-                : "No cumple criterios de screening para TCA.";
-
-            mostrarResultado("res-scoff", msg, color, nota, `Hola Psicólogo. Test SCOFF (Alimentación). Puntaje: ${total}/5. Riesgo: ${positivo?'ALTO':'BAJO'}.`);
-        }
-        // --- NUEVOS TESTS NIÑOS ---
-        // 1. Datos SCARED
-        const qSCARED = [
-            "Se asusta o pone nervioso sin razón aparente",
-            "Tiene dolores de cabeza o estómago cuando va a la escuela",
-            "Tiene miedo de estar solo o separarse de los padres",
-            "Le da miedo dormir solo lejos de sus padres",
-            "Se preocupa excesivamente por cosas del futuro"
-        ];
-        renderPreguntas("form-scared", qSCARED, "scared", optSNAP);
-
-        // 2. Datos ODD
-        const qODD = [
-            "A menudo pierde la calma o se enfada",
-            "Discute a menudo con los adultos",
-            "Desafía activamente o rehúsa cumplir obligaciones",
-            "Molesta deliberadamente a otras personas",
-            "A menudo culpa a otros de sus errores",
-            "Es susceptible o fácilmente molestado por otros",
-            "A menudo está enfadado o resentido",
-            "Es rencoroso o vengativo"
-        ];
-        renderPreguntas("form-odd", qODD, "odd", optSNAP);
-
-        // --- FUNCIONES DE CÁLCULO ---
+        // --- CÁLCULO SCARED (ANSIEDAD) ---
         function calcularSCARED() {
             let total = 0;
-            for(let i=0; i<5; i++) {
-                let els = document.getElementsByName(`scared${i}`);
-                for(let el of els) if(el.checked) total += parseInt(el.value);
-            }
-            let positivo = total >= 3;
-            let msg = positivo ? "Indicadores elevados de Ansiedad." : "Ansiedad dentro de límites normales.";
-            let color = positivo ? "#e67e22" : "#27ae60";
-            mostrarResultado("res-scared", msg, color, positivo ? "SCARED Positivo (>=3)" : "Negativo");
-        }
-
-        function calcularODD() {
-            let total = 0;
             let sintomas = 0;
-            for(let i=0; i<8; i++) {
-                let els = document.getElementsByName(`odd${i}`);
+            for(let i=0; i<qSCARED.length; i++) {
+                let els = document.getElementsByName(`scared${i}`);
+                let contestada = false;
                 for(let el of els) {
                     if(el.checked) {
-                        total += parseInt(el.value);
-                        if(parseInt(el.value) >= 2) sintomas++;
+                        let val = parseInt(el.value);
+                        total += val;
+                        if(val >= 1) sintomas++; // En ansiedad, cualquier presencia (1,2,3) suele sumar
+                        contestada = true;
                     }
                 }
+                if(!contestada) { alert("Responde todas las preguntas."); return; }
             }
-            let positivo = sintomas >= 4;
-            let msg = positivo ? "Posible Trastorno Negativista Desafiante." : "Conducta normal.";
-            let color = positivo ? "#c0392b" : "#27ae60";
-            mostrarResultado("res-odd", msg, color, positivo ? `ODD Positivo (${sintomas}/8 síntomas)` : "Negativo");
+
+            let screeningPositivo = total >= 3; // Corte arbitrario para screening rápido de 5 items
+
+            let msgPaciente = screeningPositivo
+                ? "Tus respuestas sugieren la presencia de ansiedad que podría estar afectando tu bienestar. Sería muy útil conversar sobre esto."
+                : "No se observan indicadores elevados de ansiedad en este momento.";
+            
+            let color = screeningPositivo ? "#e67e22" : "#27ae60";
+
+            let msgTecnico = `*RESULTADO SCREENING ANSIEDAD (SCARED-5)*%0A` +
+                             `---------------------------------%0A` +
+                             `• Puntaje Total: ${total}%0A` +
+                             `• Ítems positivos: ${sintomas}/5%0A` +
+                             `• Interpretación: ${screeningPositivo ? "⚠️ RIESGO ELEVADO" : "✅ BAJO RIESGO"}%0A` +
+                             `---------------------------------%0A` +
+                             `Explorar: Fobia escolar, ansiedad de separación o TAG según ítems marcados.`;
+
+            mostrarResultado("res-scared", msgPaciente, color, msgTecnico);
+        }
+
+        // --- CÁLCULO ODD (CONDUCTA) ---
+        function calcularODD() {
+            let total = 0;
+            let sintomasClinicos = 0;
+            for(let i=0; i<qODD.length; i++) {
+                let els = document.getElementsByName(`odd${i}`);
+                let contestada = false;
+                for(let el of els) {
+                    if(el.checked) {
+                        let val = parseInt(el.value);
+                        total += val;
+                        if(val >= 2) sintomasClinicos++; // Bastante o Mucho cuenta como síntoma
+                        contestada = true;
+                    }
+                }
+                if(!contestada) { alert("Responde todas las preguntas."); return; }
+            }
+
+            // LÓGICA DSM-5: Se requieren 4 o más síntomas de cualquiera de las categorías
+            let cumpleCriterio = sintomasClinicos >= 4;
+
+            let msgPaciente = cumpleCriterio
+                ? "Se observan patrones de conducta desafiante significativos. Es importante evaluar estrategias de manejo conductual en consulta."
+                : "La conducta reportada parece estar dentro de los límites esperados para la edad.";
+
+            let color = cumpleCriterio ? "#c0392b" : "#27ae60";
+
+            let msgTecnico = `*RESULTADO ODD (Negativista Desafiante)*%0A` +
+                             `---------------------------------%0A` +
+                             `• Síntomas Clínicos: ${sintomasClinicos}/8%0A` +
+                             `• Criterio A DSM-5: ${cumpleCriterio ? "✅ CUMPLE" : "❌ NO CUMPLE"} (Umbral: 4 síntomas)%0A` +
+                             `---------------------------------%0A` +
+                             `Categoría: Patrón de enfado/irritabilidad o discusiones/actitud desafiante.`;
+
+            mostrarResultado("res-odd", msgPaciente, color, msgTecnico);
+        }
+
+        // --- FUNCIÓN MAESTRA DE VISUALIZACIÓN ---
+        function mostrarResultado(idDiv, textoPaciente, color, textoTecnico) {
+            const div = document.getElementById(idDiv);
+            
+            // HTML que ve el paciente (Limpio y bonito)
+            div.innerHTML = `
+                <div style="padding: 20px; border-radius: 10px; background-color: ${color}15; border-left: 6px solid ${color}; margin-top: 20px;">
+                    <h3 style="color: ${color}; margin-top: 0;">📊 Resultado del Screening</h3>
+                    <p style="font-size: 1.1em; color: #333; line-height: 1.5;">${textoPaciente}</p>
+                    
+                    <p style="font-size: 0.85em; color: #777; margin-top: 15px; font-style: italic;">
+                        Nota: Este resultado es orientativo. Para un diagnóstico certero, envía estos datos al psicólogo.
+                    </p>
+
+                    <a href="https://wa.me/${MI_NUMERO}?text=${textoTecnico}" 
+                       target="_blank" 
+                       class="btn" 
+                       style="background-color: #25D366; color: white; margin-top: 15px; width: 100%; text-align: center; display: inline-block; text-decoration: none; font-weight: bold; border-radius: 50px; padding: 12px;">
+                       <i class="fab fa-whatsapp"></i> Enviar Análisis al Psicólogo
+                    </a>
+                </div>
+            `;
+            div.style.display = "block";
+            div.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
     
