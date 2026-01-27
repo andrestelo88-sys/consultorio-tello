@@ -8,327 +8,404 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; color: #333; }
-        .container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .container { max-width: 900px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
         
-        h1 { text-align: center; color: #2c3e50; }
-        .tabs { display: flex; justify-content: center; margin-bottom: 20px; border-bottom: 2px solid #eee; }
-        .tab-btn { background: none; border: none; padding: 15px 25px; cursor: pointer; font-size: 1rem; color: #777; font-weight: 600; }
-        .tab-btn.active { color: #3498db; border-bottom: 3px solid #3498db; }
-        .tab-content { display: none; }
+        h1 { text-align: center; color: #2c3e50; margin-bottom: 5px; }
+        .subtitle { text-align: center; color: #7f8c8d; margin-bottom: 30px; font-size: 0.95rem; }
+
+        /* PESTAÑAS */
+        .tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
+        .tab-btn { 
+            background: white; border: 2px solid #ecf0f1; padding: 10px 25px; cursor: pointer; 
+            font-size: 1rem; color: #7f8c8d; font-weight: 600; border-radius: 50px; transition: all 0.3s;
+        }
+        .tab-btn:hover { border-color: #3498db; color: #3498db; }
+        .tab-btn.active { background-color: #3498db; color: white; border-color: #3498db; box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3); }
+        
+        .tab-content { display: none; animation: fadeIn 0.5s ease; }
         .tab-content.active { display: block; }
 
-        .test-card { background: #fff; border: 1px solid #e1e1e1; border-radius: 10px; padding: 20px; margin-bottom: 20px; }
-        .test-title { font-size: 1.2rem; color: #2c3e50; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-        .btn-calc { background-color: #27ae60; color: white; border: none; padding: 12px; width: 100%; border-radius: 8px; font-size: 1rem; cursor: pointer; margin-top: 15px; }
-        .btn-calc:hover { background-color: #219150; }
+        /* TARJETAS DE TEST */
+        .grid-tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .test-card { background: #fff; border: 1px solid #e1e1e1; border-radius: 12px; padding: 25px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .test-card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
         
-        .question-box { margin-bottom: 15px; padding: 10px; background: #f9f9f9; border-radius: 8px; }
-        .options label { margin-right: 15px; cursor: pointer; display: inline-block; padding: 5px; }
-        
-        .result-box { display: none; margin-top: 20px; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .test-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; }
+        .icon-box { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; color: white; }
+        .test-title { font-size: 1.1rem; font-weight: 700; color: #2c3e50; margin: 0; }
+        .test-desc { font-size: 0.85rem; color: #7f8c8d; margin-bottom: 20px; line-height: 1.5; }
 
-        /* Botón volver */
-        .btn-back { display: block; text-align: center; margin-top: 20px; color: #7f8c8d; text-decoration: none; }
+        /* BOTONES INTERNOS */
+        .btn-start { 
+            display: block; width: 100%; padding: 10px; text-align: center; border: none; border-radius: 8px; 
+            background-color: #f8f9fa; color: #2c3e50; font-weight: 600; cursor: pointer; transition: 0.3s;
+        }
+        .btn-start:hover { background-color: #e2e6ea; }
+        
+        /* ÁREA DE PREGUNTAS (OCULTA AL INICIO) */
+        .quiz-area { display: none; margin-top: 20px; border-top: 2px dashed #eee; padding-top: 20px; }
+        .question-box { margin-bottom: 15px; padding: 15px; background: #fcfcfc; border-radius: 8px; border-left: 3px solid #3498db; }
+        .question-text { font-weight: 500; margin-bottom: 10px; color: #444; }
+        .options label { display: block; margin-bottom: 8px; cursor: pointer; font-size: 0.9rem; color: #666; }
+        .options input { margin-right: 10px; }
+
+        .btn-calc { 
+            background-color: #27ae60; color: white; border: none; padding: 12px; width: 100%; 
+            border-radius: 8px; font-size: 1rem; cursor: pointer; margin-top: 15px; font-weight: 600;
+        }
+        .btn-calc:hover { background-color: #219150; }
+
+        /* RESULTADOS */
+        .result-box { display: none; margin-top: 20px; animation: slideDown 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .btn-back { display: block; text-align: center; margin-top: 40px; color: #95a5a6; text-decoration: none; font-weight: 500; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>📝 Centro de Evaluación</h1>
-    <p style="text-align: center; color: #666; margin-bottom: 30px;">Selecciona la categoría para ver los tests disponibles.</p>
+    <h1>🧠 Centro de Evaluación Integral</h1>
+    <p class="subtitle">Selecciona el grupo de edad y elige el test que deseas realizar.</p>
 
     <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('adultos')">👨 Adultos</button>
-        <button class="tab-btn" onclick="openTab('ninos')">🧸 Niños (Padres)</button>
+        <button class="tab-btn active" onclick="openTab('adultos')"><i class="fas fa-user-tie"></i> Adultos</button>
+        <button class="tab-btn" onclick="openTab('adolescentes')"><i class="fas fa-user-graduate"></i> Adolescentes</button>
+        <button class="tab-btn" onclick="openTab('ninos')"><i class="fas fa-child"></i> Niños (Padres)</button>
     </div>
 
     <div id="adultos" class="tab-content active">
-        
-        <div class="test-card">
-            <div class="test-title"><i class="fas fa-brain" style="color:#e67e22;"></i> GAD-7 (Ansiedad Generalizada)</div>
-            <p>Durante las últimas 2 semanas, ¿qué tan seguido ha tenido molestias por lo siguiente?</p>
-            <div id="form-gad7"></div>
-            <button class="btn-calc" onclick="calcularGAD7()">Calcular Resultado</button>
-            <div id="res-gad7" class="result-box"></div>
+        <div class="grid-tests">
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#e67e22"><i class="fas fa-brain"></i></div> <h3 class="test-title">Ansiedad (GAD-7)</h3></div>
+                <p class="test-desc">Evalúa síntomas de ansiedad generalizada, nerviosismo y preocupación excesiva en las últimas 2 semanas.</p>
+                <button class="btn-start" onclick="toggleTest('gad7')">Realizar Test ▼</button>
+                <div id="area-gad7" class="quiz-area">
+                    <div id="form-gad7"></div>
+                    <button class="btn-calc" onclick="calcularGAD7()">Ver Resultado</button>
+                    <div id="res-gad7" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#3498db"><i class="fas fa-cloud-rain"></i></div> <h3 class="test-title">Depresión (PHQ-9)</h3></div>
+                <p class="test-desc">Screening estándar para detectar síntomas depresivos, desánimo y pérdida de interés.</p>
+                <button class="btn-start" onclick="toggleTest('phq9')">Realizar Test ▼</button>
+                <div id="area-phq9" class="quiz-area">
+                    <div id="form-phq9"></div>
+                    <button class="btn-calc" onclick="calcularPHQ9()">Ver Resultado</button>
+                    <div id="res-phq9" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#f1c40f"><i class="fas fa-bolt"></i></div> <h3 class="test-title">TDAH Adultos (ASRS)</h3></div>
+                <p class="test-desc">Escala de auto-reporte para identificar síntomas de déficit de atención e hiperactividad en la vida adulta.</p>
+                <button class="btn-start" onclick="toggleTest('asrs')">Realizar Test ▼</button>
+                <div id="area-asrs" class="quiz-area">
+                    <div id="form-asrs"></div>
+                    <button class="btn-calc" onclick="calcularASRS()">Ver Resultado</button>
+                    <div id="res-asrs" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#9b59b6"><i class="fas fa-moon"></i></div> <h3 class="test-title">Insomnio (ISI)</h3></div>
+                <p class="test-desc">Índice de Severidad del Insomnio. Evalúa la calidad del sueño y su impacto en el día.</p>
+                <button class="btn-start" onclick="toggleTest('isi')">Realizar Test ▼</button>
+                <div id="area-isi" class="quiz-area">
+                    <div id="form-isi"></div>
+                    <button class="btn-calc" onclick="calcularISI()">Ver Resultado</button>
+                    <div id="res-isi" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#e74c3c"><i class="fas fa-fire"></i></div> <h3 class="test-title">Estrés Percibido</h3></div>
+                <p class="test-desc">Evalúa qué tan impredecible, incontrolable y sobrecargada siente su vida actualmente.</p>
+                <button class="btn-start" onclick="toggleTest('pss')">Realizar Test ▼</button>
+                <div id="area-pss" class="quiz-area">
+                    <div id="form-pss"></div>
+                    <button class="btn-calc" onclick="calcularPSS()">Ver Resultado</button>
+                    <div id="res-pss" class="result-box"></div>
+                </div>
+            </div>
         </div>
+    </div>
 
-        <div class="test-card">
-            <div class="test-title"><i class="fas fa-cloud-rain" style="color:#3498db;"></i> PHQ-9 (Depresión)</div>
-            <p>Durante las últimas 2 semanas, ¿qué tan seguido ha tenido molestias por lo siguiente?</p>
-            <div id="form-phq9"></div>
-            <button class="btn-calc" onclick="calcularPHQ9()">Calcular Resultado</button>
-            <div id="res-phq9" class="result-box"></div>
+    <div id="adolescentes" class="tab-content">
+        <div class="grid-tests">
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#9b59b6"><i class="fas fa-ghost"></i></div> <h3 class="test-title">Ansiedad (SCARED)</h3></div>
+                <p class="test-desc">Detecta ansiedad generalizada, ansiedad social o miedos escolares en adolescentes.</p>
+                <button class="btn-start" onclick="toggleTest('scared_a')">Realizar Test ▼</button>
+                <div id="area-scared_a" class="quiz-area">
+                    <div id="form-scared_a"></div>
+                    <button class="btn-calc" onclick="calcularSCARED_A()">Ver Resultado</button>
+                    <div id="res-scared_a" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#3498db"><i class="fas fa-sad-tear"></i></div> <h3 class="test-title">Depresión (PHQ-A)</h3></div>
+                <p class="test-desc">Adaptación para adolescentes. Evalúa irritabilidad, tristeza y problemas de sueño/apetito.</p>
+                <button class="btn-start" onclick="toggleTest('phqa')">Realizar Test ▼</button>
+                <div id="area-phqa" class="quiz-area">
+                    <div id="form-phqa"></div>
+                    <button class="btn-calc" onclick="calcularPHQA()">Ver Resultado</button>
+                    <div id="res-phqa" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#2ecc71"><i class="fas fa-smile"></i></div> <h3 class="test-title">Autoestima</h3></div>
+                <p class="test-desc">Escala de Rosenberg. Evalúa la satisfacción con uno mismo y el sentido de valía personal.</p>
+                <button class="btn-start" onclick="toggleTest('ros')">Realizar Test ▼</button>
+                <div id="area-ros" class="quiz-area">
+                    <div id="form-ros"></div>
+                    <button class="btn-calc" onclick="calcularROS()">Ver Resultado</button>
+                    <div id="res-ros" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#e74c3c"><i class="fas fa-bolt"></i></div> <h3 class="test-title">Nivel de Estrés</h3></div>
+                <p class="test-desc">Cuestionario breve sobre presión escolar, expectativas y manejo de emociones.</p>
+                <button class="btn-start" onclick="toggleTest('estres_a')">Realizar Test ▼</button>
+                <div id="area-estres_a" class="quiz-area">
+                    <div id="form-estres_a"></div>
+                    <button class="btn-calc" onclick="calcularEstresA()">Ver Resultado</button>
+                    <div id="res-estres_a" class="result-box"></div>
+                </div>
+            </div>
+             <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#34495e"><i class="fas fa-bed"></i></div> <h3 class="test-title">Calidad de Sueño</h3></div>
+                <p class="test-desc">Evalúa hábitos de sueño, uso de pantallas nocturno y descanso diurno.</p>
+                <button class="btn-start" onclick="toggleTest('sueno_a')">Realizar Test ▼</button>
+                <div id="area-sueno_a" class="quiz-area">
+                    <div id="form-sueno_a"></div>
+                    <button class="btn-calc" onclick="calcularSuenoA()">Ver Resultado</button>
+                    <div id="res-sueno_a" class="result-box"></div>
+                </div>
+            </div>
         </div>
-
     </div>
 
     <div id="ninos" class="tab-content">
-        
-        <div class="test-card">
-            <div class="test-title"><i class="fas fa-bolt" style="color:#f1c40f;"></i> TDAH (Inatención)</div>
-            <p>Instrucciones: Marque si el niño/a presenta estas conductas a menudo.</p>
-            <div id="form-tdah"></div>
-            <button class="btn-calc" onclick="calcularTDAH()">Calcular Resultado</button>
-            <div id="res-tdah" class="result-box"></div>
+        <div class="grid-tests">
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#f1c40f"><i class="fas fa-puzzle-piece"></i></div> <h3 class="test-title">TDAH (Atención)</h3></div>
+                <p class="test-desc">Evalúa específicamente dificultades para mantener la atención, olvidos y desorganización.</p>
+                <button class="btn-start" onclick="toggleTest('tdah_i')">Realizar Test ▼</button>
+                <div id="area-tdah_i" class="quiz-area">
+                    <div id="form-tdah_i"></div>
+                    <button class="btn-calc" onclick="calcularTDAH_I()">Ver Resultado</button>
+                    <div id="res-tdah_i" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#e67e22"><i class="fas fa-tachometer-alt"></i></div> <h3 class="test-title">TDAH (Hiperactividad)</h3></div>
+                <p class="test-desc">Evalúa inquietud motora, impulsividad y dificultad para esperar turnos.</p>
+                <button class="btn-start" onclick="toggleTest('tdah_h')">Realizar Test ▼</button>
+                <div id="area-tdah_h" class="quiz-area">
+                    <div id="form-tdah_h"></div>
+                    <button class="btn-calc" onclick="calcularTDAH_H()">Ver Resultado</button>
+                    <div id="res-tdah_h" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#c0392b"><i class="fas fa-angry"></i></div> <h3 class="test-title">Conducta (ODD)</h3></div>
+                <p class="test-desc">Para evaluar conductas desafiantes, oposición a la autoridad y enfados frecuentes.</p>
+                <button class="btn-start" onclick="toggleTest('odd')">Realizar Test ▼</button>
+                <div id="area-odd" class="quiz-area">
+                    <div id="form-odd"></div>
+                    <button class="btn-calc" onclick="calcularODD()">Ver Resultado</button>
+                    <div id="res-odd" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#9b59b6"><i class="fas fa-ghost"></i></div> <h3 class="test-title">Ansiedad (Padres)</h3></div>
+                <p class="test-desc">Reporte de padres sobre miedos, preocupaciones y síntomas físicos de ansiedad en el niño.</p>
+                <button class="btn-start" onclick="toggleTest('scared_p')">Realizar Test ▼</button>
+                <div id="area-scared_p" class="quiz-area">
+                    <div id="form-scared_p"></div>
+                    <button class="btn-calc" onclick="calcularSCARED_P()">Ver Resultado</button>
+                    <div id="res-scared_p" class="result-box"></div>
+                </div>
+            </div>
+            <div class="test-card">
+                <div class="test-header"><div class="icon-box" style="background:#3498db"><i class="fas fa-cloud-sun"></i></div> <h3 class="test-title">Ánimo / Depresión</h3></div>
+                <p class="test-desc">Evalúa si el niño se muestra triste, retraído, irritable o con cambios en el juego.</p>
+                <button class="btn-start" onclick="toggleTest('dep_p')">Realizar Test ▼</button>
+                <div id="area-dep_p" class="quiz-area">
+                    <div id="form-dep_p"></div>
+                    <button class="btn-calc" onclick="calcularDEP_P()">Ver Resultado</button>
+                    <div id="res-dep_p" class="result-box"></div>
+                </div>
+            </div>
         </div>
-
-        <div class="test-card">
-            <div class="test-title"><i class="fas fa-ghost" style="color:#9b59b6;"></i> SCARED (Ansiedad Infantil)</div>
-            <p>Instrucciones: ¿Su hijo/a se queja de lo siguiente?</p>
-            <div id="form-scared"></div>
-            <button class="btn-calc" onclick="calcularSCARED()">Calcular Resultado</button>
-            <div id="res-scared" class="result-box"></div>
-        </div>
-
-        <div class="test-card">
-            <div class="test-title"><i class="fas fa-angry" style="color:#e74c3c;"></i> ODD (Conducta Desafiante)</div>
-            <p>Instrucciones: Marque con qué frecuencia ocurren estas conductas.</p>
-            <div id="form-odd"></div>
-            <button class="btn-calc" onclick="calcularODD()">Calcular Resultado</button>
-            <div id="res-odd" class="result-box"></div>
-        </div>
-
     </div>
 
     <a href="index.html" class="btn-back">← Volver al Inicio</a>
 </div>
 
 <script>
-    // --- CONFIGURACIÓN ---
-    const MI_NUMERO = "19086166835"; // Tu número de WhatsApp
+    const MI_NUMERO = "19086166835"; // Tu WhatsApp
 
-    // --- DATOS DE PREGUNTAS ---
+    // === BANCO DE PREGUNTAS (15 TESTS) ===
     
-    // 1. GAD-7 (Adultos)
-    const qGAD7 = [
-        "Sentirse nervioso/a, intranquilo/a o con los nervios de punta",
-        "No poder dejar de preocuparse o no poder controlar la preocupación",
-        "Preocuparse demasiado por diferentes cosas",
-        "Dificultad para relajarse",
-        "Estar tan inquieto/a que es difícil estarse quieto/a",
-        "Molestarse o irritarse fácilmente",
-        "Tener miedo de que algo terrible vaya a pasar"
-    ];
+    // ADULTOS
+    const qGAD7 = ["Nerviosismo o ansiedad", "No poder controlar la preocupación", "Preocupación excesiva", "Dificultad para relajarse", "Inquietud motora", "Irritabilidad", "Miedo a algo terrible"];
+    const qPHQ9 = ["Poco interés/placer", "Desánimo/Tristeza", "Problemas sueño", "Cansancio", "Apetito (mucho/poco)", "Sentirse mal con uno mismo", "Dificultad concentración", "Lentitud/Agitación", "Pensamientos negativos"];
+    const qASRS = ["Dificultad acabar detalles", "Dificultad ordenar cosas", "Olvida citas/obligaciones", "Evita tareas complejas", "Mueve manos/pies nervioso", "Se siente como un motor"];
+    const qISI  = ["Dificultad conciliar sueño", "Dificultad mantener sueño", "Despertar muy temprano", "Insatisfacción con sueño", "Interfiere vida diaria", "Otros notan tu cansancio", "Preocupación por sueño"];
+    const qPSS  = ["Sentir que no controlas tu vida", "Sentir incapacidad manejar problemas", "Sentir que las cosas se acumulan", "Sentir que no puedes afrontar cambios"];
 
-    // 2. PHQ-9 (Adultos)
-    const qPHQ9 = [
-        "Tener poco interés o placer en hacer las cosas",
-        "Sentirse desanimado/a, deprimido/a o sin esperanza",
-        "Problemas para dormir o mantenerse dormido/a, o dormir demasiado",
-        "Sentirse cansado/a o tener poca energía",
-        "Tener poco apetito o comer en exceso",
-        "Sentir falta de amor propio o que ha fallado a sí mismo/a",
-        "Dificultad para concentrarse en cosas (leer, ver TV)",
-        "Moverse o hablar tan lento que otros lo notan, o estar muy inquieto",
-        "Pensamientos de que estaría mejor muerto/a o de lastimarse"
-    ];
+    // ADOLESCENTES
+    const qSCARED_A = ["Me asusto sin razón", "Me duele la panza en la escuela", "Miedo a estar solo", "Miedo a dormir fuera", "Me preocupa el futuro", "Me cuesta respirar sin razón"];
+    const qPHQA     = ["Me siento irritado/molesto", "No tengo ganas de nada", "Duermo mal", "Estoy muy cansado", "No tengo hambre o como mucho", "Me siento inútil", "No me concentro en clases"];
+    const qROS      = ["Siento que soy una persona digna", "Siento que tengo buenas cualidades", "Soy capaz de hacer cosas bien", "Tengo una actitud positiva hacia mí", "Estoy satisfecho conmigo mismo"];
+    const qESTRES_A = ["Me siento presionado por notas", "Tengo demasiadas actividades", "Discuto mucho en casa", "Siento que no cumplo expectativas", "Me siento agobiado"];
+    const qSUENO_A  = ["Uso el celular hasta madrugada", "Me duermo en clases", "Me cuesta levantarme", "Siento que duermo poco", "Tengo pesadillas"];
 
-    // 3. TDAH (Niños - SNAP-IV Inatención)
-    const qTDAH = [
-        "No presta atención a los detalles o comete errores por descuido",
-        "Tiene dificultad para mantener la atención en tareas o juegos",
-        "Parece no escuchar cuando se le habla directamente",
-        "No sigue instrucciones y no termina las tareas escolares",
-        "Tiene dificultad para organizar tareas y actividades",
-        "Evita tareas que requieren esfuerzo mental sostenido",
-        "Pierde cosas necesarias para tareas (lápices, libros)",
-        "Se distrae fácilmente por estímulos externos",
-        "Olvida las actividades cotidianas"
-    ];
+    // NIÑOS (PADRES)
+    const qTDAH_I   = ["No presta atención a detalles", "Le cuesta mantener la atención", "Parece no escuchar", "No sigue instrucciones", "Pierde sus cosas", "Se distrae fácilmente"];
+    const qTDAH_H   = ["Mueve manos/pies en asiento", "Se levanta en clases/mesa", "Corre o trepa excesivamente", "Tiene dificultad para jugar tranquilo", "Habla en exceso", "Interrumpe a otros"];
+    const qODD      = ["Pierde la calma a menudo", "Discute con adultos", "Desafía las reglas", "Molesta a otros adrede", "Culpa a otros de sus errores", "Es rencoroso"];
+    const qSCARED_P = ["Dice que se asusta sin razón", "Se queja de dolor de cabeza/panza", "No quiere separarse de usted", "Tiene miedo a dormir solo", "Se preocupa mucho"];
+    const qDEP_P    = ["Se ve triste o llora mucho", "Ya no juega como antes", "Se queja de estar cansado", "Se irrita fácilmente", "Dice que nadie lo quiere"];
 
-    // 4. SCARED (Niños - Ansiedad)
-    const qSCARED = [
-        "Se asusta o pone nervioso sin razón aparente",
-        "Tiene dolores de cabeza o estómago cuando va a la escuela",
-        "Tiene miedo de estar solo o sin sus padres",
-        "Le da miedo dormir fuera de casa",
-        "Se preocupa excesivamente por el futuro"
-    ];
+    // OPCIONES
+    const optFrec = [{v:0,t:"Nunca"}, {v:1,t:"Varios días"}, {v:2,t:"Más de la mitad"}, {v:3,t:"Casi siempre"}];
+    const optASRS = [{v:0,t:"Nunca"}, {v:1,t:"Rara vez"}, {v:2,t:"A veces"}, {v:3,t:"A menudo"}, {v:4,t:"Muy a menudo"}];
+    const optSNAP = [{v:0,t:"Nada"}, {v:1,t:"Un poco"}, {v:2,t:"Bastante"}, {v:3,t:"Mucho"}];
+    const optLikert = [{v:0,t:"Muy en desacuerdo"}, {v:1,t:"En desacuerdo"}, {v:2,t:"De acuerdo"}, {v:3,t:"Muy de acuerdo"}];
 
-    // 5. ODD (Niños - Conducta)
-    const qODD = [
-        "A menudo pierde la calma",
-        "A menudo discute con los adultos",
-        "Desafía activamente las reglas",
-        "Molesta a los demás deliberadamente",
-        "Culpa a otros de sus errores",
-        "Es susceptible o se molesta fácilmente",
-        "Está enfadado o resentido",
-        "Es rencoroso o vengativo"
-    ];
+    // INICIALIZADOR DE TESTS
+    function init() {
+        // Adultos
+        render("form-gad7", qGAD7, "g", optFrec);
+        render("form-phq9", qPHQ9, "p", optFrec);
+        render("form-asrs", qASRS, "a", optASRS);
+        render("form-isi", qISI, "i", [{v:0,t:"Ninguna"},{v:1,t:"Leve"},{v:2,t:"Moderada"},{v:3,t:"Severa"},{v:4,t:"Muy Severa"}]);
+        render("form-pss", qPSS, "pss", optFrec);
+        
+        // Adolescentes
+        render("form-scared_a", qSCARED_A, "sca", optSNAP);
+        render("form-phqa", qPHQA, "pqa", optFrec);
+        render("form-ros", qROS, "ros", optLikert);
+        render("form-estres_a", qESTRES_A, "esa", optSNAP);
+        render("form-sueno_a", qSUENO_A, "sua", optSNAP);
 
-    // --- OPCIONES DE RESPUESTA ---
-    const optFrecuencia = [
-        {val: 0, txt: "Nunca"},
-        {val: 1, txt: "Varios días"},
-        {val: 2, txt: "Más de la mitad"},
-        {val: 3, txt: "Casi todos los días"}
-    ];
-    
-    const optSNAP = [
-        {val: 0, txt: "Nada"},
-        {val: 1, txt: "Un poco"},
-        {val: 2, txt: "Bastante"},
-        {val: 3, txt: "Mucho"}
-    ];
-
-    // --- RENDERIZADOR ---
-    function renderPreguntas(idDiv, preguntas, prefijo, opciones) {
-        let html = "";
-        preguntas.forEach((p, index) => {
-            html += `<div class="question-box"><p><strong>${index + 1}.</strong> ${p}</p><div class="options">`;
-            opciones.forEach(opt => {
-                html += `<label><input type="radio" name="${prefijo}${index}" value="${opt.val}"> ${opt.txt}</label>`;
-            });
-            html += `</div></div>`;
-        });
-        document.getElementById(idDiv).innerHTML = html;
+        // Niños
+        render("form-tdah_i", qTDAH_I, "tdi", optSNAP);
+        render("form-tdah_h", qTDAH_H, "tdh", optSNAP);
+        render("form-odd", qODD, "odd", optSNAP);
+        render("form-scared_p", qSCARED_P, "scp", optSNAP);
+        render("form-dep_p", qDEP_P, "dpp", optSNAP);
     }
 
-    // Inicializar Tests
-    renderPreguntas("form-gad7", qGAD7, "gad", optFrecuencia);
-    renderPreguntas("form-phq9", qPHQ9, "phq", optFrecuencia);
-    renderPreguntas("form-tdah", qTDAH, "tdah", optSNAP);
-    renderPreguntas("form-scared", qSCARED, "scared", optSNAP);
-    renderPreguntas("form-odd", qODD, "odd", optSNAP);
+    // FUNCIONES DE INTERFAZ
+    function render(id, qs, pre, opts) {
+        let h = "";
+        qs.forEach((q,i) => {
+            h += `<div class="question-box"><p class="question-text">${i+1}. ${q}</p><div class="options">`;
+            opts.forEach(o => h += `<label><input type="radio" name="${pre}${i}" value="${o.v}"> ${o.t}</label>`);
+            h += `</div></div>`;
+        });
+        document.getElementById(id).innerHTML = h;
+    }
 
-    // --- PESTAÑAS ---
-    function openTab(tabName) {
-        document.querySelectorAll('.tab-content').forEach(x => x.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(x => x.classList.remove('active'));
-        document.getElementById(tabName).classList.add('active');
+    function openTab(name) {
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(name).classList.add('active');
         event.currentTarget.classList.add('active');
     }
 
-    // --- FUNCIONES DE CÁLCULO ---
-
-    // 1. GAD-7
-    function calcularGAD7() {
-        let total = sumarPuntos("gad", qGAD7.length);
-        if(total === -1) return;
-        
-        let severidad = total <= 4 ? "Mínima" : total <= 9 ? "Leve" : total <= 14 ? "Moderada" : "Severa";
-        let color = total >= 10 ? "#e74c3c" : "#27ae60";
-        
-        let msgPaciente = total >= 10 
-            ? "Tus respuestas indican síntomas de ansiedad significativos. Es importante evaluarlo profesionalmente." 
-            : "Tus niveles de ansiedad parecen estar bajo control.";
-            
-        let msgTecnico = `*RESULTADO GAD-7*%0A• Puntaje: ${total}/21%0A• Nivel: ${severidad}%0A• Interpretación: Posible Trastorno de Ansiedad Generalizada si >10.`;
-        
-        mostrarResultado("res-gad7", msgPaciente, color, msgTecnico);
+    function toggleTest(idSuffix) {
+        const area = document.getElementById('area-' + idSuffix);
+        const isHidden = area.style.display === 'none' || area.style.display === '';
+        // Cerrar todos primero para limpieza visual (opcional)
+        document.querySelectorAll('.quiz-area').forEach(d => d.style.display = 'none');
+        if(isHidden) area.style.display = 'block';
     }
 
-    // 2. PHQ-9
-    function calcularPHQ9() {
-        let total = sumarPuntos("phq", qPHQ9.length);
-        if(total === -1) return;
-
-        let severidad = total <= 4 ? "Mínima" : total <= 9 ? "Leve" : total <= 14 ? "Moderada" : total <= 19 ? "Moderada-Severa" : "Severa";
-        let color = total >= 10 ? "#e74c3c" : "#27ae60";
-
-        let msgPaciente = total >= 10
-            ? "Hemos detectado indicadores importantes en tu estado de ánimo. Te recomendamos agendar una consulta."
-            : "Tu estado de ánimo parece estable en este momento.";
-
-        let msgTecnico = `*RESULTADO PHQ-9*%0A• Puntaje: ${total}/27%0A• Nivel: ${severidad}%0A• Interpretación: Valorar depresión mayor si >10.`;
-
-        mostrarResultado("res-phq9", msgPaciente, color, msgTecnico);
+    // --- LÓGICA DE CÁLCULO (DOBLE CANAL) ---
+    
+    // Adultos
+    function calcularGAD7() { calcSum("g", qGAD7.length, 10, "Ansiedad Generalizada", "Posible Trastorno de Ansiedad (GAD-7 > 10)"); }
+    function calcularPHQ9() { calcSum("p", qPHQ9.length, 10, "Depresión", "Posible Depresión Mayor (PHQ-9 > 10)"); }
+    function calcularISI()  { calcSum("i", qISI.length, 15, "Insomnio Clínico", "Insomnio Clínico Moderado/Severo (ISI > 15)"); }
+    function calcularPSS()  { calcSum("pss", qPSS.length, 8, "Estrés Percibido", "Nivel de Estrés Elevado"); }
+    function calcularASRS() { 
+        // ASRS criterio: 4 o más ítems en zona gris (>=2)
+        let r = countGray("a", qASRS.length, 2); 
+        if(r.t<0) return;
+        let pos = r.c >= 4;
+        showResult("res-asrs", pos, "Indicadores de TDAH Adulto detectados.", "No se observan indicadores significativos.", `*ASRS TDAH* Ítems Positivos: ${r.c}/6. ${pos ? "⚠️ SCREENING POSITIVO" : "Negativo"}`);
     }
 
-    // 3. TDAH
-    function calcularTDAH() {
-        let {total, clinicos} = contarSintomas("tdah", qTDAH.length, 2); // Umbral 2 (Bastante/Mucho)
-        if(total === -1) return;
-        
-        let cumple = clinicos >= 6;
-        let color = cumple ? "#f39c12" : "#27ae60";
-        
-        let msgPaciente = cumple
-            ? "Se observan indicadores de inatención que merecen una revisión profesional."
-            : "No se observan indicadores significativos de déficit de atención.";
-            
-        let msgTecnico = `*RESULTADO TDAH (Inatención)*%0A• Síntomas Clínicos: ${clinicos}/9%0A• Criterio DSM-5: ${cumple ? "CUMPLE" : "NO CUMPLE"} (Umbral 6).`;
-        
-        mostrarResultado("res-tdah", msgPaciente, color, msgTecnico);
+    // Adolescentes
+    function calcularSCARED_A() { calcCount("sca", qSCARED_A.length, 1, 3, "Ansiedad Adolescente", "Riesgo de Ansiedad Elevado"); }
+    function calcularPHQA()     { calcSum("pqa", qPHQA.length, 10, "Depresión Adolescente", "Síntomas Depresivos Significativos"); }
+    function calcularEstresA()  { calcCount("esa", qESTRES_A.length, 2, 3, "Estrés Escolar", "Sobrecarga de Estrés"); }
+    function calcularSuenoA()   { calcCount("sua", qSUENO_A.length, 2, 3, "Higiene de Sueño", "Malos hábitos de sueño detectados"); }
+    function calcularROS() {
+        let t = sum("ros", qROS.length);
+        if(t<0) return;
+        let bajo = t <= 7; // Rango arbitrario para screening (0-15)
+        let msg = bajo ? "Indicadores de baja autoestima." : "Nivel de autoestima saludable.";
+        showResult("res-ros", bajo, msg, msg, `*AUTOESTIMA* Puntaje: ${t}/${qROS.length*3}. ${bajo ? "⚠️ BAJA" : "NORMAL"}`);
     }
 
-    // 4. SCARED
-    function calcularSCARED() {
-        let {total, clinicos} = contarSintomas("scared", qSCARED.length, 1); // Umbral 1 (Un poco cuenta)
-        if(total === -1) return;
+    // Niños
+    function calcularTDAH_I() { calcCount("tdi", qTDAH_I.length, 2, 4, "TDAH Inatención", "CUMPLE Criterio Inatención"); } // Umbral ajustado screening
+    function calcularTDAH_H() { calcCount("tdh", qTDAH_H.length, 2, 4, "TDAH Hiperactividad", "CUMPLE Criterio Hiperactividad"); }
+    function calcularODD()    { calcCount("odd", qODD.length, 2, 4, "Conducta ODD", "CUMPLE Criterio Oposicionista"); }
+    function calcularSCARED_P(){calcCount("scp", qSCARED_P.length, 1, 3, "Ansiedad (Padres)", "Indicadores de Ansiedad Infantil"); }
+    function calcularDEP_P()  { calcCount("dpp", qDEP_P.length, 2, 3, "Ánimo (Padres)", "Indicadores de Depresión Infantil"); }
 
-        let positivo = total >= 3;
-        let color = positivo ? "#f39c12" : "#27ae60";
-        
-        let msgPaciente = positivo
-            ? "Tus respuestas sugieren presencia de ansiedad. Sería útil conversar sobre esto."
-            : "Niveles de ansiedad dentro del rango esperado.";
 
-        let msgTecnico = `*RESULTADO SCARED (Screening)*%0A• Ítems Positivos: ${total}%0A• Interpretación: ${positivo ? "RIESGO" : "BAJO RIESGO"}.`;
-
-        mostrarResultado("res-scared", msgPaciente, color, msgTecnico);
+    // UTILS GENÉRICOS
+    function sum(pre, n) { let s=0; for(let i=0;i<n;i++){ let el=document.querySelector(`input[name="${pre}${i}"]:checked`); if(!el){alert("Responde todo"); return -1;} s+=parseInt(el.value); } return s; }
+    
+    function countGray(pre, n, cut) { 
+        let c=0; 
+        for(let i=0;i<n;i++){ 
+            let el=document.querySelector(`input[name="${pre}${i}"]:checked`); 
+            if(!el){alert("Responde todo"); return {t:-1};} 
+            if(parseInt(el.value)>=cut) c++; 
+        } 
+        return {c, t:0}; 
     }
 
-    // 5. ODD
-    function calcularODD() {
-        let {total, clinicos} = contarSintomas("odd", qODD.length, 2);
-        if(total === -1) return;
-
-        let cumple = clinicos >= 4;
-        let color = cumple ? "#c0392b" : "#27ae60";
-
-        let msgPaciente = cumple
-            ? "Se identifican patrones de conducta desafiante que requieren atención."
-            : "Conducta dentro de los límites esperados.";
-
-        let msgTecnico = `*RESULTADO ODD (Conducta)*%0A• Síntomas Clínicos: ${clinicos}/8%0A• Criterio DSM-5: ${cumple ? "CUMPLE" : "NO CUMPLE"} (Umbral 4).`;
-
-        mostrarResultado("res-odd", msgPaciente, color, msgTecnico);
+    function calcSum(pre, n, cut, title, techMsg) {
+        let t = sum(pre, n);
+        if(t<0) return;
+        let pos = t >= cut;
+        showResult("res-"+pre.replace(/_/g,''), pos, "Se observan indicadores significativos que requieren atención.", "Resultados dentro del rango esperado.", `*${title}* Puntaje: ${t}. ${pos ? "⚠️ " + techMsg : "Sin riesgo clínico."}`);
     }
 
-    // --- UTILIDADES ---
-    function sumarPuntos(prefijo, cantidad) {
-        let suma = 0;
-        for(let i=0; i<cantidad; i++) {
-            let els = document.getElementsByName(`${prefijo}${i}`);
-            let val = -1;
-            for(let el of els) if(el.checked) val = parseInt(el.value);
-            if(val === -1) { alert("Por favor responde todas las preguntas."); return -1; }
-            suma += val;
-        }
-        return suma;
+    function calcCount(pre, n, valCut, countCut, title, techMsg) {
+        let r = countGray(pre, n, valCut);
+        if(r.t<0) return;
+        let pos = r.c >= countCut;
+        showResult("res-"+pre.replace(/_/g,''), pos, "Se detectaron indicadores que sugieren la necesidad de una evaluación.", "No se detectaron indicadores de riesgo.", `*${title}* Síntomas: ${r.c}/${n}. ${pos ? "⚠️ " + techMsg : "Negativo"}`);
     }
 
-    function contarSintomas(prefijo, cantidad, umbral) {
-        let total = 0;
-        let clinicos = 0;
-        for(let i=0; i<cantidad; i++) {
-            let els = document.getElementsByName(`${prefijo}${i}`);
-            let val = -1;
-            for(let el of els) if(el.checked) val = parseInt(el.value);
-            if(val === -1) { alert("Responde todo por favor."); return {total:-1}; }
-            total += val;
-            if(val >= umbral) clinicos++;
-        }
-        return {total, clinicos};
-    }
-
-    function mostrarResultado(idDiv, textoPaciente, color, textoTecnico) {
-        const div = document.getElementById(idDiv);
+    function showResult(id, isRisk, msgRisk, msgOk, techText) {
+        const div = document.getElementById(id);
+        const color = isRisk ? "#e74c3c" : "#27ae60"; // Rojo o Verde
         div.innerHTML = `
-            <div style="padding: 15px; border-left: 5px solid ${color}; background: ${color}10;">
-                <h3 style="color:${color}; margin:0;">📊 Resultado</h3>
-                <p>${textoPaciente}</p>
-                <a href="https://wa.me/${MI_NUMERO}?text=${textoTecnico}" target="_blank" 
-                   style="display:block; text-align:center; background:#25D366; color:white; padding:10px; border-radius:20px; text-decoration:none; margin-top:10px; font-weight:bold;">
-                   <i class="fab fa-whatsapp"></i> Enviar Análisis al Psicólogo
+            <div style="padding:15px; border-left:5px solid ${color}; background:${color}10; margin-top:15px; border-radius:8px;">
+                <h4 style="color:${color}; margin:0 0 10px 0;">${isRisk ? "⚠️ Atención Requerida" : "✅ Resultado Normal"}</h4>
+                <p>${isRisk ? msgRisk : msgOk}</p>
+                <a href="https://wa.me/${MI_NUMERO}?text=${encodeURIComponent(techText)}" target="_blank" 
+                   style="display:block; text-align:center; background:#25D366; color:white; padding:12px; border-radius:50px; text-decoration:none; margin-top:15px; font-weight:bold; box-shadow:0 3px 6px rgba(0,0,0,0.1);">
+                   <i class="fab fa-whatsapp"></i> Enviar a Psic. Andrés
                 </a>
-            </div>
-        `;
+            </div>`;
         div.style.display = "block";
+        div.scrollIntoView({behavior:'smooth'});
     }
+
+    // Inicializar al cargar
+    init();
 </script>
 
 </body>
