@@ -10,114 +10,75 @@
         /* ESTILOS BASE */
         body { font-family: 'Poppins', sans-serif; background-color: #f0f3f5; margin: 0; padding: 0; color: #333; }
         
-        /* HEADER CON IMAGEN DE FONDO */
+        /* HEADER */
         header {
-            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)), url('https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 70px 20px;
-            text-align: center;
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1600&q=80');
+            background-size: cover; background-position: center; color: white; padding: 80px 20px; text-align: center;
         }
-        header h1 { margin: 0; font-size: 2.8rem; font-weight: 700; letter-spacing: -1px; }
-        header p { font-size: 1.1rem; margin-top: 15px; opacity: 0.95; font-weight: 300; }
+        header h1 { margin: 0; font-size: 2.5rem; font-weight: 700; }
+        header p { font-size: 1.1rem; margin-top: 10px; opacity: 0.9; }
 
-        /* SECCIÓN "TIP DEL DÍA" */
+        /* TIP DEL DÍA */
         .daily-tip-box {
-            background: white;
-            max-width: 850px;
-            margin: -35px auto 50px; /* Flota sobre el header */
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-            border-bottom: 5px solid #27ae60;
+            background: white; max-width: 800px; margin: -40px auto 50px; padding: 30px;
+            border-radius: 15px; box-shadow: 0 15px 30px rgba(0,0,0,0.1); text-align: center;
+            border-bottom: 5px solid #27ae60; position: relative;
         }
         .daily-badge {
-            background: #27ae60; color: white; padding: 6px 18px; border-radius: 20px;
-            font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
-            display: inline-block; margin-bottom: 15px;
+            background: #27ae60; color: white; padding: 5px 15px; border-radius: 20px;
+            font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 15px; display: inline-block;
         }
-        #daily-quote { font-size: 1.25rem; font-style: italic; color: #444; line-height: 1.6; }
-        #daily-source { margin-top: 15px; font-weight: 600; color: #2c3e50; font-size: 0.95rem; }
+        #daily-quote { font-size: 1.3rem; font-style: italic; color: #555; margin: 15px 0; }
 
-        /* GRILLA DE TEMAS */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 40px; }
-        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        /* GRILLA */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 50px; }
+        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
 
-        /* TARJETAS DE TEMA */
+        /* TARJETAS */
         .topic-card {
             background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: all 0.3s ease;
-            cursor: pointer; display: flex; flex-direction: column; height: 100%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; cursor: pointer;
+            display: flex; flex-direction: column; height: 100%;
         }
-        .topic-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
-        
-        .card-img { height: 180px; width: 100%; object-fit: cover; transition: transform 0.5s; }
-        .topic-card:hover .card-img { transform: scale(1.05); }
-        
+        .topic-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .card-img { height: 180px; width: 100%; object-fit: cover; }
         .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-title { font-size: 1.3rem; font-weight: 700; color: #2c3e50; margin-bottom: 8px; }
+        .card-title { font-size: 1.2rem; font-weight: 700; color: #2c3e50; margin-bottom: 10px; }
         .card-desc { font-size: 0.95rem; color: #7f8c8d; line-height: 1.5; margin-bottom: 20px; }
-        .btn-explore { color: #3498db; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
-        .btn-explore:hover { color: #2980b9; }
+        .btn-explore { color: #3498db; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 5px; }
 
-        /* MODAL (Ventana Emergente) */
+        /* MODAL */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); z-index: 2000; justify-content: center; align-items: center; padding: 20px;
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px);
         }
         .modal-content {
-            background: white; width: 100%; max-width: 750px; border-radius: 20px;
-            max-height: 90vh; overflow-y: auto; position: relative; animation: slideUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            background: white; width: 100%; max-width: 700px; border-radius: 15px;
+            max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.3); animation: slideUp 0.4s ease;
         }
-        .modal-header {
-            background: #2c3e50; color: white; padding: 25px 30px; position: sticky; top: 0;
-            display: flex; justify-content: space-between; align-items: center; z-index: 10;
-        }
-        .modal-header h3 { margin: 0; font-size: 1.4rem; }
-        .close-btn { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; line-height: 1; opacity: 0.8; transition: 0.2s; }
-        .close-btn:hover { opacity: 1; transform: rotate(90deg); }
+        .modal-header { background: #2c3e50; color: white; padding: 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
+        .close-btn { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; }
+        .modal-body { padding: 30px; }
         
-        .modal-body { padding: 35px; }
-        
-        /* Estilos dentro del Modal */
-        .section-block { margin-bottom: 35px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        .section-block:last-child { border: none; margin-bottom: 0; padding-bottom: 0; }
-        .block-title { font-size: 1.1rem; font-weight: 700; color: #3498db; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        
-        .highlight-box { background: #fffcf0; border-left: 4px solid #f1c40f; padding: 20px; border-radius: 8px; margin: 20px 0; color: #555; }
-        .verse-box { background: #e8f6f3; color: #16a085; padding: 20px; border-radius: 12px; text-align: center; font-weight: 600; font-size: 1.1rem; border: 1px solid #d0ece7; }
-        
-        .action-list { padding-left: 20px; }
-        .action-list li { margin-bottom: 12px; line-height: 1.7; color: #444; }
+        .section-block { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+        .block-title { font-weight: 700; color: #3498db; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .verse-box { background: #e8f6f3; color: #16a085; padding: 15px; border-radius: 10px; text-align: center; font-style: italic; font-weight: 600; }
 
-        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        /* Botón Volver */
-        .btn-home {
-            display: block; width: 220px; margin: 50px auto; padding: 15px;
-            text-align: center; background: #95a5a6; color: white; border-radius: 50px;
-            text-decoration: none; font-weight: 600; transition: all 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .btn-home:hover { background: #7f8c8d; transform: translateY(-2px); }
-
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .btn-home { display: block; width: 200px; margin: 40px auto; padding: 15px; text-align: center; background: #95a5a6; color: white; border-radius: 50px; text-decoration: none; font-weight: 600; }
+        .btn-home:hover { background: #7f8c8d; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>🌱 Bienestar & Vida</h1>
-        <p>Psicología aplicada para tus desafíos reales, cotidianos y espirituales</p>
+        <p>Psicología aplicada para tus desafíos reales</p>
     </header>
 
     <div class="daily-tip-box">
         <span class="daily-badge">💡 Reflexión del Día</span>
-        <p id="daily-quote">"Cargando inspiración..."</p>
+        <p id="daily-quote">"Cargando..."</p>
         <div id="daily-source"></div>
     </div>
 
@@ -125,275 +86,165 @@
         <div class="grid-topics">
             
             <div class="topic-card" onclick="openModal('modal-duelo')">
-                <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Duelo">
+                <img src="https://images.unsplash.com/photo-1494451930944-8998635c2123?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Duelo">
                 <div class="card-content">
                     <div class="card-title">💔 Sanando el Duelo</div>
-                    <p class="card-desc">No hay prisa. Herramientas para transitar la pérdida y encontrar significado.</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <p class="card-desc">Herramientas para transitar la pérdida y encontrar significado sin prisa.</p>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
             <div class="topic-card" onclick="openModal('modal-finanzas')">
-                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Finanzas">
+                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Finanzas">
                 <div class="card-content">
                     <div class="card-title">💰 Psicología Financiera</div>
-                    <p class="card-desc">Manejo del estrés económico, control de compras impulsivas y deudas.</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <p class="card-desc">Control de impulsos, manejo de deudas y estrés económico.</p>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
             <div class="topic-card" onclick="openModal('modal-migracion')">
-                <img src="https://images.unsplash.com/photo-1529104661007-885061c4a034?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Migración">
+                <img src="https://images.unsplash.com/photo-1502014822147-1aed80671e0a?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Migración">
                 <div class="card-content">
                     <div class="card-title">🌎 Duelo Migratorio</div>
-                    <p class="card-desc">Síndrome de Ulises y el reto emocional de empezar de cero en otro país.</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <p class="card-desc">Síndrome de Ulises y el reto de empezar de cero en otro país.</p>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
             <div class="topic-card" onclick="openModal('modal-burnout')">
-                <img src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Burnout">
+                <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Burnout">
                 <div class="card-content">
-                    <div class="card-title">🔥 Estrés Laboral (Burnout)</div>
-                    <p class="card-desc">¿Agotado o deprimido? Señales de que tu trabajo te está "quemando".</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <div class="card-title">🔥 Estrés Laboral</div>
+                    <p class="card-desc">¿Agotado o quemado? Señales de Burnout y cómo poner límites.</p>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
             <div class="topic-card" onclick="openModal('modal-espiritual')">
-                <img src="https://images.unsplash.com/photo-1507692049790-de58293a469d?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Espiritualidad">
+                <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Espiritualidad">
                 <div class="card-content">
                     <div class="card-title">🕊️ Fe y Psicología</div>
                     <p class="card-desc">Integrando la sabiduría bíblica con la ciencia de la mente.</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
             <div class="topic-card" onclick="openModal('modal-divorcio')">
-                <img src="https://images.unsplash.com/photo-1621574539436-4bf8dd396979?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Divorcio">
+                <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Divorcio">
                 <div class="card-content">
                     <div class="card-title">⚖️ Reconstrucción</div>
                     <p class="card-desc">Adaptación al cambio tras la ruptura, coparentalidad y nueva identidad.</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
             <div class="topic-card" onclick="openModal('modal-salud')">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Salud">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Salud">
                 <div class="card-content">
                     <div class="card-title">🍏 Psiconutrición</div>
-                    <p class="card-desc">Alimentación consciente: Hambre física vs. Hambre emocional.</p>
-                    <span class="btn-explore">Ver Recursos <i class="fas fa-arrow-right"></i></span>
+                    <p class="card-desc">Alimentación consciente, sin dietas estrictas y hábitos nocturnos.</p>
+                    <span class="btn-explore">Ver Recursos →</span>
                 </div>
             </div>
 
         </div>
-
         <a href="index.html" class="btn-home">← Volver al Inicio</a>
+    </div>
+
+    <div id="modal-salud" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🍏 Psiconutrición Consciente</h3><button class="close-btn" onclick="closeModal()">×</button></div>
+            <div class="modal-body">
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-ban"></i> Adiós a la Cultura de Dieta</div>
+                    <p>Las dietas restrictivas suelen causar ansiedad y el temido "efecto rebote". No se trata de dejar de comer, sino de <strong>nutrir tu cuerpo</strong> con lo que necesita.</p>
+                </div>
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-moon"></i> Higiene Nocturna</div>
+                    <p>Evita comidas pesadas justo antes de dormir; esto afecta tu calidad de sueño y aumenta el reflujo. Intenta cenar ligero 2 horas antes de ir a la cama.</p>
+                </div>
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-utensils"></i> Porciones y Consciencia</div>
+                    <p>Come despacio y en porciones adecuadas. Escucha a tu estómago: ¿Estás satisfecho o sigues comiendo por ansiedad? La alimentación consciente sana tu relación con la comida.</p>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="modal-duelo" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>💔 El Proceso del Duelo</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
+            <div class="modal-header"><h3>💔 Proceso de Duelo</h3><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-info-circle"></i> ¿Qué es normal?</div>
-                    <p>El duelo no es lineal. Es normal sentir oleadas de tristeza, ira o culpa meses después. No te presiones por "superarlo"; el objetivo es integrar la pérdida en tu historia.</p>
-                </div>
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-tools"></i> Técnica: "La Caja de Recuerdos"</div>
-                    <p>Si los recuerdos te invaden en el trabajo, crea un espacio físico y temporal (ej: 15 min al día) para revisar fotos y llorar si es necesario. Esto te permite procesar la emoción ("Dosis de duelo") sin que te desborde todo el día.</p>
-                </div>
-                <div class="section-block">
-                    <div class="verse-box">"Bienaventurados los que lloran, porque ellos recibirán consolación." — Mateo 5:4</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-finanzas" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>💰 Paz Financiera</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-brain"></i> El Dinero y la Emoción</div>
-                    <p>Muchas deudas nacen de intentar llenar vacíos emocionales. Antes de comprar algo no esencial, aplica la <strong>Regla de las 24 Horas</strong>: Espera un día entero. Si mañana sigues queriéndolo genuinamente, considera la compra.</p>
-                </div>
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-list-ul"></i> Método: Bola de Nieve</div>
-                    <ul class="action-list">
-                        <li>Ordena tus deudas de la más pequeña a la más grande.</li>
-                        <li>Paga el mínimo de todas, excepto la más pequeña.</li>
-                        <li>Ataca la más pequeña con todo el dinero extra.</li>
-                        <li>El éxito psicológico de "tachar" una deuda te dará dopamina para la siguiente.</li>
-                    </ul>
-                </div>
+                <div class="section-block"><div class="block-title">El duelo no es lineal</div><p>Es normal sentir altibajos. No te presiones.</p></div>
+                <div class="verse-box">"Bienaventurados los que lloran, porque ellos recibirán consolación." — Mateo 5:4</div>
             </div>
         </div>
     </div>
 
     <div id="modal-migracion" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>🌎 Psicología del Migrante</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
+            <div class="modal-header"><h3>🌎 Psicología del Migrante</h3><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-suitcase"></i> El Síndrome de Ulises</div>
-                    <p>Emigrar es un evento de estrés crónico. Enfrentas 7 duelos simultáneos: familia, lengua, cultura, tierra, estatus social, contacto con el grupo y riesgos físicos.</p>
-                </div>
-                <div class="section-block">
-                    <div class="highlight-box">
-                        <strong>Consejo de Adaptación:</strong> "Desempaca la maleta emocional". Incluso si planeas volver algún día, necesitas echar raíces donde estás hoy para florecer. Decora tu casa, crea rutinas locales. Vivir esperando volver impide vivir el presente.
-                    </div>
-                </div>
-                <div class="section-block">
-                    <div class="verse-box">"Jehová guarda a los extranjeros..." — Salmos 146:9</div>
-                </div>
+                <div class="section-block"><div class="block-title">Síndrome de Ulises</div><p>Emigrar conlleva múltiples duelos (tierra, idioma, estatus). Tienes derecho a sentirte abrumado.</p></div>
+                <div class="verse-box">"Jehová guarda a los extranjeros..." — Salmos 146:9</div>
             </div>
         </div>
     </div>
 
-    <div id="modal-burnout" class="modal-overlay">
+    <div id="modal-finanzas" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>🔥 Sanando el Burnout</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
+            <div class="modal-header"><h3>💰 Paz Financiera</h3><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-battery-quarter"></i> Las 3 Dimensiones</div>
-                    <p>El Burnout no es solo "cansancio", se compone de:</p>
-                    <ul class="action-list">
-                        <li><strong>Agotamiento Emocional:</strong> Sentir que no puedes dar más de ti.</li>
-                        <li><strong>Despersonalización:</strong> Cinismo o frialdad hacia clientes/pacientes.</li>
-                        <li><strong>Baja Realización:</strong> Sentir que tu trabajo no vale la pena.</li>
-                    </ul>
-                </div>
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-shield-alt"></i> Micro-Límites</div>
-                    <p>No necesitas renunciar mañana. Empieza recuperando pequeños espacios: No revisar el correo en la cama, comer lejos del escritorio. Recuerda: Tu valor como persona no depende de tu productividad.</p>
-                </div>
+                <div class="section-block"><div class="block-title">Regla de 24 Horas</div><p>Espera 24h antes de una compra impulsiva. Verás como el deseo baja.</p></div>
             </div>
         </div>
     </div>
 
     <div id="modal-espiritual" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>🕊️ Fe y Ciencia de la Mente</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
+            <div class="modal-header"><h3>🕊️ Fe y Ciencia</h3><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-bible"></i> Paralelos Psicológicos</div>
-                    <p>La psicología basada en evidencia confirma principios bíblicos:</p>
-                    <ul class="action-list">
-                        <li><strong>Terapia Cognitiva:</strong> "Cambiar el pensamiento cambia la emoción". <br><em>Biblia:</em> "Transformaos por medio de la renovación de vuestro entendimiento" (Rom. 12:2).</li>
-                        <li><strong>Mindfulness:</strong> Vivir el presente. <br><em>Biblia:</em> "No os afanéis por el día de mañana" (Mateo 6:34).</li>
-                    </ul>
-                </div>
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-heart"></i> El Poder del Perdón</div>
-                    <p>Psicológicamente, perdonar no es justificar al ofensor, sino soltar la carga tóxica que te enferma a ti. Es un acto de higiene mental y libertad espiritual.</p>
-                </div>
+                <div class="section-block"><div class="block-title">Renovación de Mente</div><p>La Terapia Cognitiva y Romanos 12:2 coinciden: cambiar tu forma de pensar cambia tu vida.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-burnout" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🔥 Burnout Laboral</h3><button class="close-btn" onclick="closeModal()">×</button></div>
+            <div class="modal-body">
+                <div class="section-block"><div class="block-title">Pon Límites</div><p>Tu valor no depende de tu productividad. Descansar es parte del trabajo.</p></div>
             </div>
         </div>
     </div>
 
     <div id="modal-divorcio" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-header">
-                <h3>⚖️ Reconstrucción Personal</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
+            <div class="modal-header"><h3>⚖️ Reconstrucción</h3><button class="close-btn" onclick="closeModal()">×</button></div>
             <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-user-shield"></i> Redefiniendo la Identidad</div>
-                    <p>Una separación rompe el "nosotros". La tarea ahora es redescubrir el "yo". ¿Qué te gustaba hacer antes de casarte? ¿Qué hobbies abandonaste? Es tiempo de reconstruir tu autonomía.</p>
-                </div>
-                <div class="section-block">
-                    <div class="highlight-box">
-                        <strong>Tip para Padres:</strong> "Ama a tus hijos más de lo que odias a tu ex". Nunca uses a los niños como mensajeros, espías o pañuelos de lágrimas. Ellos necesitan permiso para amar a ambos padres.
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal-salud" class="modal-overlay">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>🍏 Psiconutrición y Hábitos</h3>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body">
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-utensils"></i> ¿Hambre Física o Emocional?</div>
-                    <ul class="action-list">
-                        <li><strong>Hambre Física:</strong> Aparece gradual, se siente en el estómago, cualquier comida sirve, paras al llenarte.</li>
-                        <li><strong>Hambre Emocional:</strong> Aparece de golpe, pide algo específico (dulce/grasa), comes sin hambre, genera culpa después.</li>
-                    </ul>
-                </div>
-                <div class="section-block">
-                    <div class="block-title"><i class="fas fa-leaf"></i> El Cuerpo es un Templo</div>
-                    <p>Cuidar tu cuerpo no es vanidad, es mayordomía. Comer sano mejora la producción de serotonina (la hormona de la felicidad), el 90% de la cual se produce en el intestino, no en el cerebro.</p>
-                </div>
+                <div class="section-block"><div class="block-title">Redefinir el YO</div><p>Es tiempo de redescubrir quién eres fuera de la pareja.</p></div>
             </div>
         </div>
     </div>
 
     <script>
-        // === 1. SISTEMA DE TIPS DIARIOS AUTOMÁTICOS ===
         const tips = [
-            { t: "No creas todo lo que piensas. Tus pensamientos son hipótesis, no hechos.", s: "Terapia Cognitiva" },
-            { t: "Sobre toda cosa guardada, guarda tu corazón, porque de él mana la vida.", s: "Proverbios 4:23" },
-            { t: "El perdón es soltar a un prisionero y descubrir que el prisionero eras tú.", s: "Salud Emocional" },
-            { t: "La ansiedad no evita el dolor de mañana, solo roba la paz de hoy.", s: "Manejo del Estrés" },
-            { t: "Hazlo con miedo, pero hazlo. La valentía no es ausencia de miedo, es acción.", s: "Activación Conductual" },
-            { t: "Tu valor no depende de tu productividad ni de tu cuenta bancaria.", s: "Autoestima" },
-            { t: "La respuesta suave aparta el furor, mas la palabra aspera hace subir la ira.", s: "Proverbios 15:1" },
-            { t: "Descansar no es perder el tiempo, es recargar combustible para poder seguir.", s: "Prevención de Burnout" },
-            { t: "No tienes que poder con todo tú solo. Pedir ayuda es un acto de sabiduría.", s: "Fortaleza Mental" }
+            {t:"No creas todo lo que piensas. Tus pensamientos son hipótesis.", s:"Terapia Cognitiva"},
+            {t:"Sobre toda cosa guardada, guarda tu corazón.", s:"Proverbios 4:23"},
+            {t:"El perdón es soltar a un prisionero y ver que eras tú.", s:"Salud Emocional"},
+            {t:"La ansiedad no evita el dolor de mañana, solo roba la paz de hoy.", s:"Manejo del Estrés"}
         ];
-
         function cargarTip() {
-            // Usamos la fecha de hoy para elegir un tip (así cambia cada 24h para todos)
             const hoy = new Date();
-            const index = hoy.getDate() % tips.length; 
-            
+            const index = hoy.getDate() % tips.length;
             document.getElementById('daily-quote').innerText = `"${tips[index].t}"`;
             document.getElementById('daily-source').innerText = `— ${tips[index].s}`;
         }
-
-        // === 2. CONTROL DE VENTANAS (MODALES) ===
-        function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Evita scroll fondo
-        }
-
-        function closeModal() {
-            document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Cerrar si clic afuera
-        window.onclick = function(event) {
-            if (event.target.classList.contains('modal-overlay')) {
-                closeModal();
-            }
-        }
-
-        // Iniciar
+        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
+        function closeModal() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
+        window.onclick = function(e) { if(e.target.classList.contains('modal-overlay')) closeModal(); }
         cargarTip();
     </script>
-
 </body>
 </html>

@@ -3,268 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicología Clínica Integral</title>
+    <title>Psic. Andrés Tello - Consultorio Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* 1. FUENTES Y BASE */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap');
+        /* ESTILOS GENERALES */
+        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #f8f9fa; color: #333; }
+        
+        /* HEADER */
+        header { background-color: #fff; padding: 20px 40px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #2c3e50; display: flex; align-items: center; gap: 10px; }
+        .nav-links a { text-decoration: none; color: #555; margin-left: 20px; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: #3498db; }
+        .btn-cta { background-color: #3498db; color: white !important; padding: 10px 20px; border-radius: 50px; }
 
-        body { 
-            font-family: 'Open Sans', sans-serif; 
-            background-color: #f0f4f8; /* Gris azulado muy suave */
-            color: #334e68; 
-            margin: 0; 
-            line-height: 1.6;
-        }
-/* BARRA DE NAVEGACIÓN MODERNA */
-        .navbar {
-            background-color: #ffffff;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky; /* Se queda pegada arriba */
-            top: 0;
-            z-index: 1000;
-        }
+        /* HERO SECTION */
+        .hero { text-align: center; padding: 60px 20px; background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); }
+        .hero h1 { color: #2c3e50; font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { color: #7f8c8d; font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
 
-        .brand {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3em;
-            font-weight: 700;
-            color: #2c3e50;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        /* GRID DE SERVICIOS (AQUÍ ESTÁ LA MAGIA PARA QUE SE VEAN BIEN LOS 4) */
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Se acomodan solos */
+            gap: 30px;
+            margin-top: 20px;
         }
 
-        .brand span {
-            color: #3498db; /* La Psi en azul */
-            font-size: 1.5em;
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .nav-link {
-            text-decoration: none;
-            color: #555;
-            font-weight: 600;
-            font-size: 0.95em;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .nav-link:hover { color: #3498db; }
-
-        .nav-cta {
-            background-color: #3498db;
-            color: white !important;
-            padding: 8px 20px;
-            border-radius: 20px;
-            transition: 0.3s;
-        }
-        .nav-cta:hover { background-color: #2980b9; transform: translateY(-2px); }
-
-        /* Ajuste para móviles */
-        @media (max-width: 768px) {
-            .navbar { flex-direction: column; gap: 15px; padding: 15px; }
-            .nav-menu { gap: 15px; font-size: 0.9em; flex-wrap: wrap; justify-content: center; }
-        }
-        /* 2. ENCABEZADO (HERO) - Estilo Clínico */
-        .hero { 
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%); 
-            color: white; 
-            padding: 60px 20px; 
-            text-align: center; 
-            border-bottom-left-radius: 50px; /* Curva moderna */
-            border-bottom-right-radius: 50px;
-            box-shadow: 0 10px 30px rgba(44, 62, 80, 0.3);
-            margin-bottom: 40px;
-        }
-        .hero h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-        .hero p { font-size: 1.2em; opacity: 0.9; max-width: 600px; margin: 0 auto; }
-
-        /* 3. BOTONES DE ACCIÓN */
-        .btn { 
-            display: inline-block; 
-            padding: 12px 25px; 
-            margin-top: 15px; 
-            background-color: #27ae60; /* Verde Éxito */
-            color: white; 
-            text-decoration: none; 
-            border-radius: 30px; /* Botones redondos = Amabilidad */
-            font-weight: bold; 
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4); 
-            background-color: #219150;
-        }
-
-        /* 4. CONTENEDOR Y TARJETAS */
-        .container { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            padding: 20px; 
-        }
-
-        .servicios { 
-            display: flex; 
-            flex-wrap: wrap; 
-            gap: 25px; 
-            justify-content: center; 
-        }
-
-        .servicio-card { 
-            background: white; 
-            padding: 30px; 
-            border-radius: 15px; 
-            width: 300px; 
-            text-align: center; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* Sombra suave */
-            transition: all 0.3s ease;
+        /* TARJETAS */
+        .servicio-card {
+            background: white; padding: 30px; border-radius: 15px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s ease;
             border-top: 5px solid transparent;
+            display: flex; flex-direction: column; justify-content: space-between; height: 100%;
+        }
+        .servicio-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+        
+        /* COLORES DE BORDE */
+        .servicio-card:nth-child(1) { border-top-color: #e74c3c; } /* Tests */
+        .servicio-card:nth-child(2) { border-top-color: #3498db; } /* Telepsicología */
+        .servicio-card:nth-child(3) { border-top-color: #8e44ad; } /* Biblioteca */
+        .servicio-card:nth-child(4) { border-top-color: #27ae60; } /* Bienestar (Verde) */
+
+        .icon-container {
+            width: 70px; height: 70px; margin: 0 auto 20px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem;
         }
 
-        /* Efecto al pasar el mouse por las tarjetas */
-        .servicio-card:hover { 
-            transform: translateY(-10px); 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
-        }
-
-        /* Colores específicos para cada tarjeta */
-        .servicio-card:nth-child(1) { border-top-color: #e74c3c; } /* Rojo/Rosa para Tests */
-        .servicio-card:nth-child(2) { border-top-color: #3498db; } /* Azul para Telepsicología */
-        .servicio-card:nth-child(3) { border-top-color: #8e44ad; } /* Morado para Biblioteca */
-        .servicio-card:nth-child(4) { border-top-color: #27ae60; } /* Verde para Bienestar */
-
-        .servicio-card h3 { 
-            color: #2c3e50; 
-            font-family: 'Montserrat', sans-serif; 
-            margin-bottom: 15px;
-        }
-
-        /* 5. ZONA ADMIN (Discreta) */
-        .admin-zone {
-            background-color: #fff3cd;
-            color: #856404;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #ffc107;
-            margin-top: 50px;
-            font-size: 0.9em;
-        }
-
-        /* Responsive para celular */
-        @media (max-width: 768px) {
-            .hero { border-radius: 0 0 30px 30px; padding: 40px 20px; }
-            .hero h2 { font-size: 1.8em; }
-            .servicio-card { width: 100%; }
-        }
+        .servicio-card h3 { margin: 10px 0; color: #2c3e50; }
+        .servicio-card p { font-size: 0.9rem; color: #666; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+        .btn { display: inline-block; padding: 10px 25px; border-radius: 50px; text-decoration: none; color: white; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        
+        /* FOOTER Y ADMIN */
+        .admin-section { margin-top: 60px; padding: 20px; background: #fff3cd; border-radius: 10px; border-left: 5px solid #ffc107; font-size: 0.9rem; color: #856404; }
+        footer { text-align: center; margin-top: 50px; padding: 30px; color: #aaa; border-top: 1px solid #eee; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="brand">
-            <span>Ψ</span> Psic. Andrés Tello
-        </a>
+    <header>
+        <div class="logo"><i class="fas fa-psycho-neurology"></i> Psic. Andrés Tello</div>
+        <nav class="nav-links">
+            <a href="index.html"><i class="fas fa-home"></i> Inicio</a>
+            <a href="cuestionarios.html"><i class="fas fa-clipboard-check"></i> Tests</a>
+            <a href="bienestar.html"><i class="fas fa-leaf"></i> Recursos</a>
+            <a href="https://wa.me/19086166835" class="btn-cta"><i class="far fa-calendar-alt"></i> Agendar Cita</a>
+        </nav>
+    </header>
 
-        <div class="nav-menu">
-            <a href="index.html" class="nav-link">🏠 Inicio</a>
-            <a href="cuestionarios.html" class="nav-link">🧠 Tests Online</a>
-            <a href="biblioteca.html" class="nav-link">📚 Recursos</a>
-            <a href="https://wa.me/19086361137" class="nav-link nav-cta">📅 Agendar Cita</a>
-        </div>
-    </nav>
+    <div class="hero">
+        <h1>Tu bienestar mental es prioridad</h1>
+        <p>Herramientas profesionales, evaluación clínica y recursos prácticos al alcance de un clic.</p>
+    </div>
 
     <div class="container">
-        
-        <div class="hero" id="inicio">
-            <h2>Bienvenido a tu espacio de salud mental</h2>
-            <p>Psicología basada en evidencia. Tecnología al servicio de tu bienestar.</p>
-            <br>
-            <a href="https://wa.me/19086361137" class="btn">Agendar por WhatsApp</a>
-        </div>
-
-    <div class="servicios">
-
-        <div class="servicio-card">
-            <h3>🧠 Evaluación (Tests)</h3>
-            <p>Accede a pruebas psicométricas validadas para un diagnóstico preciso.</p>
-            <br>
-            <a href="cuestionarios.html" class="btn" style="font-size: 0.8em;">Ir a los Cuestionarios</a>
-        </div>
-
-        <div class="servicio-card">
-            <h3>💻 Telepsicología</h3>
-            <p>Sesiones seguras y privadas vía Zoom/Teams desde la comodidad de tu hogar.</p>
-            <br>
-            <a href="sala-espera.html" class="btn" style="background-color: #3498db; font-size: 0.8em;">Ir a Sala de Espera</a>
-        </div>
-
-        <div class="servicio-card">
-    <h3>📚 Biblioteca</h3>
-    <p>Artículos actualizados y herramientas de apoyo emocional.</p>
-    <br>
-    <a href="biblioteca.html" class="btn" style="background-color: #8e44ad; font-size: 0.8em;">Explorar Recursos</a>
-</div>
-
-    </div>
-    <div class="servicio-card">
-                <div class="icon-container" style="background: #27ae60;">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <h3>Bienestar & Vida</h3>
-                <p>Herramientas para duelo, migración, finanzas, burnout y crecimiento espiritual.</p>
-                <a href="bienestar.html" class="btn">Explorar Recursos</a>
+        <div class="servicios-grid">
+            
+            <div class="servicio-card">
+                <div class="icon-container" style="background: #e74c3c;"><i class="fas fa-clipboard-list"></i></div>
+                <h3>Centro de Evaluación</h3>
+                <p>Tests estandarizados para detectar ansiedad, depresión y TDAH (Adultos y Niños).</p>
+                <a href="cuestionarios.html" class="btn" style="background: #e74c3c;">Realizar Tests</a>
             </div>
-            <h4>🚧 Zona de Desarrollo (Solo Admin)</h4>
-            <p>Estado del sistema: <strong>Conectado</strong></p>
-            <p>Próxima integración: <em>App Móvil para iOS y Android</em></p>
+
+            <div class="servicio-card">
+                <div class="icon-container" style="background: #3498db;"><i class="fas fa-video"></i></div>
+                <h3>Telepsicología</h3>
+                <p>Sesiones privadas vía Zoom/Teams desde la comodidad de tu hogar.</p>
+                <a href="sala-espera.html" class="btn" style="background: #3498db;">Ir a Sala de Espera</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="icon-container" style="background: #8e44ad;"><i class="fas fa-book-reader"></i></div>
+                <h3>Biblioteca</h3>
+                <p>Artículos científicos, guías PDF y noticias actualizadas de la APA.</p>
+                <a href="biblioteca.html" class="btn" style="background: #8e44ad;">Leer Artículos</a>
+            </div>
+
+            <div class="servicio-card">
+                <div class="icon-container" style="background: #27ae60;"><i class="fas fa-leaf"></i></div>
+                <h3>Bienestar & Vida</h3>
+                <p>Recursos para duelo, migración, finanzas, fe y nutrición mental.</p>
+                <a href="bienestar.html" class="btn" style="background: #27ae60;">Explorar Recursos</a>
+            </div>
+
+        </div>
+
+        <div class="admin-section">
+            <strong>🚧 Zona de Desarrollo (Solo Admin)</strong><br>
+            Estado del sistema: <strong>Conectado</strong><br>
+            Próxima integración: <em>App Móvil para iOS y Android</em>
         </div>
 
     </div>
 
     <footer>
-        <p>&copy; 2026 Plataforma de Psicología Integral. Todos los derechos reservados.</p>
-        <p>Desarrollado en Mac con Tecnología Open Source.</p>
+        <p>&copy; 2026 Psic. Andrés Tello. Todos los derechos reservados.</p>
+        <p style="font-size: 0.8rem;">Desarrollado con Tecnología Open Source.</p>
     </footer>
 
 </body>
-<footer style="background-color: #2c3e50; color: #ecf0f1; padding: 40px 20px; text-align: center; margin-top: 50px;">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h3 style="margin-bottom: 10px;">Ψ Psic. Andrés Tello</h3>
-            <p style="font-size: 0.9em; opacity: 0.8;">Atención psicológica integral basada en evidencia.</p>
-            
-            <hr style="border-color: rgba(255,255,255,0.1); margin: 20px 0;">
-
-            <p><strong>📍 Ubicación:</strong> New Jersey, USA & Quito, Ecuador (Online)</p>
-            <p><strong>📞 Contacto / WhatsApp (EE.UU. 🇺🇸):</strong> +1 (908) 636-1137</p>
-            
-            <br>
-            <p style="font-size: 0.8em; color: #e74c3c; font-weight: bold;">
-                🚑 Si estás en crisis, por favor llama al 911 o acude a emergencias.
-            </p>
-            
-            <p style="margin-top: 20px; font-size: 0.7em; opacity: 0.5;">
-                &copy; 2026 Todos los derechos reservados.
-            </p>
-        </div>
-    </footer>
 </html>
