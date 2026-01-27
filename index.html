@@ -10,66 +10,57 @@
         /* ESTILOS GENERALES */
         body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #f4f6f8; color: #333; }
         
-        /* HEADER SENCILLO */
-        header { background-color: #fff; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        /* HEADER */
+        header { background-color: #fff; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
         
-        /* LOGO DE PSICOLOGÍA RESTAURADO (Ψ) */
-        .logo { font-size: 1.4rem; font-weight: 700; color: #2c3e50; display: flex; align-items: center; gap: 10px; }
-        .logo i { color: #3498db; font-size: 1.6rem; } /* La letra Psi griega */
+        /* LOGO BLINDADO (Texto real, no icono) */
+        .logo { font-size: 1.5rem; font-weight: 800; color: #2c3e50; display: flex; align-items: center; gap: 8px; text-decoration: none;}
+        .psi-symbol { color: #3498db; font-size: 1.8rem; font-family: "Times New Roman", serif; line-height: 1; } 
         
         .nav-links a { text-decoration: none; color: #555; margin-left: 20px; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
         .nav-links a:hover { color: #3498db; }
         .btn-header { background-color: #3498db; color: white !important; padding: 8px 20px; border-radius: 50px; }
         .btn-header:hover { background-color: #2980b9; }
 
-        /* HERO SECTION (AZUL) */
+        /* HERO SECTION */
         .hero {
             background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
             color: white;
             text-align: center;
-            padding: 80px 20px;
-            margin-bottom: 40px;
+            padding: 90px 20px 120px 20px; /* Más espacio abajo para el efecto flotante */
+            margin-bottom: 0;
         }
-        .hero h1 { font-size: 2.8rem; margin: 0 0 15px 0; font-weight: 700; }
-        .hero h2 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; opacity: 0.95; }
-        /* TEXTO CORREGIDO (Sin "estés donde estés") */
-        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.9; line-height: 1.6; }
+        .hero h1 { font-size: 2.8rem; margin: 0 0 10px 0; font-weight: 700; letter-spacing: -1px; }
+        .hero h2 { font-size: 1.5rem; font-weight: 500; margin-bottom: 25px; opacity: 0.9; color: #a9dfbf; text-transform: uppercase; letter-spacing: 1px; }
+        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.95; line-height: 1.6; }
         
         .btn-hero {
-            background-color: #27ae60;
-            color: white;
-            padding: 15px 35px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            background-color: #27ae60; color: white; padding: 15px 35px; text-decoration: none;
+            border-radius: 50px; font-weight: 700; font-size: 1.1rem; display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;
         }
         .btn-hero:hover { transform: translateY(-3px); background-color: #219150; }
 
-        /* GRID DE SERVICIOS (ARREGLADO EL CENTRADO) */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+        /* GRID DE SERVICIOS (CENTRADO PERFECTO) */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; position: relative; }
         .servicios-grid {
             display: grid;
-            /* Esto asegura que se centren si quedan 3 arriba y 1 abajo */
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            justify-content: center; 
             gap: 30px;
             margin-top: -80px; /* Efecto flotante */
+            z-index: 10;
+            justify-content: center;
         }
 
         /* TARJETAS */
         .servicio-card {
             background: white; padding: 35px 25px; border-radius: 15px; text-align: center;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08); transition: transform 0.3s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: transform 0.3s ease;
             border-top: 6px solid transparent;
             display: flex; flex-direction: column; justify-content: space-between; height: 100%;
         }
         .servicio-card:hover { transform: translateY(-10px); }
         
-        /* COLORES DE TARJETAS */
         .servicio-card:nth-child(1) { border-top-color: #e74c3c; } /* Rojo */
         .servicio-card:nth-child(2) { border-top-color: #3498db; } /* Azul */
         .servicio-card:nth-child(3) { border-top-color: #8e44ad; } /* Morado */
@@ -80,29 +71,30 @@
             display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem;
         }
 
-        .servicio-card h3 { margin: 15px 0; color: #2c3e50; font-size: 1.3rem; }
+        .servicio-card h3 { margin: 15px 0; color: #2c3e50; font-size: 1.3rem; font-weight: 700; }
         .servicio-card p { font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
         .btn-card { padding: 10px 25px; border-radius: 50px; text-decoration: none; color: white; font-weight: 600; font-size: 0.9rem; display: inline-block; }
 
-        /* FOOTER COMPLETO */
-        footer { background-color: #2c3e50; color: white; padding: 50px 20px 20px; margin-top: 60px; text-align: center; }
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; margin-bottom: 30px; }
-        .footer-item { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.1rem; }
-        .footer-item i { color: #3498db; font-size: 1.3rem; } /* Icono Psi en footer también */
+        /* FOOTER */
+        footer { background-color: #2c3e50; color: white; padding: 60px 20px 30px; margin-top: 60px; text-align: center; }
+        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
+        .footer-item { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.05rem; }
+        .footer-item i { color: #3498db; }
         
         .emergency-box { 
-            background-color: rgba(231, 76, 60, 0.1); border: 1px solid #e74c3c; 
-            padding: 15px; border-radius: 10px; color: #ffadad; font-size: 0.9rem; margin-top: 20px; display: inline-block;
+            background-color: rgba(231, 76, 60, 0.15); border: 1px solid #e74c3c; 
+            padding: 20px; border-radius: 10px; color: #ffadad; font-size: 0.95rem; margin-top: 20px; display: inline-block; max-width: 600px;
         }
 
-        /* ZONA ADMIN DISCRETA */
-        .admin-zone { font-size: 0.8rem; color: #555; background: #eee; padding: 10px; border-radius: 5px; display: inline-block; margin-top: 30px; }
+        .admin-zone { font-size: 0.8rem; color: #555; background: #eee; padding: 10px 20px; border-radius: 50px; display: inline-block; margin-top: 40px; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><i class="fas fa-psi"></i> Psic. Andrés Tello</div>
+        <a href="index.html" class="logo">
+            <span class="psi-symbol">Ψ</span> Psic. Andrés Tello
+        </a>
         <nav class="nav-links">
             <a href="index.html">Inicio</a>
             <a href="cuestionarios.html">Tests</a>
@@ -120,38 +112,33 @@
 
     <div class="container">
         <div class="servicios-grid">
-            
             <div class="servicio-card">
                 <div class="icon-box" style="background: #e74c3c;"><i class="fas fa-clipboard-list"></i></div>
                 <h3>Centro de Evaluación</h3>
                 <p>Tests estandarizados para detectar ansiedad, depresión y TDAH. Resultados inmediatos con criterio clínico (DSM-5).</p>
                 <a href="cuestionarios.html" class="btn-card" style="background: #e74c3c;">Realizar Tests</a>
             </div>
-
             <div class="servicio-card">
                 <div class="icon-box" style="background: #3498db;"><i class="fas fa-video"></i></div>
                 <h3>Telepsicología</h3>
                 <p>Sesiones privadas y seguras vía Zoom/Teams. Terapia efectiva desde la comodidad y privacidad de tu hogar.</p>
                 <a href="sala-espera.html" class="btn-card" style="background: #3498db;">Ir a Sala de Espera</a>
             </div>
-
             <div class="servicio-card">
                 <div class="icon-box" style="background: #8e44ad;"><i class="fas fa-book-reader"></i></div>
                 <h3>Biblioteca</h3>
                 <p>Artículos científicos, guías de descarga (PDF) y noticias actualizadas de la Asociación Americana de Psicología (APA).</p>
                 <a href="biblioteca.html" class="btn-card" style="background: #8e44ad;">Leer Artículos</a>
             </div>
-
             <div class="servicio-card">
                 <div class="icon-box" style="background: #27ae60;"><i class="fas fa-leaf"></i></div>
                 <h3>Bienestar & Vida</h3>
-                <p>Herramientas prácticas para desafíos reales: Duelo, Migración, Finanzas, Burnout y Crecimiento Espiritual.</p>
+                <p>Herramientas prácticas para desafíos reales: Duelo, Migración, Finanzas, Ejercicio y Crecimiento Espiritual.</p>
                 <a href="bienestar.html" class="btn-card" style="background: #27ae60;">Explorar Recursos</a>
             </div>
-
         </div>
 
-        <div style="text-align: center; margin-top: 50px;">
+        <div style="text-align: center;">
             <div class="admin-zone">
                 🚧 <strong>Zona de Desarrollo:</strong> Sistema Conectado. Próxima integración: <em>App iOS/Android</em>.
             </div>
@@ -160,16 +147,16 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-item"><i class="fas fa-psi"></i> <strong>Psic. Andrés Tello</strong> - Atención Integral</div>
-            <div class="footer-item"><i class="fas fa-map-marker-alt"></i> Ubicación: New Jersey, USA & Quito, Ecuador (Online)</div>
-            <div class="footer-item"><i class="fas fa-phone"></i> Contacto / WhatsApp: +1 (908) 636-1137</div>
+            <div class="footer-item"><span style="color:#3498db; font-family:'Times New Roman'; font-size:1.4rem; font-weight:bold;">Ψ</span> <strong>Psic. Andrés Tello</strong> - Atención Integral</div>
+            <div class="footer-item"><i class="fas fa-map-marker-alt"></i> New Jersey, USA & Quito, Ecuador (Online)</div>
+            <div class="footer-item"><i class="fas fa-phone"></i> WhatsApp: +1 (908) 636-1137</div>
         </div>
         
         <div class="emergency-box">
             <i class="fas fa-exclamation-triangle"></i> <strong>IMPORTANTE:</strong> Si estás en crisis o tu vida corre peligro, por favor llama al <strong>911</strong> o acude a la sala de emergencias más cercana inmediatamente.
         </div>
         
-        <p style="margin-top: 30px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Plataforma de Psicología Integral. Todos los derechos reservados.</p>
+        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Plataforma de Psicología Integral. Todos los derechos reservados.</p>
     </footer>
 
 </body>

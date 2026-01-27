@@ -7,10 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ESTILOS BASE */
         body { font-family: 'Poppins', sans-serif; background-color: #f0f3f5; margin: 0; padding: 0; color: #333; }
         
-        /* HEADER */
         header {
             background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1600&q=80');
             background-size: cover; background-position: center; color: white; padding: 90px 20px; text-align: center;
@@ -18,7 +16,6 @@
         header h1 { margin: 0; font-size: 3rem; font-weight: 700; }
         header p { font-size: 1.2rem; margin-top: 15px; opacity: 0.9; font-weight: 300; }
 
-        /* TIP DEL DÍA */
         .daily-tip-box {
             background: white; max-width: 800px; margin: -40px auto 50px; padding: 35px;
             border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center;
@@ -30,11 +27,15 @@
         }
         #daily-quote { font-size: 1.4rem; font-style: italic; color: #444; margin: 15px 0; line-height: 1.5; }
 
-        /* GRILLA */
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px 50px; }
-        .grid-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
+        /* GRID DE 9 ELEMENTOS (3x3) */
+        .grid-topics { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+            justify-content: center;
+        }
 
-        /* TARJETAS */
         .topic-card {
             background: white; border-radius: 15px; overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; cursor: pointer;
@@ -47,7 +48,7 @@
         .card-desc { font-size: 0.95rem; color: #7f8c8d; line-height: 1.6; margin-bottom: 20px; }
         .btn-explore { color: #3498db; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
 
-        /* MODAL (LECTURA) */
+        /* MODAL */
         .modal-overlay {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px);
@@ -152,17 +153,67 @@
                 </div>
             </div>
 
+            <div class="topic-card" onclick="openModal('modal-ejercicio')">
+                <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Ejercicio">
+                <div class="card-content">
+                    <div class="card-title">🏃🏻‍♂️ Movimiento</div>
+                    <p class="card-desc">El antidepresivo natural. Beneficios de caminar, andar en bicicleta y activar el cuerpo.</p>
+                    <span class="btn-explore">Leer Artículo Completo →</span>
+                </div>
+            </div>
+
+            <div class="topic-card" onclick="openModal('modal-personal')">
+                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Tiempo Personal">
+                <div class="card-content">
+                    <div class="card-title">🧘🏻‍♂️ Tiempo Personal</div>
+                    <p class="card-desc">La importancia de la soledad elegida, los hobbies y el espacio para despejar la mente.</p>
+                    <span class="btn-explore">Leer Artículo Completo →</span>
+                </div>
+            </div>
+
         </div>
         <a href="index.html" class="btn-home">← Volver al Inicio</a>
     </div>
 
-    <div id="modal-espiritual" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🕊️ Fe y Ciencia de la Mente</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-brain"></i> La Ciencia detrás de la Fe</div><p>Durante años, la psicología y la fe parecían opuestas, pero la neurociencia moderna ha encontrado conexiones fascinantes. Estudios demuestran que la oración y la meditación reducen significativamente los niveles de cortisol (hormona del estrés) y aumentan la actividad en el lóbulo frontal, la zona del cerebro encargada de la atención y la calma.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-bible"></i> Renovación de la Mente (TCC)</div><p>La Terapia Cognitivo Conductual (TCC), que es el estándar de oro en psicología, se basa en identificar pensamientos erróneos y cambiarlos. Esto es exactamente lo que la Biblia propuso hace 2000 años: <em>"Transformaos por medio de la renovación de vuestro entendimiento"</em> (Romanos 12:2). Al cuidar lo que pensamos, cuidamos lo que sentimos.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-heart"></i> El Acto Terapéutico del Perdón</div><p>Psicológicamente, la falta de perdón mantiene al cuerpo en un estado de "lucha o huida" crónico. Perdonar no significa justificar al ofensor ni olvidar el daño; significa tomar la decisión consciente de soltar el derecho a la venganza para liberar tu propio sistema nervioso. Es un regalo que te das a ti mismo.</p></div></div></div></div>
-    <div id="modal-migracion" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🌎 Psicología del Migrante</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-suitcase"></i> El Síndrome de Ulises</div><p>Emigrar es uno de los eventos más estresantes que una persona puede vivir. El Dr. Joseba Achotegui lo llamó "Síndrome de Ulises": un estrés crónico y múltiple. No solo dejas un lugar físico, enfrentas 7 duelos simultáneos: la familia, la lengua, la cultura, la tierra (paisaje/clima), el estatus social, el contacto con el grupo de pertenencia y los riesgos físicos del viaje.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-home"></i> Echar Raíces para Florecer</div><p>Un error común es vivir "con la maleta en la puerta", pensando que nuestra vida real está en pausa hasta que volvamos a nuestro país. Esto genera una sensación de vacío perpetuo. La salud mental del migrante mejora cuando decide "habitar" su presente: decorar la casa donde vive, hacer amigos locales y crear nuevas rutinas, sin olvidar su origen.</p></div><div class="section-block"><div class="verse-box">"Jehová guarda a los extranjeros; al huérfano y a la viuda sostiene..." — Salmos 146:9</div></div></div></div></div>
-    <div id="modal-duelo" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>💔 Entendiendo el Duelo</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-chart-line"></i> No es una Línea Recta</div><p>A menudo nos enseñan las "5 etapas del duelo" como si fuera una escalera que se sube paso a paso. La realidad es más como el mar: hay días de calma y días donde las olas golpean fuerte sin aviso. Es normal sentir ira meses después, o reír en un momento y llorar al siguiente. Eso no es retroceder, es procesar.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-box-open"></i> Herramienta: La Caja de Recuerdos</div><p>A veces el duelo nos inunda en momentos inoportunos (en el trabajo, manejando). Una técnica útil es la "Contención": Asigna un momento del día (ej: 15 minutos a las 6 PM) para sentarte con una caja de fotos o recuerdos y permitirte llorar y sentir todo. Si la tristeza llega a las 10 AM, dite a ti mismo: "Guardaré esto para mi momento a las 6 PM". Así recuperas el control.</p></div><div class="verse-box">"Bienaventurados los que lloran, porque ellos recibirán consolación." — Mateo 5:4</div></div></div></div>
-    <div id="modal-finanzas" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>💰 Salud Financiera</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-brain"></i> El Ciclo Dopaminérgico del Gasto</div><p>Comprar genera una liberación rápida de dopamina (placer) en el cerebro, similar a lo que ocurre con el azúcar o las redes sociales. A menudo, gastamos no porque necesitemos el objeto, sino porque necesitamos aliviar ansiedad, tristeza o aburrimiento. La deuda financiera suele ser síntoma de una deuda emocional no resuelta.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-stopwatch"></i> La Regla de las 24 Horas</div><p>Para romper el ciclo de compra impulsiva, aplica esta regla estricta: Si ves algo que quieres (que no sea comida o medicina), espera 24 horas completas antes de comprarlo. El 80% de las veces, la "urgencia" emocional desaparece al día siguiente y te das cuenta de que no lo necesitabas.</p></div></div></div></div>
-    <div id="modal-burnout" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🔥 Burnout: El Costo de Cuidar</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-battery-empty"></i> Más que Cansancio</div><p>El Burnout no se cura solo durmiendo un fin de semana. Es un daño estructural en tu relación con el trabajo caracterizado por tres signos: 1) Agotamiento emocional severo, 2) Despersonalización (volverse cínico o frío con los demás) y 3) Sensación de ineficacia (sentir que nada de lo que haces importa).</p></div><div class="section-block"><div class="block-title"><i class="fas fa-shield-alt"></i> Micro-Límites de Recuperación</div><p>La recuperación requiere desconexión real. Empieza con límites pequeños pero firmes: No revisar correos en la cama, tener una hora de almuerzo lejos de la pantalla y tener un hobby que no tenga nada que ver con "ser productivo". Recuerda: Tu valor como ser humano no depende de cuánto produces hoy.</p></div></div></div></div>
-    <div id="modal-divorcio" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>⚖️ Reconstrucción Personal</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-user-edit"></i> Redefiniendo el YO</div><p>El divorcio es la muerte de una identidad compartida ("nosotros"). El reto terapéutico es rescatar al "Yo" que quedó debajo de esos roles. ¿Qué te gustaba antes? ¿Qué sueños postergaste? Volver a conectar con tus pasiones individuales no es egoísmo, es supervivencia y la base de tu nueva estabilidad.</p></div><div class="section-block"><div class="highlight-box"><strong>Para Padres:</strong> "Ama a tus hijos más de lo que odias a tu ex". Los niños no deben ser mensajeros ni espías. Ellos necesitan permiso explícito para poder amar a ambos padres sin sentir que están traicionando al otro.</div></div></div></div></div>
-    <div id="modal-salud" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🍏 Psiconutrición Consciente</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-utensils"></i> Hambre Física vs. Emocional</div><p>El primer paso para sanar la relación con la comida es distinguirlas. <strong>Hambre Física:</strong> Aparece gradualmente, se siente en el estómago, se satisface con cualquier comida y desaparece al llenarse. <strong>Hambre Emocional:</strong> Aparece de golpe, pide algo específico (antojos), se siente en la garganta/mente y genera culpa después de comer.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-moon"></i> Higiene Nocturna</div><p>Comer pesado de noche interrumpe los ciclos de sueño REM, vitales para la regulación emocional al día siguiente. Intenta cenar ligero 2 horas antes de dormir. Tu digestión y tu estado de ánimo te lo agradecerán.</p></div></div></div></div></div>
+    <div id="modal-ejercicio" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🏃🏻‍♂️ Medicina en Movimiento</h3><button class="close-btn" onclick="closeModal()">×</button></div>
+            <div class="modal-body">
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-heartbeat"></i> Bioquímica de la Felicidad</div>
+                    <p>Moverse no es solo estética, es química cerebral. Caminar o andar en bicicleta libera endorfinas (analgésicos naturales) y BDNF, una proteína que repara las neuronas dañadas por el estrés. 30 minutos al día pueden ser tan efectivos como un ansiolítico leve en casos de estrés moderado.</p>
+                </div>
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-bicycle"></i> Actividad vs. Deporte</div>
+                    <p>No necesitas ser un atleta olímpico. Actividades rítmicas como <strong>andar en bicicleta</strong> o una caminata enérgica ayudan a sincronizar los hemisferios cerebrales, facilitando la resolución de problemas ("Se me aclararon las ideas al caminar").</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-personal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header"><h3>🧘🏻‍♂️ La Cita Contigo Mismo</h3><button class="close-btn" onclick="closeModal()">×</button></div>
+            <div class="modal-body">
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-user-clock"></i> Soledad vs. Aislamiento</div>
+                    <p>Hay una gran diferencia entre sentirse solo (aislamiento) y elegir estar solo (restauración). El tiempo personal es el espacio donde el cerebro "baja las revoluciones" y procesa las emociones del día. Sin este espacio, vivimos en reacción automática.</p>
+                </div>
+                <div class="section-block">
+                    <div class="block-title"><i class="fas fa-paint-brush"></i> Hobbies como Terapia</div>
+                    <p>Tener un hobby (mecánica, lectura, pintura) no es perder el tiempo; es entrar en "Estado de Flujo". Cuando te concentras en algo que te gusta, tu cerebro descansa de las preocupaciones cotidianas. Date permiso para disfrutar sin culpa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-espiritual" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🕊️ Fe y Ciencia de la Mente</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-brain"></i> La Ciencia detrás de la Fe</div><p>Estudios demuestran que la oración y la meditación reducen el cortisol y aumentan la actividad en el lóbulo frontal (calma y atención).</p></div><div class="section-block"><div class="block-title"><i class="fas fa-bible"></i> Renovación de la Mente (TCC)</div><p>La Terapia Cognitivo Conductual se basa en cambiar pensamientos, tal como dice Romanos 12:2: "Transformaos por medio de la renovación de vuestro entendimiento".</p></div><div class="section-block"><div class="block-title"><i class="fas fa-heart"></i> El Perdón</div><p>Perdonar es soltar el derecho a la venganza para liberar tu propio sistema nervioso. Es un regalo para ti, no para el ofensor.</p></div></div></div></div>
+    <div id="modal-migracion" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🌎 Psicología del Migrante</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-suitcase"></i> El Síndrome de Ulises</div><p>Emigrar implica 7 duelos: familia, lengua, cultura, tierra, estatus, grupo y riesgos físicos. Es un estrés múltiple y crónico.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-home"></i> Echar Raíces</div><p>No vivas "con la maleta en la puerta". Habita tu presente, decora tu casa y crea rutinas locales para florecer donde estás plantado hoy.</p></div><div class="section-block"><div class="verse-box">"Jehová guarda a los extranjeros..." — Salmos 146:9</div></div></div></div></div>
+    <div id="modal-duelo" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>💔 Entendiendo el Duelo</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-chart-line"></i> No es una Línea Recta</div><p>El duelo es como el mar: días de calma y días de oleaje fuerte. Sentir dolor tiempo después no es retroceder, es procesar.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-box-open"></i> Caja de Recuerdos</div><p>Asigna un momento del día (ej: 15 min) para recordar y llorar. Si la tristeza llega antes, guárdala mentalmente para ese momento. Así recuperas el control.</p></div><div class="verse-box">"Bienaventurados los que lloran..." — Mateo 5:4</div></div></div></div>
+    <div id="modal-finanzas" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>💰 Salud Financiera</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-brain"></i> Gasto Emocional</div><p>A menudo gastamos para aliviar ansiedad o tristeza. La deuda financiera suele ser síntoma de una deuda emocional.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-stopwatch"></i> Regla de 24 Horas</div><p>Espera 24 horas antes de cualquier compra no esencial. El 80% de las veces, la urgencia emocional desaparece al día siguiente.</p></div></div></div></div>
+    <div id="modal-burnout" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🔥 Burnout Laboral</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-battery-empty"></i> Los 3 Signos</div><p>1) Agotamiento emocional, 2) Cinismo/Despersonalización, 3) Sensación de ineficacia. No es solo cansancio, es daño estructural.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-shield-alt"></i> Micro-Límites</div><p>Recupera espacios: Almuerza lejos de la pantalla, no revises correo en la cama. Tu valor no depende de tu productividad.</p></div></div></div></div>
+    <div id="modal-divorcio" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>⚖️ Reconstrucción Personal</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-user-edit"></i> Redefinir el YO</div><p>El divorcio rompe el "nosotros". El reto es rescatar tu identidad individual, tus hobbies y sueños postergados.</p></div><div class="section-block"><div class="highlight-box"><strong>Para Padres:</strong> "Ama a tus hijos más de lo que odias a tu ex". No los uses de mensajeros.</div></div></div></div></div>
+    <div id="modal-salud" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🍏 Psiconutrición Consciente</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-utensils"></i> Hambre Física vs. Emocional</div><p>Física: Gradual, en el estómago, cualquier comida sirve. Emocional: Repentina, antojo específico, genera culpa.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-moon"></i> Higiene Nocturna</div><p>Cena ligero 2 horas antes de dormir para no interrumpir el sueño REM, clave para la regulación emocional.</p></div></div></div></div></div>
 
     <script>
         const tips = [
