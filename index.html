@@ -3,169 +3,252 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psic. Andrés Tello - Consultorio Digital</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Psic. Andrés Tello | Consultorio Online</title>
     <style>
-        /* ESTILOS GENERALES */
-        body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background-color: #f4f6f8; color: #333; }
-        
-        /* HEADER (Escritorio) */
-        header { background-color: #fff; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        
-        .logo { font-size: 1.5rem; font-weight: 800; color: #2c3e50; display: flex; align-items: center; gap: 8px; text-decoration: none;}
-        .psi-symbol { color: #3498db; font-size: 1.8rem; font-family: "Times New Roman", serif; line-height: 1; } 
-        
-        .nav-links a { text-decoration: none; color: #555; margin-left: 20px; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
-        .nav-links a:hover { color: #3498db; }
-        .btn-header { background-color: #3498db; color: white !important; padding: 8px 20px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-        .btn-header:hover { background-color: #2980b9; }
-
-        /* HERO SECTION */
-        .hero {
-            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
-            color: white;
-            text-align: center;
-            padding: 90px 20px 140px 20px;
-            margin-bottom: 0;
+        /* ESTILOS (DISEÑO) */
+        :root {
+            --primary: #2563eb; /* Azul Institucional */
+            --secondary: #16a34a; /* Verde Bienestar */
+            --dark: #1f2937;
+            --light: #f3f4f6;
         }
-        .hero h1 { font-size: 2.8rem; margin: 0 0 10px 0; font-weight: 700; letter-spacing: -1px; }
-        .hero h2 { font-size: 1.5rem; font-weight: 500; margin-bottom: 25px; opacity: 0.9; color: #a9dfbf; text-transform: uppercase; letter-spacing: 1px; }
-        .hero p { font-size: 1.1rem; max-width: 700px; margin: 0 auto 30px; opacity: 0.95; line-height: 1.6; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--light); color: var(--dark); }
         
-        .btn-hero {
-            background-color: #27ae60; color: white; padding: 15px 35px; text-decoration: none;
-            border-radius: 50px; font-weight: 700; font-size: 1.1rem; display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2); transition: transform 0.3s;
-        }
-        .btn-hero:hover { transform: translateY(-3px); background-color: #219150; }
+        /* Navegación */
+        header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        nav a { text-decoration: none; color: var(--dark); margin-left: 20px; font-weight: 500; transition: color 0.3s; }
+        nav a:hover { color: var(--primary); }
+        .btn-cita { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; }
+        .btn-cita:hover { color: white; opacity: 0.9; }
 
-        /* GRID DE SERVICIOS */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; position: relative; }
-        .servicios-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 30px;
-            margin-top: -100px;
-            z-index: 10;
-            justify-content: center;
-        }
+        /* Hero Section */
+        .hero { background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(22, 163, 74, 0.8)), url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; text-align: center; padding: 100px 20px; }
+        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
 
-        .servicio-card {
-            background: white; padding: 35px 25px; border-radius: 15px; text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); transition: transform 0.3s ease;
-            border-top: 6px solid transparent;
-            display: flex; flex-direction: column; justify-content: space-between; height: 100%;
-        }
+        /* Contenedores */
+        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+        .section-title { text-align: center; margin-bottom: 40px; color: var(--dark); }
         
-        .servicio-card:nth-child(1) { border-top-color: #e74c3c; }
-        .servicio-card:nth-child(2) { border-top-color: #3498db; }
-        .servicio-card:nth-child(3) { border-top-color: #8e44ad; }
-        .servicio-card:nth-child(4) { border-top-color: #27ae60; }
+        /* Grid de Tarjetas (Artículos) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .card-body { padding: 20px; }
+        .card-tag { background: #e0f2fe; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
+        .card h3 { margin: 15px 0 10px; }
+        
+        /* Sección Tests */
+        .test-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto; }
+        .pregunta { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
+        .pregunta p { font-weight: 600; font-size: 1.1rem; }
+        .opciones label { display: block; margin: 8px 0; cursor: pointer; }
+        
+        /* Resultado Test */
+        #resultado { display: none; margin-top: 20px; padding: 20px; border-radius: 10px; text-align: center; }
+        .resultado-verde { background: #dcfce7; color: #166534; border: 1px solid #166534; }
+        .resultado-naranja { background: #ffedd5; color: #9a3412; border: 1px solid #9a3412; }
+        .resultado-rojo { background: #fee2e2; color: #991b1b; border: 1px solid #991b1b; }
 
-        .icon-box { width: 70px; height: 70px; margin: 0 auto 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; }
-        .servicio-card h3 { margin: 15px 0; color: #2c3e50; font-size: 1.3rem; font-weight: 700; }
-        .servicio-card p { font-size: 0.95rem; color: #666; line-height: 1.6; margin-bottom: 25px; flex-grow: 1; }
-        .btn-card { padding: 10px 25px; border-radius: 50px; text-decoration: none; color: white; font-weight: 600; font-size: 0.9rem; display: inline-block; }
+        /* Botones */
+        .btn-action { background: var(--secondary); color: white; border: none; padding: 12px 30px; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
+        .btn-action:hover { background: #15803d; }
 
-        /* FOOTER */
-        footer { background-color: #2c3e50; color: white; padding: 60px 20px 30px; margin-top: 0; text-align: center; }
-        .footer-content { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; margin-bottom: 30px; }
-        .footer-item { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 1.05rem; }
-        .emergency-box { background-color: rgba(231, 76, 60, 0.15); border: 1px solid #e74c3c; padding: 20px; border-radius: 10px; color: #ffadad; font-size: 0.95rem; margin-top: 20px; display: inline-block; max-width: 600px; }
-        .admin-zone { font-size: 0.8rem; color: #555; background: #eee; padding: 10px 20px; border-radius: 50px; display: inline-block; margin-top: 80px; margin-bottom: 20px; }
-
-        /* === CORRECCIÓN PARA CELULARES (RESPONSIVE) === */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column; /* Apila el menú verticalmente */
-                padding: 15px;
-                gap: 15px;
-            }
-            .nav-links {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-            .nav-links a { margin-left: 0; font-size: 0.9rem; }
-            
-            .hero h1 { font-size: 2rem; line-height: 1.2; } /* Texto más pequeño */
-            .hero h2 { font-size: 1.1rem; }
-            
-            .servicios-grid { margin-top: -60px; } /* Ajuste de margen */
-        }
+        /* Telepsicología */
+        .tele-box { text-align: center; background: #eff6ff; padding: 50px; border-radius: 20px; }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="index.html" class="logo">
-            <span class="psi-symbol">Ψ</span> Psic. Andrés Tello
-        </a>
-        <nav class="nav-links">
-            <a href="index.html">Inicio</a>
-            <a href="cuestionarios.html">Tests</a>
-            <a href="bienestar.html">Recursos</a>
-            <a href="https://wa.me/19086166835" class="btn-header">Agendar Cita</a>
+        <div class="logo">
+            <span>Ψ</span> Consultorio Tello
+        </div>
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#articulos">Biblioteca Diaria</a>
+            <a href="#test">Test de Ansiedad</a>
+            <a href="#telepsicologia" class="btn-cita">Agendar Cita</a>
         </nav>
     </header>
 
-    <div class="hero">
-        <h1>Bienvenido a tu espacio de salud mental</h1>
-        <h2>Psicología basada en evidencia</h2>
-        <p>Tecnología al servicio de tu bienestar. Evaluaciones clínicas, recursos psicoeducativos y atención profesional.</p>
-        <a href="https://wa.me/19086166835" class="btn-hero"><i class="fab fa-whatsapp"></i> Agendar por WhatsApp</a>
-    </div>
+    <section id="inicio" class="hero">
+        <h1>Bienestar & Vida</h1>
+        <p>Psicología clínica basada en evidencia. Tu espacio seguro para sanar y crecer.</p>
+        <a href="#test" class="btn-action" style="background: white; color: var(--primary);">Realizar Evaluación Gratuita</a>
+    </section>
 
-    <div class="container">
-        <div class="servicios-grid">
-            <div class="servicio-card">
-                <div class="icon-box" style="background: #e74c3c;"><i class="fas fa-clipboard-list"></i></div>
-                <h3>Centro de Evaluación</h3>
-                <p>Tests estandarizados para detectar ansiedad, depresión y TDAH. Resultados inmediatos con criterio clínico (DSM-5).</p>
-                <a href="cuestionarios.html" class="btn-card" style="background: #e74c3c;">Realizar Tests</a>
+    <section id="articulos" class="container">
+        <h2 class="section-title"> Lecturas Recomendadas para Hoy <br><small style="font-size:1rem; color:#666;">(Selección diaria automática)</small></h2>
+        <div class="grid" id="articulos-container">
             </div>
-            <div class="servicio-card">
-                <div class="icon-box" style="background: #3498db;"><i class="fas fa-video"></i></div>
-                <h3>Telepsicología</h3>
-                <p>Sesiones privadas y seguras vía Zoom/Teams. Terapia efectiva desde la comodidad y privacidad de tu hogar.</p>
-                <a href="sala-espera.html" class="btn-card" style="background: #3498db;">Ir a Sala de Espera</a>
-            </div>
-            <div class="servicio-card">
-                <div class="icon-box" style="background: #8e44ad;"><i class="fas fa-book-reader"></i></div>
-                <h3>Biblioteca</h3>
-                <p>Artículos científicos, guías de descarga (PDF) y noticias actualizadas de la Asociación Americana de Psicología (APA).</p>
-                <a href="biblioteca.html" class="btn-card" style="background: #8e44ad;">Leer Artículos</a>
-            </div>
-            <div class="servicio-card">
-                <div class="icon-box" style="background: #27ae60;"><i class="fas fa-leaf"></i></div>
-                <h3>Bienestar & Vida</h3>
-                <p>Herramientas prácticas para desafíos reales: Duelo, Migración, Finanzas, Ejercicio y Crecimiento Espiritual.</p>
-                <a href="bienestar.html" class="btn-card" style="background: #27ae60;">Explorar Recursos</a>
+    </section>
+
+    <section id="test" class="container">
+        <div class="test-box">
+            <h2 class="section-title">Evaluación de Ansiedad (GAD-7)</h2>
+            <p style="text-align: center; margin-bottom: 30px;">Responde pensando en las últimas 2 semanas.</p>
+            
+            <form id="form-ansiedad">
+                <div class="pregunta">
+                    <p>1. ¿Te has sentido nervioso(a), ansioso(a) o con los nervios de punta?</p>
+                    <div class="opciones">
+                        <label><input type="radio" name="p1" value="0" required> Nunca</label>
+                        <label><input type="radio" name="p1" value="1"> Varios días</label>
+                        <label><input type="radio" name="p1" value="2"> Más de la mitad de los días</label>
+                        <label><input type="radio" name="p1" value="3"> Casi todos los días</label>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>2. ¿No has podido dejar de preocuparte o controlar la preocupación?</p>
+                    <div class="opciones">
+                        <label><input type="radio" name="p2" value="0" required> Nunca</label>
+                        <label><input type="radio" name="p2" value="1"> Varios días</label>
+                        <label><input type="radio" name="p2" value="2"> Más de la mitad de los días</label>
+                        <label><input type="radio" name="p2" value="3"> Casi todos los días</label>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>3. ¿Te has preocupado demasiado por diferentes cosas?</p>
+                    <div class="opciones">
+                        <label><input type="radio" name="p3" value="0" required> Nunca</label>
+                        <label><input type="radio" name="p3" value="1"> Varios días</label>
+                        <label><input type="radio" name="p3" value="2"> Más de la mitad de los días</label>
+                        <label><input type="radio" name="p3" value="3"> Casi todos los días</label>
+                    </div>
+                </div>
+
+                <div class="pregunta">
+                    <p>4. ¿Has tenido dificultad para relajarte?</p>
+                    <div class="opciones">
+                        <label><input type="radio" name="p4" value="0" required> Nunca</label>
+                        <label><input type="radio" name="p4" value="1"> Varios días</label>
+                        <label><input type="radio" name="p4" value="2"> Más de la mitad de los días</label>
+                        <label><input type="radio" name="p4" value="3"> Casi todos los días</label>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-action" style="width:100%" onclick="calcularTest()">Ver Resultado Diagnóstico</button>
+            </form>
+
+            <div id="resultado"></div>
+        </div>
+    </section>
+
+    <section id="telepsicologia" class="container">
+        <div class="tele-box">
+            <h2 class="section-title">Telepsicología: Terapia Segura</h2>
+            <p>Atención profesional desde la comodidad de tu hogar vía Zoom o Teams.</p>
+            <br>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://zoom.us/" target="_blank" class="btn-action" style="background: #2d8cff;">
+                    🎥 Ir a Sala de Espera (Zoom)
+                </a>
+                <a href="https://wa.me/593999999999" target="_blank" class="btn-action" style="background: #25D366;">
+                    💬 Agendar por WhatsApp
+                </a>
             </div>
         </div>
-
-        <div style="text-align: center;">
-            <div class="admin-zone">
-                🚧 <strong>Zona de Desarrollo:</strong> Sistema Conectado. Próxima integración: <em>App iOS/Android</em>.
-            </div>
-        </div>
-    </div>
+    </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-item"><span style="color:#3498db; font-family:'Times New Roman'; font-size:1.4rem; font-weight:bold;">Ψ</span> <strong>Psic. Andrés Tello</strong> - Atención Integral</div>
-            <div class="footer-item"><i class="fas fa-map-marker-alt"></i> New Jersey, USA & Quito, Ecuador (Online)</div>
-            <div class="footer-item"><i class="fas fa-phone"></i> WhatsApp: +1 (908) 636-1137</div>
-        </div>
-        
-        <div class="emergency-box">
-            <i class="fas fa-exclamation-triangle"></i> <strong>IMPORTANTE:</strong> Si estás en crisis o tu vida corre peligro, por favor llama al <strong>911</strong> o acude a la sala de emergencias más cercana inmediatamente.
-        </div>
-        
-        <p style="margin-top: 40px; font-size: 0.8rem; opacity: 0.5;">&copy; 2026 Plataforma de Psicología Integral. Todos los derechos reservados.</p>
+        <p style="text-align: center; padding: 30px; color: #666; font-size: 0.9rem;">
+            &copy; 2026 Consultorio Psicológico Tello. Todos los derechos reservados.<br>
+            Hillsborough, NJ | Quito, Ecuador
+        </p>
     </footer>
 
+    <script>
+        // --- 1. LÓGICA DE ROTACIÓN DIARIA DE ARTÍCULOS ---
+        const baseDatosArticulos = [
+            { id:1, titulo: "Duelo Migratorio", desc: "Cómo manejar la tristeza al estar lejos de casa.", cat: "Emociones" },
+            { id:2, titulo: "Ansiedad vs Estrés", desc: "Claves para diferenciar y tratar cada uno.", cat: "Salud Mental" },
+            { id:3, titulo: "Crianza Positiva", desc: "Límites sin gritos: herramientas para padres.", cat: "Familia" },
+            { id:4, titulo: "Mindfulness Diario", desc: "5 minutos para reducir el cortisol.", cat: "Bienestar" },
+            { id:5, titulo: "Depresión Silenciosa", desc: "Síntomas que a menudo pasamos por alto.", cat: "Clínica" },
+            { id:6, titulo: "Terapia de Pareja", desc: "Mejorando la comunicación asertiva.", cat: "Relaciones" },
+            { id:7, titulo: "Higiene del Sueño", desc: "Técnicas para combatir el insomnio.", cat: "Salud" },
+            { id:8, titulo: "Autoestima Sana", desc: "Construyendo tu valor personal paso a paso.", cat: "Crecimiento" },
+            { id:9, titulo: "Resiliencia", desc: "Cómo levantarse después de una crisis.", cat: "Fortaleza" }
+        ];
+
+        function cargarArticulosDelDia() {
+            // Obtenemos el día del año (0-365) para que cambie cada 24h
+            const hoy = new Date();
+            const inicio = new Date(hoy.getFullYear(), 0, 0);
+            const diff = hoy - inicio;
+            const diaDelAnio = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            const contenedor = document.getElementById('articulos-container');
+            contenedor.innerHTML = ''; // Limpiar
+
+            // Seleccionamos 3 artículos usando el día como índice
+            for (let i = 0; i < 3; i++) {
+                // Algoritmo circular: si se acaban, vuelve a empezar
+                let index = (diaDelAnio + i) % baseDatosArticulos.length;
+                let art = baseDatosArticulos[index];
+
+                // Crear HTML de la tarjeta
+                let cardHTML = `
+                    <div class="card">
+                        <div style="height:150px; background: #cbd5e1; display:flex; align-items:center; justify-content:center; color:#64748b;">
+                            (Imagen: ${art.cat})
+                        </div>
+                        <div class="card-body">
+                            <span class="card-tag">${art.cat}</span>
+                            <h3>${art.titulo}</h3>
+                            <p>${art.desc}</p>
+                            <a href="#" style="color:var(--primary); font-weight:bold; text-decoration:none;">Leer más →</a>
+                        </div>
+                    </div>
+                `;
+                contenedor.innerHTML += cardHTML;
+            }
+        }
+
+        // --- 2. LÓGICA DEL TEST DE ANSIEDAD (CALCULADORA) ---
+        function calcularTest() {
+            const form = document.getElementById('form-ansiedad');
+            const inputs = form.querySelectorAll('input[type="radio"]:checked');
+            const resultadoBox = document.getElementById('resultado');
+
+            // Validación: ¿Respondió las 4 preguntas? (En el GAD-7 real son 7, aquí puse 4 de ejemplo)
+            if (inputs.length < 4) {
+                alert("Por favor, responde todas las preguntas para obtener un resultado.");
+                return;
+            }
+
+            let suma = 0;
+            inputs.forEach(input => {
+                suma += parseInt(input.value);
+            });
+
+            // Interpretación Clínica
+            let mensaje = "";
+            let claseColor = "";
+
+            if (suma <= 4) {
+                mensaje = "<strong>Ansiedad Mínima:</strong> Tus niveles están dentro del rango saludable.";
+                claseColor = "resultado-verde";
+            } else if (suma <= 9) {
+                mensaje = "<strong>Ansiedad Leve:</strong> Se recomienda monitorear y practicar relajación.";
+                claseColor = "resultado-naranja";
+            } else {
+                mensaje = "<strong>Ansiedad Moderada/Alta:</strong> Se sugiere agendar una consulta profesional.";
+                claseColor = "resultado-rojo";
+            }
+
+            // Mostrar Resultado
+            resultadoBox.style.display = 'block';
+            resultadoBox.className = claseColor;
+            resultadoBox.innerHTML = `<h3>Puntaje Total: ${suma} / 12</h3><p>${mensaje}</p>`;
+        }
+
+        // Iniciar la página
+        document.addEventListener('DOMContentLoaded', cargarArticulosDelDia);
+    </script>
 </body>
 </html>
