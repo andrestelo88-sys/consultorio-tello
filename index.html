@@ -3,221 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicología Integral | Andrés Tello</title>
+    <title>Psic. Andrés Tello | Inicio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb; /* Azul Institucional */
-            --accent: #16a34a;  /* Verde Bienestar */
+            --primary: #2563eb;
+            --accent: #16a34a;
             --bg: #f8fafc;
             --text: #1e293b;
         }
         body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
         
-        /* HEADER */
-        header { background: white; padding: 15px 5%; box-shadow: 0 4px 6px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        nav a { text-decoration: none; color: #64748b; margin-left: 20px; font-weight: 500; transition: 0.3s; }
-        nav a:hover { color: var(--primary); }
-        .btn-cita { background: var(--primary); color: white; padding: 10px 25px; border-radius: 50px; font-weight: bold; }
+        /* HEADER SENCILLO */
+        header { background: white; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
+        .btn-agendar { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; }
 
-        /* HERO */
-        .hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); color: white; text-align: center; padding: 60px 20px; }
-        .hero h1 { font-size: 2.8rem; margin: 0; }
+        /* PORTADA */
+        .hero { 
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
+            color: white; 
+            text-align: center; 
+            padding: 80px 20px; 
+            margin-bottom: -50px; /* Para que las tarjetas suban un poco */
+        }
+        .hero h1 { font-size: 3rem; margin: 0; }
         .hero p { font-size: 1.2rem; opacity: 0.9; margin-top: 10px; }
 
-        /* CONTENEDOR GENERAL */
-        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
-        .section-title { text-align: center; margin-bottom: 40px; font-size: 2rem; color: var(--text); position: relative; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 4px; background: var(--accent); margin: 10px auto; border-radius: 2px; }
-
-        /* --- SECCIÓN 1: LAS 9 ÁREAS (VENTANAS) --- */
-        .grid-9 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        /* CONTENEDOR DE LAS 4 PUERTAS PRINCIPALES */
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         
-        .area-card { 
-            background: white; 
-            border-radius: 12px; 
-            padding: 25px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            border-top: 4px solid var(--primary);
-            transition: transform 0.2s;
-        }
-        .area-card:hover { transform: translateY(-5px); }
-        
-        .icon { font-size: 2rem; margin-bottom: 15px; color: var(--primary); }
-        .area-title { font-weight: 700; font-size: 1.2rem; margin-bottom: 10px; }
-        
-        /* Tip diario dentro de la tarjeta */
-        .daily-tip { 
-            background: #f1f5f9; 
-            padding: 10px; 
-            border-radius: 8px; 
-            font-size: 0.9rem; 
-            color: #475569; 
-            margin-top: 15px;
-            font-style: italic;
-            border-left: 3px solid var(--accent);
+        .main-menu { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 30px; 
+            position: relative; 
+            z-index: 10;
         }
 
-        /* --- SECCIÓN 2: TESTS POR EDADES (RECUPERADO) --- */
-        .tests-wrapper { background: white; padding: 50px 20px; margin-top: 50px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        
-        .ages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
-        
-        .age-column { text-align: center; padding: 20px; border: 1px solid #e2e8f0; border-radius: 15px; transition: 0.3s; }
-        .age-column:hover { border-color: var(--primary); background: #eff6ff; }
-        
-        .age-icon { font-size: 3rem; color: var(--accent); margin-bottom: 20px; }
-        .age-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 15px; color: var(--text); }
-        .test-list { list-style: none; padding: 0; text-align: left; }
-        .test-list li { margin-bottom: 10px; padding-bottom: 10px; border-bottom: 1px dashed #cbd5e1; }
-        .test-list i { color: var(--primary); margin-right: 10px; }
-        
-        .btn-test { 
-            display: inline-block; 
-            margin-top: 15px; 
-            background: var(--text); 
-            color: white; 
-            padding: 8px 20px; 
-            border-radius: 5px; 
-            text-decoration: none; 
-            font-size: 0.9rem;
+        /* DISEÑO DE LAS TARJETAS (PUERTAS) */
+        .menu-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none; /* Quitar subrayado de enlaces */
+            color: var(--text);
+            border-top: 5px solid transparent;
+            display: block; /* Hacer que toda la tarjeta sea clicable */
         }
+
+        .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+        .icon-circle {
+            width: 80px; height: 80px;
+            background: #eff6ff;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+        }
+
+        .card-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
+        .card-desc { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;}
+        .btn-go { display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+
+        /* COLORES POR SECCIÓN */
+        /* 1. Centro de Evaluación (Tests) */
+        .card-tests { border-top-color: #ef4444; }
+        .card-tests .icon-circle { background: #fee2e2; color: #ef4444; }
+        .card-tests .btn-go { background: #ef4444; color: white; }
+
+        /* 2. Telepsicología (Sala de Espera) */
+        .card-tele { border-top-color: #3b82f6; }
+        .card-tele .icon-circle { background: #dbeafe; color: #3b82f6; }
+        .card-tele .btn-go { background: #3b82f6; color: white; }
+
+        /* 3. Biblioteca */
+        .card-lib { border-top-color: #8b5cf6; }
+        .card-lib .icon-circle { background: #f3e8ff; color: #8b5cf6; }
+        .card-lib .btn-go { background: #8b5cf6; color: white; }
+
+        /* 4. Bienestar & Vida (Las 9 ventanas) */
+        .card-life { border-top-color: #16a34a; }
+        .card-life .icon-circle { background: #dcfce7; color: #16a34a; }
+        .card-life .btn-go { background: #16a34a; color: white; }
 
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><i class="fas fa-brain"></i> Consultorio Tello</div>
-        <nav>
-            <a href="#areas">9 Áreas</a>
-            <a href="#evaluacion">Evaluaciones</a>
-            <a href="https://wa.me/593999999999" class="btn-cita">Agendar Cita</a>
-        </nav>
+        <div class="logo">Ψ Consultorio Tello</div>
+        <a href="https://wa.me/593999999999" class="btn-agendar">Agendar Cita</a>
     </header>
 
     <section class="hero">
-        <h1>Psicología Integral & Bienestar</h1>
-        <p>Un enfoque profundo para tus desafíos reales.</p>
+        <h1>Bienestar & Vida</h1>
+        <p>Psicología profunda para tus desafíos reales</p>
     </section>
 
-    <div id="areas" class="container">
-        <h2 class="section-title">Nuestras 9 Ventanas de Salud</h2>
-        <div class="grid-9">
-            <div class="area-card" style="border-color: #3b82f6;">
-                <div class="icon" style="color:#3b82f6;"><i class="fas fa-plane"></i></div>
-                <div class="area-title">Migración</div>
-                <p>Apoyo en el duelo migratorio y adaptación.</p>
-                <div class="daily-tip" id="tip-1">Tip: Valida tu nostalgia hoy.</div>
-            </div>
-            <div class="area-card" style="border-color: #10b981;">
-                <div class="icon" style="color:#10b981;"><i class="fas fa-wallet"></i></div>
-                <div class="area-title">Psicología Financiera</div>
-                <p>Sana tu relación emocional con el dinero.</p>
-                <div class="daily-tip" id="tip-2">Tip: Ahorrar es cuidarte.</div>
-            </div>
-            <div class="area-card" style="border-color: #6366f1;">
-                <div class="icon" style="color:#6366f1;"><i class="fas fa-heart-broken"></i></div>
-                <div class="area-title">Duelo</div>
-                <p>Procesar la pérdida y encontrar sentido.</p>
-                <div class="daily-tip" id="tip-3">Tip: Llorar limpia el alma.</div>
-            </div>
-            <div class="area-card" style="border-color: #f59e0b;">
-                <div class="icon" style="color:#f59e0b;"><i class="fas fa-apple-alt"></i></div>
-                <div class="area-title">Alimentación</div>
-                <p>Psiconutrición y manejo de la ansiedad.</p>
-                <div class="daily-tip" id="tip-4">Tip: Come sin pantallas.</div>
-            </div>
-            <div class="area-card" style="border-color: #8b5cf6;">
-                <div class="icon" style="color:#8b5cf6;"><i class="fas fa-dove"></i></div>
-                <div class="area-title">Espiritualidad</div>
-                <p>Conexión interior y propósito de vida.</p>
-                <div class="daily-tip" id="tip-5">Tip: 5 min de silencio hoy.</div>
-            </div>
-            <div class="area-card" style="border-color: #ef4444;">
-                <div class="icon" style="color:#ef4444;"><i class="fas fa-running"></i></div>
-                <div class="area-title">Ejercicio</div>
-                <p>Movimiento como antidepresivo natural.</p>
-                <div class="daily-tip" id="tip-6">Tip: Camina 20 minutos.</div>
-            </div>
-            <div class="area-card" style="border-color: #ec4899;">
-                <div class="icon" style="color:#ec4899;"><i class="fas fa-clock"></i></div>
-                <div class="area-title">Tiempo Personal</div>
-                <p>Autocuidado y gestión de límites.</p>
-                <div class="daily-tip" id="tip-7">Tip: Aprende a decir NO.</div>
-            </div>
-            <div class="area-card" style="border-color: #f43f5e;">
-                <div class="icon" style="color:#f43f5e;"><i class="fas fa-users"></i></div>
-                <div class="area-title">Relaciones</div>
-                <p>Comunicación asertiva en pareja.</p>
-                <div class="daily-tip" id="tip-8">Tip: Escucha para entender.</div>
-            </div>
-            <div class="area-card" style="border-color: #0ea5e9;">
-                <div class="icon" style="color:#0ea5e9;"><i class="fas fa-brain"></i></div>
-                <div class="area-title">Psicología Clínica</div>
-                <p>Tratamiento de ansiedad y depresión.</p>
-                <div class="daily-tip" id="tip-9">Tip: Un paso a la vez.</div>
-            </div>
-        </div>
-    </div>
-
-    <div id="evaluacion" class="container">
-        <div class="tests-wrapper">
-            <h2 class="section-title">Centro de Evaluación</h2>
-            <p style="text-align:center; margin-bottom:30px;">Selecciona el grupo de edad para ver las pruebas disponibles:</p>
+    <div class="container">
+        <div class="main-menu">
             
-            <div class="ages-grid">
-                
-                <div class="age-column">
-                    <div class="age-icon"><i class="fas fa-child"></i></div>
-                    <div class="age-title">Niños</div>
-                    <ul class="test-list">
-                        <li><i class="fas fa-check-circle"></i> TDAH (Conners)</li>
-                        <li><i class="fas fa-check-circle"></i> Problemas de Aprendizaje</li>
-                        <li><i class="fas fa-check-circle"></i> Escala Emocional Infantil</li>
-                    </ul>
-                    <a href="tests.html?tipo=ninos" class="btn-test">Ver Tests Niños</a>
-                </div>
+            <a href="tests.html" class="menu-card card-tests">
+                <div class="icon-circle"><i class="fas fa-clipboard-list"></i></div>
+                <div class="card-title">Centro de Evaluación</div>
+                <p class="card-desc">Tests estandarizados para detectar ansiedad, depresión y TDAH (Adultos, Niños y Adolescentes).</p>
+                <span class="btn-go">Realizar Tests</span>
+            </a>
 
-                <div class="age-column">
-                    <div class="age-icon"><i class="fas fa-user-graduate"></i></div>
-                    <div class="age-title">Adolescentes</div>
-                    <ul class="test-list">
-                        <li><i class="fas fa-check-circle"></i> Orientación Vocacional</li>
-                        <li><i class="fas fa-check-circle"></i> Ansiedad Social</li>
-                        <li><i class="fas fa-check-circle"></i> Autoestima (Rosenberg)</li>
-                    </ul>
-                    <a href="tests.html?tipo=adolescentes" class="btn-test">Ver Tests Adolescentes</a>
-                </div>
+            <a href="sala-espera.html" class="menu-card card-tele">
+                <div class="icon-circle"><i class="fas fa-video"></i></div>
+                <div class="card-title">Telepsicología</div>
+                <p class="card-desc">Sesiones privadas y seguras vía Zoom/Teams desde la comodidad de tu hogar.</p>
+                <span class="btn-go">Ir a Sala de Espera</span>
+            </a>
 
-                <div class="age-column">
-                    <div class="age-icon"><i class="fas fa-user-tie"></i></div>
-                    <div class="age-title">Adultos</div>
-                    <ul class="test-list">
-                        <li><i class="fas fa-check-circle"></i> Ansiedad (GAD-7)</li>
-                        <li><i class="fas fa-check-circle"></i> Depresión (Beck)</li>
-                        <li><i class="fas fa-check-circle"></i> Estrés Laboral (Burnout)</li>
-                    </ul>
-                    <a href="tests.html?tipo=adultos" class="btn-test">Ver Tests Adultos</a>
-                </div>
+            <a href="biblioteca.html" class="menu-card card-lib">
+                <div class="icon-circle"><i class="fas fa-book-reader"></i></div>
+                <div class="card-title">Biblioteca</div>
+                <p class="card-desc">Artículos científicos, guías de descarga (PDF) y noticias actualizadas.</p>
+                <span class="btn-go">Leer Artículos</span>
+            </a>
 
-            </div>
+            <a href="bienestar.html" class="menu-card card-life">
+                <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+                <div class="card-title">Bienestar & Vida</div>
+                <p class="card-desc">Herramientas prácticas: Migración, Finanzas, Duelo, Alimentación y más.</p>
+                <span class="btn-go">Explorar las 9 Áreas</span>
+            </a>
+
         </div>
     </div>
 
-    <script>
-        // Pequeño script para mantener la rotación de consejos (lo único bueno del código anterior)
-        const consejosDB = [
-            "Respira profundo, este momento pasará.",
-            "Tu salud mental es una prioridad, no un lujo.",
-            "Pequeños pasos te llevan a grandes lugares."
-        ];
-        // Asignar aleatoriamente al cargar
-        document.addEventListener('DOMContentLoaded', () => {
-           // Aquí podríamos poner la lógica de rotación si la deseas conservar
-           console.log("Sistema cargado correctamente.");
-        });
-    </script>
+    <footer style="text-align: center; padding: 40px; color: #64748b; margin-top: 50px;">
+        <p>&copy; 2026 Psicólogo Andrés Tello. Todos los derechos reservados.</p>
+    </footer>
+
 </body>
 </html>
