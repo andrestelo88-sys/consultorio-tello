@@ -3,163 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Científica | Psic. Tello</title>
+    <title>Biblioteca | Psic. Tello</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #4f46e5; /* Índigo académico */
-            --secondary: #ec4899;
-            --bg: #f8fafc;
-            --text: #1e293b;
-        }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
+        body { font-family: 'Segoe UI', sans-serif; background: #fefce8; color: #1e293b; margin: 0; }
+        /* HEADER (Igual a los otros) */
+        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #a16207; }
+        .btn-back { text-decoration: none; color: #64748b; font-weight: bold; }
         
-        /* HEADER */
-        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center; border-bottom: 4px solid var(--primary); }
-        .logo { font-size: 1.8rem; font-weight: 800; color: var(--primary); margin-bottom: 5px; }
-        .subtitle { color: #64748b; font-size: 1.1rem; }
-
-        /* CONTENEDOR GRID */
-        .container { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-        .date-badge { text-align: center; background: #e0e7ff; color: var(--primary); padding: 5px 15px; border-radius: 20px; display: inline-block; font-weight: bold; margin-bottom: 30px; }
-
-        .articles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-
-        /* TARJETA DE ARTÍCULO */
+        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        
         .article-card { 
-            background: white; 
-            border-radius: 12px; 
-            overflow: hidden; 
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); 
-            transition: transform 0.3s; 
-            display: flex; 
-            flex-direction: column;
-            border: 1px solid #e2e8f0;
+            background: white; padding: 25px; margin-bottom: 20px; border-radius: 10px; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid #a16207;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .article-card:hover { transform: translateY(-5px); border-color: var(--primary); }
-
-        .card-header { height: 140px; background: #cbd5e1; position: relative; }
-        .category-tag { 
-            position: absolute; 
-            top: 15px; 
-            right: 15px; 
-            background: rgba(255,255,255,0.95); 
-            color: var(--primary); 
-            padding: 5px 12px; 
-            border-radius: 4px; 
-            font-size: 0.8rem; 
-            font-weight: bold; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-        }
-
-        .card-body { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .art-title { font-size: 1.25rem; font-weight: 700; margin: 0 0 10px 0; line-height: 1.4; }
-        .art-desc { font-size: 0.95rem; color: #475569; margin-bottom: 20px; flex-grow: 1; }
+        .article-info h3 { margin: 0 0 5px 0; color: #333; }
+        .article-info p { margin: 0; color: #666; font-size: 0.9rem; }
         
         .btn-read { 
-            text-align: center; 
-            background: var(--bg); 
-            color: var(--primary); 
-            padding: 10px; 
-            border-radius: 6px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            border: 1px solid #c7d2fe;
-            transition: 0.3s;
+            background: #fef08a; color: #854d0e; padding: 10px 20px; border-radius: 50px; 
+            text-decoration: none; font-weight: bold; border: 1px solid #facc15; transition: 0.3s;
         }
-        .btn-read:hover { background: var(--primary); color: white; }
+        .btn-read:hover { background: #a16207; color: white; }
 
-        /* IMÁGENES POR DEFECTO (GRADIENTES) */
-        .img-grad-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
-        .img-grad-2 { background: linear-gradient(135deg, #2af598 0%, #009efd 100%); }
-        .img-grad-3 { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%); }
-        .img-grad-4 { background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%); }
-
-        .back-home { display: block; text-align: center; margin-top: 50px; text-decoration: none; color: #64748b; font-weight: bold; }
-        .back-home:hover { color: var(--primary); }
-
+        /* FOOTER DE EMERGENCIA */
+        .emergency-footer { background: #1e293b; color: white; padding: 30px; text-align: center; margin-top: 50px; }
+        .emergency-title { color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
+        .emergency-text { font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo"><i class="fas fa-book-open"></i> Biblioteca Digital</div>
-        <div class="subtitle">Artículos seleccionados de la Asociación Americana de Psicología (APA) y fuentes actuales.</div>
+        <a href="index.html" class="btn-back">← Volver al Inicio</a>
     </header>
 
     <div class="container">
-        <div style="text-align: center;">
-            <span class="date-badge" id="fecha-hoy">Actualizado: Hoy</span>
+        <h2 style="text-align:center; margin-bottom:30px;">Artículos Científicos (Enlaces Externos)</h2>
+        
+        <div class="article-card">
+            <div class="article-info">
+                <h3><i class="fas fa-file-pdf"></i> Ansiedad y Estrés (Guía Técnica)</h3>
+                <p>Fuente: Sociedad Española para el Estudio de la Ansiedad y el Estrés.</p>
+            </div>
+            <a href="http://www.ansiedadyestres.org/content/que-es-la-ansiedad" target="_blank" class="btn-read">Leer Artículo</a>
         </div>
 
-        <div class="articles-grid" id="grid-articulos">
+        <div class="article-card">
+            <div class="article-info">
+                <h3><i class="fas fa-brain"></i> Neurobiología de la Depresión</h3>
+                <p>Fuente: Revista Scielo (Artículo Médico).</p>
             </div>
+            <a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0016-38132003000200012" target="_blank" class="btn-read">Leer Artículo</a>
+        </div>
 
-        <a href="index.html" class="back-home">← Volver al Menú Principal</a>
+        <div class="article-card">
+            <div class="article-info">
+                <h3><i class="fas fa-child"></i> TDAH en Niños: Diagnóstico</h3>
+                <p>Fuente: CDC Centers for Disease Control and Prevention.</p>
+            </div>
+            <a href="https://www.cdc.gov/ncbddd/spanish/adhd/diagnosis.html" target="_blank" class="btn-read">Leer Artículo</a>
+        </div>
+
+        <div class="article-card">
+            <div class="article-info">
+                <h3><i class="fas fa-users"></i> Duelo Migratorio</h3>
+                <p>Fuente: Psicología y Mente (Artículo divulgativo).</p>
+            </div>
+            <a href="https://psicologiaymente.com/clinica/duelo-migratorio" target="_blank" class="btn-read">Leer Artículo</a>
+        </div>
+        
     </div>
 
-    <script>
-        // --- 1. BASE DE DATOS DE ARTÍCULOS (15 TEMAS) ---
-        const libreria = [
-            { titulo: "Neuroplasticidad en Adultos", desc: "¿Puede el cerebro cambiar después de los 40? Nuevos hallazgos.", cat: "Neurociencia" },
-            { titulo: "El Eje Intestino-Cerebro", desc: "Cómo tu alimentación afecta directamente tu estado de ánimo y ansiedad.", cat: "Psiconutrición" },
-            { titulo: "Trauma y Cuerpo", desc: "La teoría polivagal explicada: por qué 'sentimos' el miedo físicamente.", cat: "Clínica" },
-            { titulo: "Crianza Digital", desc: "Efectos de las pantallas en el desarrollo cognitivo infantil en 2026.", cat: "Infanto-Juvenil" },
-            { titulo: "Duelo Migratorio", desc: "Estrategias clínicas para la adaptación cultural sin perder la identidad.", cat: "Social" },
-            { titulo: "Mindfulness vs. Relajación", desc: "Diferencias claves y cuándo aplicar cada técnica en terapia.", cat: "Bienestar" },
-            { titulo: "La Epidemia de la Soledad", desc: "Impacto del aislamiento social en la salud cardiovascular.", cat: "Salud Pública" },
-            { titulo: "TDAH en Mujeres Adultas", desc: "Por qué el diagnóstico suele llegar tarde y cómo identificarlo.", cat: "Clínica" },
-            { titulo: "Ritmos Circadianos", desc: "La importancia de la luz solar matutina para la regulación de la depresión.", cat: "Fisiología" },
-            { titulo: "Resiliencia Financiera", desc: "Psicología del dinero: superando la ansiedad económica.", cat: "Finanzas" },
-            { titulo: "Apego en la Pareja", desc: "Cómo los estilos de apego infantil predicen tus relaciones adultas.", cat: "Relaciones" },
-            { titulo: "Burnout Laboral", desc: "Diferenciando el cansancio normal del síndrome de desgaste ocupacional.", cat: "Laboral" },
-            { titulo: "Microbiota y Depresión", desc: "El uso de psicobióticos como coadyuvantes en el tratamiento.", cat: "Investigación" },
-            { titulo: "Fatiga por Compasión", desc: "Guía de autocuidado para cuidadores y personal de salud.", cat: "Autocuidado" },
-            { titulo: "Nuevas Adicciones", desc: "Ludopatía online y redes sociales: el reto de la década.", cat: "Adicciones" }
-        ];
+    <footer class="emergency-footer">
+        <div class="emergency-title">⚠️ AVISO DE CRISIS Y EMERGENCIA</div>
+        <p class="emergency-text">
+            Si usted o alguien que conoce está en peligro inmediato, llame al <strong>911</strong> (Ecuador/USA) o acuda a emergencias.
+        </p>
+    </footer>
 
-        // --- 2. LÓGICA DE ROTACIÓN DIARIA ---
-        function cargarBiblioteca() {
-            const hoy = new Date();
-            // Formato de fecha para el badge
-            const opcionesFecha = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            document.getElementById('fecha-hoy').innerText = "Edición del: " + hoy.toLocaleDateString('es-ES', opcionesFecha);
-
-            // Algoritmo matemático para seleccionar 4 artículos basados en el día del año
-            const inicioAnio = new Date(hoy.getFullYear(), 0, 0);
-            const diff = hoy - inicioAnio;
-            const diaDelAnio = Math.floor(diff / (1000 * 60 * 60 * 24));
-            
-            const contenedor = document.getElementById('grid-articulos');
-            contenedor.innerHTML = ""; // Limpiar
-
-            // Seleccionamos 4 artículos
-            for (let i = 0; i < 4; i++) {
-                // El índice rota infinitamente sobre la librería
-                let index = (diaDelAnio + (i * 3)) % libreria.length;
-                let articulo = libreria[index];
-                let gradienteClass = `img-grad-${(i % 4) + 1}`; // Alternar colores de imagen
-
-                // Crear HTML
-                let html = `
-                    <div class="article-card">
-                        <div class="card-header ${gradienteClass}">
-                            <span class="category-tag">${articulo.cat}</span>
-                        </div>
-                        <div class="card-body">
-                            <h3 class="art-title">${articulo.titulo}</h3>
-                            <p class="art-desc">${articulo.desc}</p>
-                            <a href="#" class="btn-read" onclick="alert('Abriendo PDF del artículo: ${articulo.titulo}...')">Leer Artículo Completo <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                `;
-                contenedor.innerHTML += html;
-            }
-        }
-
-        // Ejecutar al cargar
-        document.addEventListener('DOMContentLoaded', cargarBiblioteca);
-    </script>
 </body>
 </html>

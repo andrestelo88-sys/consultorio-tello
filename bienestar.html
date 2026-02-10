@@ -3,215 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bienestar y Vida - Recursos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Bienestar & Vida | Psic. Tello</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Poppins', sans-serif; background-color: #f0f3f5; margin: 0; padding: 0; color: #333; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f0fdf4; color: #1e293b; margin: 0; }
         
-        header {
-            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(44, 62, 80, 0.9)), url('https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover; background-position: center; color: white; padding: 90px 20px; text-align: center;
-        }
-        header h1 { margin: 0; font-size: 3rem; font-weight: 700; }
-        header p { font-size: 1.2rem; margin-top: 15px; opacity: 0.9; font-weight: 300; }
+        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #16a34a; }
+        .btn-back { text-decoration: none; color: #64748b; font-weight: bold; }
 
-        .daily-tip-box {
-            background: white; max-width: 800px; margin: -40px auto 50px; padding: 35px;
-            border-radius: 15px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center;
-            border-bottom: 5px solid #27ae60; position: relative;
-        }
-        .daily-badge {
-            background: #27ae60; color: white; padding: 5px 15px; border-radius: 20px;
-            font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-bottom: 15px; display: inline-block;
-        }
-        #daily-quote { font-size: 1.4rem; font-style: italic; color: #444; margin: 15px 0; line-height: 1.5; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
+        .grid-9 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         
-        /* GRID DE 3x3 CENTRADO */
-        .grid-topics { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-            gap: 30px; 
-            justify-content: center;
+        .window-card { 
+            background: white; border-radius: 12px; padding: 25px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #16a34a;
+            display: flex; flex-direction: column;
         }
-
-        .topic-card {
-            background: white; border-radius: 15px; overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05); transition: transform 0.3s; cursor: pointer;
-            display: flex; flex-direction: column; height: 100%;
-        }
-        .topic-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card-img { height: 200px; width: 100%; object-fit: cover; }
-        .card-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
-        .card-title { font-size: 1.3rem; font-weight: 700; color: #2c3e50; margin-bottom: 10px; }
-        .card-desc { font-size: 0.95rem; color: #7f8c8d; line-height: 1.6; margin-bottom: 20px; }
-        .btn-explore { color: #3498db; font-weight: 700; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-
-        /* MODAL */
-        .modal-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); z-index: 2000; justify-content: center; align-items: center; padding: 20px; backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background: white; width: 100%; max-width: 750px; border-radius: 15px;
-            max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px rgba(0,0,0,0.4); animation: slideUp 0.4s ease;
-        }
-        .modal-header { background: #2c3e50; color: white; padding: 25px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; }
-        .modal-header h3 { margin: 0; font-size: 1.4rem; }
-        .close-btn { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; line-height: 1; }
         
-        .modal-body { padding: 40px; line-height: 1.8; color: #444; }
-        .section-block { margin-bottom: 35px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
-        .section-block:last-child { border: none; }
+        .icon { font-size: 2rem; color: #16a34a; margin-bottom: 15px; }
+        .title { font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; }
+        .desc { font-size: 0.95rem; color: #475569; flex-grow: 1; margin-bottom: 15px; }
         
-        .block-title { font-size: 1.1rem; font-weight: 700; color: #3498db; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .highlight-box { background: #fffcf0; border-left: 4px solid #f1c40f; padding: 20px; border-radius: 5px; margin: 20px 0; color: #555; font-style: italic; }
-        .verse-box { background: #e8f6f3; color: #16a085; padding: 20px; border-radius: 10px; text-align: center; font-weight: 600; font-size: 1.1rem; border: 1px solid #d0ece7; margin-top: 10px; }
-
-        @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        .btn-home { display: block; width: 220px; margin: 50px auto; padding: 15px; text-align: center; background: #95a5a6; color: white; border-radius: 50px; text-decoration: none; font-weight: 600; transition: 0.3s; }
-        .btn-home:hover { background: #7f8c8d; transform: translateY(-3px); }
-
-        /* === CORRECCIÓN MÓVIL === */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            header p { font-size: 1rem; }
-            .daily-tip-box { margin: -30px 15px 40px; padding: 20px; }
-            #daily-quote { font-size: 1.1rem; }
-            .modal-body { padding: 20px; }
+        .source-link { 
+            font-size: 0.85rem; color: #2563eb; text-decoration: none; 
+            background: #eff6ff; padding: 8px; border-radius: 5px; text-align: center; font-weight: 600;
         }
+        .source-link:hover { background: #dbeafe; }
+
+        /* FOOTER DE EMERGENCIA */
+        .emergency-footer { background: #1e293b; color: white; padding: 30px; text-align: center; margin-top: 50px; }
+        .emergency-title { color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
+        .emergency-text { font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>🌱 Bienestar & Vida</h1>
-        <p>Psicología profunda para tus desafíos reales</p>
+        <div class="logo"><i class="fas fa-leaf"></i> Bienestar & Vida</div>
+        <a href="index.html" class="btn-back">← Volver al Inicio</a>
     </header>
 
-    <div class="daily-tip-box">
-        <span class="daily-badge">💡 Reflexión del Día</span>
-        <p id="daily-quote">"Cargando..."</p>
-        <div id="daily-source"></div>
-    </div>
-
     <div class="container">
-        <div class="grid-topics">
+        <h2 style="text-align:center; margin-bottom:40px;">9 Ventanas para tu Crecimiento</h2>
+        <div class="grid-9">
             
-            <div class="topic-card" onclick="openModal('modal-duelo')">
-                <img src="https://images.unsplash.com/photo-1494451930944-8998635c2123?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Duelo">
-                <div class="card-content">
-                    <div class="card-title">💔 Sanando el Duelo</div>
-                    <p class="card-desc">El duelo no es un problema a resolver, es un proceso a vivir. Herramientas para transitar la pérdida.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-plane"></i></div>
+                <div class="title">Migración y Adaptación</div>
+                <p class="desc">Entender el duelo migratorio es el primer paso para sentirte en casa.</p>
+                <a href="https://www.apa.org/topics/immigration/estres-aculturacion" target="_blank" class="source-link">Leer en APA (Asociación Americana de Psicología) →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-finanzas')">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Finanzas">
-                <div class="card-content">
-                    <div class="card-title">💰 Psicología Financiera</div>
-                    <p class="card-desc">Entiende la relación entre tus emociones y tu billetera. Control de impulsos y ansiedad económica.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-wallet"></i></div>
+                <div class="title">Psicología Financiera</div>
+                <p class="desc">Cómo tus emociones afectan tus decisiones de gasto y ahorro.</p>
+                <a href="https://www.investopedia.com/terms/b/behavioral-finance.asp" target="_blank" class="source-link">Verificar en Investopedia →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-migracion')">
-                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Migración">
-                <div class="card-content">
-                    <div class="card-title">🌎 Duelo Migratorio</div>
-                    <p class="card-desc">Síndrome de Ulises: El reto emocional de empezar de cero lejos de casa y la adaptación cultural.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-heart-broken"></i></div>
+                <div class="title">Manejo del Duelo</div>
+                <p>El duelo es un proceso natural, no una enfermedad. Conoce sus etapas.</p>
+                <a href="https://www.mayoclinic.org/es/diseases-conditions/complicated-grief/symptoms-causes/syc-20360374" target="_blank" class="source-link">Leer en Mayo Clinic →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-burnout')">
-                <img src="https://images.unsplash.com/photo-1516726817505-f5ed825624d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Burnout">
-                <div class="card-content">
-                    <div class="card-title">🔥 Estrés Laboral</div>
-                    <p class="card-desc">Diferencia entre cansancio y "quemarse". Estrategias para recuperar tu pasión y salud.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-apple-alt"></i></div>
+                <div class="title">Psiconutrición</div>
+                <p>La conexión directa entre tu intestino y tu cerebro (Eje Intestino-Cerebro).</p>
+                <a href="https://www.health.harvard.edu/diseases-and-conditions/the-gut-brain-connection" target="_blank" class="source-link">Leer en Harvard Health →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-espiritual')">
-                <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Espiritualidad">
-                <div class="card-content">
-                    <div class="card-title">🕊️ Fe y Psicología</div>
-                    <p class="card-desc">¿Cómo la ciencia valida la fe? La oración, el perdón y la renovación de la mente.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-dove"></i></div>
+                <div class="title">Espiritualidad</div>
+                <p>Beneficios de la meditación y la oración en la estructura cerebral.</p>
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3969046/" target="_blank" class="source-link">Ver Estudio Científico (NIH) →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-divorcio')">
-                <img src="https://images.unsplash.com/photo-1628155930542-3c7a64e2c833?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Divorcio">
-                <div class="card-content">
-                    <div class="card-title">⚖️ Reconstrucción</div>
-                    <p class="card-desc">Redefiniendo tu identidad tras la ruptura. Consejos para padres y cuidado personal.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-running"></i></div>
+                <div class="title">Ejercicio Físico</div>
+                <p>El ejercicio libera BDNF, una proteína que repara tus neuronas.</p>
+                <a href="https://www.cdc.gov/physicalactivity/basics/pa-health/index.htm" target="_blank" class="source-link">Fuente: CDC (Salud Pública) →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-salud')">
-                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Salud">
-                <div class="card-content">
-                    <div class="card-title">🍏 Psiconutrición</div>
-                    <p class="card-desc">Alimentación consciente. Aprende a distinguir el hambre física del hambre emocional.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-clock"></i></div>
+                <div class="title">Autocuidado</div>
+                <p>Por qué el descanso es productivo para la consolidación de la memoria.</p>
+                <a href="https://www.sleepfoundation.org/how-sleep-works/memory-and-sleep" target="_blank" class="source-link">Leer en Sleep Foundation →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-ejercicio')">
-                <img src="https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Ejercicio">
-                <div class="card-content">
-                    <div class="card-title">🏃🏻‍♂️ Movimiento</div>
-                    <p class="card-desc">El antidepresivo natural. Beneficios de caminar, andar en bicicleta y activar el cuerpo.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-users"></i></div>
+                <div class="title">Relaciones Sanas</div>
+                <p>La calidad de tus relaciones predice tu salud a largo plazo.</p>
+                <a href="https://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life/" target="_blank" class="source-link">Ver Estudio Harvard →</a>
             </div>
 
-            <div class="topic-card" onclick="openModal('modal-personal')">
-                <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Tiempo Personal">
-                <div class="card-content">
-                    <div class="card-title">🧘🏻‍♂️ Tiempo Personal</div>
-                    <p class="card-desc">La importancia de la soledad elegida, los hobbies y el espacio para despejar la mente.</p>
-                    <span class="btn-explore">Leer Artículo Completo →</span>
-                </div>
+            <div class="window-card">
+                <div class="icon"><i class="fas fa-brain"></i></div>
+                <div class="title">Psicología Clínica</div>
+                <p>Diferencia entre tristeza normal y Depresión Mayor (DSM-5).</p>
+                <a href="https://www.nimh.nih.gov/health/publications/espanol/depresion-sp" target="_blank" class="source-link">Fuente: Instituto Salud Mental (NIMH) →</a>
             </div>
 
         </div>
-        <a href="index.html" class="btn-home">← Volver al Inicio</a>
     </div>
 
-    <div id="modal-ejercicio" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🏃🏻‍♂️ Medicina en Movimiento</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-heartbeat"></i> Bioquímica de la Felicidad</div><p>Moverse libera endorfinas y BDNF, reparando neuronas dañadas por estrés. 30 minutos al día actúan como un ansiolítico natural.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-bicycle"></i> Actividad Rítmica</div><p>Caminar o andar en bicicleta sincroniza los hemisferios cerebrales, facilitando la claridad mental y la resolución de problemas.</p></div></div></div></div>
-    <div id="modal-personal" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🧘🏻‍♂️ La Cita Contigo Mismo</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-user-clock"></i> Soledad Elegida</div><p>Estar solo para recargar no es aislamiento. Es el espacio donde el cerebro procesa emociones y descansa de la reacción automática.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-paint-brush"></i> Hobbies y Flujo</div><p>Un hobby te lleva al "Estado de Flujo", donde la mente descansa de preocupaciones. Disfrutar sin culpa es terapéutico.</p></div></div></div></div>
-    <div id="modal-espiritual" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🕊️ Fe y Ciencia de la Mente</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-brain"></i> La Ciencia detrás de la Fe</div><p>Estudios demuestran que la oración y la meditación reducen el cortisol y aumentan la actividad en el lóbulo frontal (calma y atención).</p></div><div class="section-block"><div class="block-title"><i class="fas fa-bible"></i> Renovación de la Mente (TCC)</div><p>La Terapia Cognitivo Conductual se basa en cambiar pensamientos, tal como dice Romanos 12:2: "Transformaos por medio de la renovación de vuestro entendimiento".</p></div><div class="section-block"><div class="block-title"><i class="fas fa-heart"></i> El Perdón</div><p>Perdonar es soltar el derecho a la venganza para liberar tu propio sistema nervioso. Es un regalo para ti, no para el ofensor.</p></div></div></div></div>
-    <div id="modal-migracion" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🌎 Psicología del Migrante</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-suitcase"></i> El Síndrome de Ulises</div><p>Emigrar implica 7 duelos: familia, lengua, cultura, tierra, estatus, grupo y riesgos físicos. Es un estrés múltiple y crónico.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-home"></i> Echar Raíces</div><p>No vivas "con la maleta en la puerta". Habita tu presente, decora tu casa y crea rutinas locales para florecer donde estás plantado hoy.</p></div><div class="section-block"><div class="verse-box">"Jehová guarda a los extranjeros..." — Salmos 146:9</div></div></div></div></div>
-    <div id="modal-duelo" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>💔 Entendiendo el Duelo</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-chart-line"></i> No es una Línea Recta</div><p>El duelo es como el mar: días de calma y días de oleaje fuerte. Sentir dolor tiempo después no es retroceder, es procesar.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-box-open"></i> Caja de Recuerdos</div><p>Asigna un momento del día (ej: 15 min) para recordar y llorar. Si la tristeza llega antes, guárdala mentalmente para ese momento. Así recuperas el control.</p></div><div class="verse-box">"Bienaventurados los que lloran..." — Mateo 5:4</div></div></div></div>
-    <div id="modal-finanzas" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>💰 Salud Financiera</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-brain"></i> Gasto Emocional</div><p>A menudo gastamos para aliviar ansiedad o tristeza. La deuda financiera suele ser síntoma de una deuda emocional.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-stopwatch"></i> Regla de 24 Horas</div><p>Espera 24 horas antes de cualquier compra no esencial. El 80% de las veces, la urgencia emocional desaparece al día siguiente.</p></div></div></div></div>
-    <div id="modal-burnout" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🔥 Burnout Laboral</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-battery-empty"></i> Los 3 Signos</div><p>1) Agotamiento emocional, 2) Cinismo/Despersonalización, 3) Sensación de ineficacia. No es solo cansancio, es daño estructural.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-shield-alt"></i> Micro-Límites</div><p>Recupera espacios: Almuerza lejos de la pantalla, no revises correo en la cama. Tu valor no depende de tu productividad.</p></div></div></div></div>
-    <div id="modal-divorcio" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>⚖️ Reconstrucción Personal</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-user-edit"></i> Redefinir el YO</div><p>El divorcio rompe el "nosotros". El reto es rescatar tu identidad individual, tus hobbies y sueños postergados.</p></div><div class="section-block"><div class="highlight-box"><strong>Para Padres:</strong> "Ama a tus hijos más de lo que odias a tu ex". No los uses de mensajeros.</div></div></div></div></div>
-    <div id="modal-salud" class="modal-overlay"><div class="modal-content"><div class="modal-header"><h3>🍏 Psiconutrición Consciente</h3><button class="close-btn" onclick="closeModal()">×</button></div><div class="modal-body"><div class="section-block"><div class="block-title"><i class="fas fa-utensils"></i> Hambre Física vs. Emocional</div><p>Física: Gradual, en el estómago, cualquier comida sirve. Emocional: Repentina, antojo específico, genera culpa.</p></div><div class="section-block"><div class="block-title"><i class="fas fa-moon"></i> Higiene Nocturna</div><p>Cena ligero 2 horas antes de dormir para no interrumpir el sueño REM, clave para la regulación emocional.</p></div></div></div></div></div>
+    <footer class="emergency-footer">
+        <div class="emergency-title">⚠️ AVISO DE CRISIS Y EMERGENCIA</div>
+        <p class="emergency-text">
+            Si usted o alguien que conoce está en peligro inmediato, llame al <strong>911</strong> (Ecuador/USA) o acuda a emergencias.
+        </p>
+    </footer>
 
-    <script>
-        const tips = [
-            {t:"No creas todo lo que piensas. Tus pensamientos son hipótesis, no hechos.", s:"Terapia Cognitiva"},
-            {t:"Sobre toda cosa guardada, guarda tu corazón, porque de él mana la vida.", s:"Proverbios 4:23"},
-            {t:"El perdón es soltar a un prisionero y descubrir que el prisionero eras tú.", s:"Salud Emocional"},
-            {t:"La ansiedad no evita el dolor de mañana, solo roba la paz de hoy.", s:"Manejo del Estrés"}
-        ];
-        function cargarTip() {
-            const hoy = new Date();
-            const index = hoy.getDate() % tips.length;
-            document.getElementById('daily-quote').innerText = `"${tips[index].t}"`;
-            document.getElementById('daily-source').innerText = `— ${tips[index].s}`;
-        }
-        function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function closeModal() { document.querySelectorAll('.modal-overlay').forEach(m => m.style.display = 'none'); }
-        window.onclick = function(e) { if(e.target.classList.contains('modal-overlay')) closeModal(); }
-        cargarTip();
-    </script>
 </body>
 </html>

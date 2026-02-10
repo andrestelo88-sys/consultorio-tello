@@ -2,155 +2,101 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Laboratorio Cognitivo - Psic. Andrés Tello</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Evaluación | Psic. Tello</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; color: #333; margin: 0; text-align: center; }
-        header { background-color: #2c3e50; color: white; padding: 15px; }
-        .container { max-width: 800px; margin: 0 auto; padding: 10px; }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; margin: 0; }
         
-        /* Estilos del Test SDMT */
-        #sdmt-area { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); display: none; }
-        
-        /* La Clave (Arriba) */
-        .key-table { display: flex; justify-content: center; gap: 5px; margin-bottom: 20px; overflow-x: auto; }
-        .key-item { border: 1px solid #333; padding: 5px; border-radius: 5px; width: 30px; }
-        .key-symbol { font-size: 20px; display: block; }
-        .key-num { font-weight: bold; border-top: 1px solid #ccc; display: block; }
+        /* HEADER */
+        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: #ef4444; } /* Rojo para Tests */
+        .btn-back { text-decoration: none; color: #64748b; font-weight: bold; }
 
-        /* El Estímulo (Centro) */
-        .stimulus-box { font-size: 60px; margin: 20px 0; height: 70px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
         
-        /* Teclado Numérico */
-        .numpad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 300px; margin: 0 auto; }
-        .num-btn { 
-            background-color: #3498db; color: white; border: none; 
-            padding: 15px; font-size: 24px; border-radius: 10px; cursor: pointer; 
-            touch-action: manipulation; /* Mejora respuesta táctil */
+        /* GRID DE EDADES */
+        .ages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        
+        .age-column { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid #ef4444; }
+        .age-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; text-align: center; color: #334155; }
+        .age-icon { font-size: 2.5rem; text-align: center; display: block; margin-bottom: 15px; color: #ef4444; }
+
+        /* LISTA DE TESTS */
+        .test-list { list-style: none; padding: 0; }
+        .test-item { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px; border-bottom: 1px solid #f1f5f9; transition: 0.2s; cursor: pointer;
         }
-        .num-btn:active { background-color: #1abc9c; transform: scale(0.95); }
+        .test-item:hover { background: #fef2f2; color: #ef4444; padding-left: 15px; }
+        .test-item i { margin-right: 10px; color: #cbd5e1; }
+        .test-item:hover i { color: #ef4444; }
 
-        /* Timer y Puntaje */
-        .stats-bar { display: flex; justify-content: space-between; font-weight: bold; font-size: 18px; margin-bottom: 10px; color: #555; }
-        
-        .btn-start { background-color: #27ae60; color: white; font-size: 20px; padding: 15px 40px; border: none; border-radius: 30px; cursor: pointer; margin-top: 20px; }
-        .result-box { display: none; background: #d4edda; color: #155724; padding: 20px; border-radius: 10px; margin-top: 20px; }
+        /* FOOTER DE EMERGENCIA */
+        .emergency-footer { background: #1e293b; color: white; padding: 30px; text-align: center; margin-top: 50px; }
+        .emergency-title { color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
+        .emergency-text { font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; line-height: 1.5; }
     </style>
 </head>
 <body>
 
     <header>
-        <h3>🧠 Laboratorio Neurocognitivo</h3>
-        <a href="index.html" style="color: white; text-decoration: none;">⬅ Volver al Consultorio</a>
+        <div class="logo"><i class="fas fa-clipboard-list"></i> Centro de Evaluación</div>
+        <a href="index.html" class="btn-back">← Volver al Inicio</a>
     </header>
 
     <div class="container">
+        <h2 style="text-align:center; margin-bottom:40px;">Selecciona el Test según el Grupo de Edad</h2>
         
-        <div id="intro-screen">
-            <h2>Test de Velocidad de Procesamiento (SDMT)</h2>
-            <p><strong>Instrucciones:</strong> Tienes 90 segundos.</p>
-            <p>Arriba verás una clave (Símbolo = Número). En el centro aparecerá un símbolo, debes pulsar el número correcto lo más rápido posible.</p>
-            <button class="btn-start" onclick="startSDMT()">⏱️ COMENZAR TEST</button>
-        </div>
-
-        <div id="sdmt-area">
-            <div class="stats-bar">
-                <span id="timer">Tiempo: 90s</span>
-                <span id="score">Aciertos: 0</span>
-            </div>
-
-            <div class="key-table" id="key-display">
-                </div>
-
-            <hr>
-            <p>Selecciona el número para este símbolo:</p>
+        <div class="ages-grid">
             
-            <div id="current-symbol" class="stimulus-box">❓</div>
-
-            <div class="numpad">
-                <button class="num-btn" onclick="checkAnswer(1)">1</button>
-                <button class="num-btn" onclick="checkAnswer(2)">2</button>
-                <button class="num-btn" onclick="checkAnswer(3)">3</button>
-                <button class="num-btn" onclick="checkAnswer(4)">4</button>
-                <button class="num-btn" onclick="checkAnswer(5)">5</button>
-                <button class="num-btn" onclick="checkAnswer(6)">6</button>
-                <button class="num-btn" onclick="checkAnswer(7)">7</button>
-                <button class="num-btn" onclick="checkAnswer(8)">8</button>
-                <button class="num-btn" onclick="checkAnswer(9)">9</button>
+            <div class="age-column">
+                <span class="age-icon"><i class="fas fa-child"></i></span>
+                <div class="age-title">Niños (6 - 12 años)</div>
+                <ul class="test-list">
+                    <li class="test-item" onclick="alert('Abriendo Test de TDAH...')"><i class="fas fa-check"></i> Escala de Conners (TDAH)</li>
+                    <li class="test-item" onclick="alert('Abriendo Test Emocional...')"><i class="fas fa-check"></i> Test del Dibujo de la Familia</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Aprendizaje...')"><i class="fas fa-check"></i> Detección de Dislexia</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Conducta...')"><i class="fas fa-check"></i> Escala de Conducta (BASC)</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Inteligencia...')"><i class="fas fa-check"></i> WISC-V (Screening)</li>
+                </ul>
             </div>
+
+            <div class="age-column">
+                <span class="age-icon"><i class="fas fa-user-graduate"></i></span>
+                <div class="age-title">Adolescentes (13 - 17)</div>
+                <ul class="test-list">
+                    <li class="test-item" onclick="alert('Abriendo Orientación Vocacional...')"><i class="fas fa-check"></i> Test de Orientación Vocacional</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Autoestima...')"><i class="fas fa-check"></i> Escala de Autoestima Rosenberg</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Ansiedad Social...')"><i class="fas fa-check"></i> Escala de Ansiedad Social</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Bullying...')"><i class="fas fa-check"></i> Cuestionario de Acoso Escolar</li>
+                    <li class="test-item" onclick="alert('Abriendo Test de Hábitos...')"><i class="fas fa-check"></i> Inventario de Hábitos de Estudio</li>
+                </ul>
+            </div>
+
+            <div class="age-column">
+                <span class="age-icon"><i class="fas fa-user-tie"></i></span>
+                <div class="age-title">Adultos (+18 años)</div>
+                <ul class="test-list">
+                    <li class="test-item" onclick="window.location.href='index.html#test'"><i class="fas fa-play-circle"></i> <strong>Ansiedad Generalizada (GAD-7)</strong></li>
+                    <li class="test-item" onclick="alert('Próximamente: Test de Depresión')"><i class="fas fa-check"></i> Depresión (Beck - BDI-II)</li>
+                    <li class="test-item" onclick="alert('Próximamente: Test de Burnout')"><i class="fas fa-check"></i> Estrés Laboral (Burnout)</li>
+                    <li class="test-item" onclick="alert('Próximamente: Test de Pareja')"><i class="fas fa-check"></i> Satisfacción de Pareja</li>
+                    <li class="test-item" onclick="alert('Próximamente: Test de Personalidad')"><i class="fas fa-check"></i> Personalidad (Big Five)</li>
+                </ul>
+            </div>
+
         </div>
-
-        <div id="result-screen" class="result-box"></div>
-
     </div>
 
-    <script>
-        // CONFIGURACIÓN
-        const symbols = ['⚛️', '☮️', '☯️', '☣️', '☢️', '☸️', '⚜️', '🔱', '📛'];
-        const duration = 90; 
-        
-        let timeLeft = duration;
-        let score = 0;
-        let errors = 0;
-        let currentTargetValue = 0;
-        let timerInterval;
-        let gameActive = false;
+    <footer class="emergency-footer">
+        <div class="emergency-title">⚠️ AVISO DE CRISIS Y EMERGENCIA</div>
+        <p class="emergency-text">
+            Este sitio web y sus herramientas de evaluación <strong>NO</strong> son un servicio de emergencia. Si usted o alguien que conoce está en peligro inmediato, tiene pensamientos suicidas o de autolesión, por favor llame inmediatamente al <strong>911</strong> (Ecuador/USA) o acuda a la sala de emergencias más cercana.<br><br>
+            <strong>Línea de Prevención del Suicidio (Ecuador):</strong> 171 Opción 6<br>
+            <strong>Línea 988 (USA):</strong> Suicide & Crisis Lifeline
+        </p>
+    </footer>
 
-        function startSDMT() {
-            document.getElementById('intro-screen').style.display = 'none';
-            document.getElementById('sdmt-area').style.display = 'block';
-            setupKey();
-            nextRound();
-            gameActive = true;
-            timerInterval = setInterval(updateTimer, 1000);
-        }
-
-        function setupKey() {
-            const keyContainer = document.getElementById('key-display');
-            keyContainer.innerHTML = '';
-            symbols.forEach((sym, index) => {
-                let num = index + 1;
-                keyContainer.innerHTML += `<div class="key-item"><span class="key-symbol">${sym}</span><span class="key-num">${num}</span></div>`;
-            });
-        }
-
-        function nextRound() {
-            if(!gameActive) return;
-            let randIndex = Math.floor(Math.random() * 9);
-            currentTargetValue = randIndex + 1;
-            document.getElementById('current-symbol').innerText = symbols[randIndex];
-        }
-
-        function checkAnswer(num) {
-            if(!gameActive) return;
-            if(num === currentTargetValue) { score++; } else { errors++; }
-            document.getElementById('score').innerText = `Aciertos: ${score}`;
-            nextRound();
-        }
-
-        function updateTimer() {
-            timeLeft--;
-            document.getElementById('timer').innerText = `Tiempo: ${timeLeft}s`;
-            if(timeLeft <= 0) endGame();
-        }
-
-        function endGame() {
-            clearInterval(timerInterval);
-            gameActive = false;
-            document.getElementById('sdmt-area').style.display = 'none';
-            const resultBox = document.getElementById('result-screen');
-            
-            let msg = "";
-            if(score < 30) msg = "Velocidad baja. Posible afectación atencional.";
-            else if(score < 50) msg = "Velocidad promedio-baja.";
-            else if(score < 70) msg = "Velocidad Normal (Promedio).";
-            else msg = "Velocidad de procesamiento Superior.";
-
-            const whatsappMsg = `Hola Psic. Andrés. Realicé el test SDMT (Velocidad). Aciertos: ${score}. Errores: ${errors}. (${msg})`;
-
-            resultBox.innerHTML = `<h2>📊 Resultados</h2><p style="font-size: 24px;"><strong>${score}</strong> aciertos</p><p>Errores: ${errors}</p><p><em>${msg}</em></p><br><a href="https://wa.me/19086361137?text=${encodeURIComponent(whatsappMsg)}" class="btn-start" style="background:#25D366; text-decoration:none; display:block;">📲 Enviar a mi Psicólogo</a><br><button onclick="location.reload()" style="background:none; border:none; color:#555; cursor:pointer;">🔄 Intentar de nuevo</button>`;
-            resultBox.style.display = 'block';
-        }
-    </script>
 </body>
 </html>
