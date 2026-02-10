@@ -3,252 +3,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psic. Andrés Tello | Consultorio Online</title>
+    <title>Psic. Andrés Tello | Bienestar Integral</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* ESTILOS (DISEÑO) */
         :root {
-            --primary: #2563eb; /* Azul Institucional */
-            --secondary: #16a34a; /* Verde Bienestar */
-            --dark: #1f2937;
-            --light: #f3f4f6;
+            --primary: #2563eb;
+            --accent: #16a34a;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
         }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; margin: 0; padding: 0; background: var(--light); color: var(--dark); }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; }
         
-        /* Navegación */
-        header { background: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 1.5rem; font-weight: bold; color: var(--primary); display: flex; align-items: center; gap: 10px; }
-        nav a { text-decoration: none; color: var(--dark); margin-left: 20px; font-weight: 500; transition: color 0.3s; }
-        nav a:hover { color: var(--primary); }
-        .btn-cita { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; }
-        .btn-cita:hover { color: white; opacity: 0.9; }
+        /* HEADER */
+        header { background: white; padding: 1rem 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); }
+        nav a { margin-left: 20px; text-decoration: none; color: #64748b; font-weight: 500; }
+        .btn-agendar { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; transition: 0.3s; }
+        .btn-agendar:hover { opacity: 0.9; }
 
-        /* Hero Section */
-        .hero { background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(22, 163, 74, 0.8)), url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; color: white; text-align: center; padding: 100px 20px; }
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; }
+        /* HERO */
+        .hero { text-align: center; padding: 80px 20px; background: linear-gradient(135deg, #dbeafe 0%, #dcfce7 100%); }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; color: var(--text); }
+        .hero p { font-size: 1.2rem; color: #475569; max-width: 600px; margin: 0 auto 30px; }
 
-        /* Contenedores */
-        .container { max-width: 1100px; margin: 50px auto; padding: 0 20px; }
-        .section-title { text-align: center; margin-bottom: 40px; color: var(--dark); }
+        /* GRID DE LAS 9 VENTANAS */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .grid-9 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
         
-        /* Grid de Tarjetas (Artículos) */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.3s; }
-        .card:hover { transform: translateY(-5px); }
-        .card-body { padding: 20px; }
-        .card-tag { background: #e0f2fe; color: var(--primary); padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; }
-        .card h3 { margin: 15px 0 10px; }
+        .window-card { 
+            background: var(--card-bg); 
+            border-radius: 15px; 
+            padding: 25px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            transition: transform 0.3s, border 0.3s;
+            border-top: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+        .window-card:hover { transform: translateY(-5px); }
         
-        /* Sección Tests */
-        .test-box { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); max-width: 800px; margin: 0 auto; }
-        .pregunta { margin-bottom: 25px; border-bottom: 1px solid #eee; padding-bottom: 15px; }
-        .pregunta p { font-weight: 600; font-size: 1.1rem; }
-        .opciones label { display: block; margin: 8px 0; cursor: pointer; }
+        .icon-box { font-size: 2rem; margin-bottom: 15px; color: var(--primary); }
+        .window-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+        .daily-tip { font-size: 0.95rem; color: #64748b; line-height: 1.5; font-style: italic; background: #f1f5f9; padding: 10px; border-radius: 8px; }
         
-        /* Resultado Test */
-        #resultado { display: none; margin-top: 20px; padding: 20px; border-radius: 10px; text-align: center; }
-        .resultado-verde { background: #dcfce7; color: #166534; border: 1px solid #166534; }
-        .resultado-naranja { background: #ffedd5; color: #9a3412; border: 1px solid #9a3412; }
-        .resultado-rojo { background: #fee2e2; color: #991b1b; border: 1px solid #991b1b; }
+        /* Colores específicos para cada ventana */
+        .w-migracion { border-color: #3b82f6; } .w-migracion .icon-box { color: #3b82f6; }
+        .w-finanzas { border-color: #10b981; } .w-finanzas .icon-box { color: #10b981; }
+        .w-duelo { border-color: #6366f1; } .w-duelo .icon-box { color: #6366f1; }
+        .w-alimentacion { border-color: #f59e0b; } .w-alimentacion .icon-box { color: #f59e0b; }
+        .w-espiritualidad { border-color: #8b5cf6; } .w-espiritualidad .icon-box { color: #8b5cf6; }
+        .w-ejercicio { border-color: #ef4444; } .w-ejercicio .icon-box { color: #ef4444; }
+        .w-tiempo { border-color: #ec4899; } .w-tiempo .icon-box { color: #ec4899; }
+        .w-relaciones { border-color: #f43f5e; } .w-relaciones .icon-box { color: #f43f5e; }
+        .w-clinica { border-color: #0ea5e9; } .w-clinica .icon-box { color: #0ea5e9; }
 
-        /* Botones */
-        .btn-action { background: var(--secondary); color: white; border: none; padding: 12px 30px; font-size: 1rem; border-radius: 8px; cursor: pointer; transition: background 0.3s; }
-        .btn-action:hover { background: #15803d; }
-
-        /* Telepsicología */
-        .tele-box { text-align: center; background: #eff6ff; padding: 50px; border-radius: 20px; }
+        /* TEST */
+        .test-section { background: white; padding: 50px 20px; border-radius: 20px; margin-top: 50px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .option-group label { display: block; padding: 10px; border: 1px solid #e2e8f0; margin: 5px 0; border-radius: 8px; cursor: pointer; }
+        .option-group label:hover { background: #f8fafc; }
+        .btn-calc { background: var(--accent); color: white; border: none; padding: 15px 30px; font-size: 1rem; border-radius: 8px; cursor: pointer; width: 100%; margin-top: 20px; }
+        
+        #resultado-test { display: none; margin-top: 20px; padding: 20px; border-radius: 10px; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">
-            <span>Ψ</span> Consultorio Tello
-        </div>
+        <div class="logo">Ψ Consultorio Tello</div>
         <nav>
-            <a href="#inicio">Inicio</a>
-            <a href="#articulos">Biblioteca Diaria</a>
-            <a href="#test">Test de Ansiedad</a>
-            <a href="#telepsicologia" class="btn-cita">Agendar Cita</a>
+            <a href="#ventanas">Áreas</a>
+            <a href="#test">Test Online</a>
+            <a href="https://wa.me/593999999999" class="btn-agendar">Agendar Cita</a>
         </nav>
     </header>
 
-    <section id="inicio" class="hero">
+    <section class="hero">
         <h1>Bienestar & Vida</h1>
-        <p>Psicología clínica basada en evidencia. Tu espacio seguro para sanar y crecer.</p>
-        <a href="#test" class="btn-action" style="background: white; color: var(--primary);">Realizar Evaluación Gratuita</a>
+        <p>Un enfoque integral para tu salud mental. Explora nuestras 9 áreas de crecimiento.</p>
+        <a href="#test" style="color: var(--primary); font-weight: bold;">Realizar Evaluación Gratuita ↓</a>
     </section>
 
-    <section id="articulos" class="container">
-        <h2 class="section-title"> Lecturas Recomendadas para Hoy <br><small style="font-size:1rem; color:#666;">(Selección diaria automática)</small></h2>
-        <div class="grid" id="articulos-container">
-            </div>
-    </section>
-
-    <section id="test" class="container">
-        <div class="test-box">
-            <h2 class="section-title">Evaluación de Ansiedad (GAD-7)</h2>
-            <p style="text-align: center; margin-bottom: 30px;">Responde pensando en las últimas 2 semanas.</p>
+    <div id="ventanas" class="container">
+        <h2 style="text-align:center; margin-bottom:40px;">Nuestras 9 Ventanas de Salud</h2>
+        <div class="grid-9">
             
-            <form id="form-ansiedad">
-                <div class="pregunta">
-                    <p>1. ¿Te has sentido nervioso(a), ansioso(a) o con los nervios de punta?</p>
-                    <div class="opciones">
-                        <label><input type="radio" name="p1" value="0" required> Nunca</label>
-                        <label><input type="radio" name="p1" value="1"> Varios días</label>
-                        <label><input type="radio" name="p1" value="2"> Más de la mitad de los días</label>
-                        <label><input type="radio" name="p1" value="3"> Casi todos los días</label>
-                    </div>
+            <div class="window-card w-migracion">
+                <div class="icon-box"><i class="fas fa-plane-departure"></i></div>
+                <div class="window-title">Migración y Adaptación</div>
+                <p>Herramientas para el duelo migratorio y la construcción de un nuevo hogar lejos de casa.</p>
+                <div class="daily-tip" id="tip-migracion">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-finanzas">
+                <div class="icon-box"><i class="fas fa-wallet"></i></div>
+                <div class="window-title">Psicología Financiera</div>
+                <p>Sana tu relación con el dinero. Entiende tus patrones de gasto y ahorro emocional.</p>
+                <div class="daily-tip" id="tip-finanzas">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-duelo">
+                <div class="icon-box"><i class="fas fa-heart-broken"></i></div>
+                <div class="window-title">Manejo del Duelo</div>
+                <p>Acompañamiento profesional para procesar pérdidas y encontrar nuevo significado.</p>
+                <div class="daily-tip" id="tip-duelo">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-alimentacion">
+                <div class="icon-box"><i class="fas fa-apple-alt"></i></div>
+                <div class="window-title">Alimentación Consciente</div>
+                <p>Psiconutrición: Cómo tus emociones influyen en tu forma de comer.</p>
+                <div class="daily-tip" id="tip-alimentacion">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-espiritualidad">
+                <div class="icon-box"><i class="fas fa-dove"></i></div>
+                <div class="window-title">Espiritualidad</div>
+                <p>Conexión interior y búsqueda de propósito más allá de lo material.</p>
+                <div class="daily-tip" id="tip-espiritualidad">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-ejercicio">
+                <div class="icon-box"><i class="fas fa-running"></i></div>
+                <div class="window-title">Ejercicio y Mente</div>
+                <p>Actividad física como antidepresivo natural y regulador del estrés.</p>
+                <div class="daily-tip" id="tip-ejercicio">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-tiempo">
+                <div class="icon-box"><i class="fas fa-coffee"></i></div>
+                <div class="window-title">Tiempo Personal</div>
+                <p>El arte del autocuidado. Aprende a poner límites y priorizarte.</p>
+                <div class="daily-tip" id="tip-tiempo">Cargando consejo del día...</div>
+            </div>
+
+            <div class="window-card w-relaciones">
+                <div class="icon-box"><i class="fas fa-users"></i></div>
+                <div class="window-title">Relaciones Sanas</div>
+                <p>Comunicación asertiva en pareja, familia y entorno laboral.</p>
+                <div class="daily-tip" id="tip-relaciones">Cargando consejo del día...</div>
+            </div>
+
+             <div class="window-card w-clinica">
+                <div class="icon-box"><i class="fas fa-brain"></i></div>
+                <div class="window-title">Clínica (Ansiedad/Depresión)</div>
+                <p>Evaluación y tratamiento basado en evidencia para trastornos del ánimo.</p>
+                <div class="daily-tip" id="tip-clinica">Cargando consejo del día...</div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="test" class="container">
+        <div class="test-section">
+            <h2 style="text-align:center;">Test de Ansiedad Generalizada (GAD-7)</h2>
+            <p style="text-align:center; color:#666;">Responde pensando en las últimas 2 semanas.</p>
+            
+            <form id="gad7-form">
+                <div class="option-group">
+                    <p><strong>1. ¿Te has sentido nervioso(a) o muy ansioso(a)?</strong></p>
+                    <label><input type="radio" name="p1" value="0" required> Nunca</label>
+                    <label><input type="radio" name="p1" value="1"> Varios días</label>
+                    <label><input type="radio" name="p1" value="2"> Más de la mitad de los días</label>
+                    <label><input type="radio" name="p1" value="3"> Casi todos los días</label>
+                </div>
+                
+                <div class="option-group">
+                    <p><strong>2. ¿No has podido dejar de preocuparte?</strong></p>
+                    <label><input type="radio" name="p2" value="0" required> Nunca</label>
+                    <label><input type="radio" name="p2" value="1"> Varios días</label>
+                    <label><input type="radio" name="p2" value="2"> Más de la mitad de los días</label>
+                    <label><input type="radio" name="p2" value="3"> Casi todos los días</label>
+                </div>
+                
+                <div class="option-group">
+                    <p><strong>3. ¿Te has preocupado demasiado por diferentes cosas?</strong></p>
+                    <label><input type="radio" name="p3" value="0" required> Nunca</label>
+                    <label><input type="radio" name="p3" value="1"> Varios días</label>
+                    <label><input type="radio" name="p3" value="2"> Más de la mitad de los días</label>
+                    <label><input type="radio" name="p3" value="3"> Casi todos los días</label>
                 </div>
 
-                <div class="pregunta">
-                    <p>2. ¿No has podido dejar de preocuparte o controlar la preocupación?</p>
-                    <div class="opciones">
-                        <label><input type="radio" name="p2" value="0" required> Nunca</label>
-                        <label><input type="radio" name="p2" value="1"> Varios días</label>
-                        <label><input type="radio" name="p2" value="2"> Más de la mitad de los días</label>
-                        <label><input type="radio" name="p2" value="3"> Casi todos los días</label>
-                    </div>
+                 <div class="option-group">
+                    <p><strong>4. ¿Has tenido problemas para relajarte?</strong></p>
+                    <label><input type="radio" name="p4" value="0" required> Nunca</label>
+                    <label><input type="radio" name="p4" value="1"> Varios días</label>
+                    <label><input type="radio" name="p4" value="2"> Más de la mitad de los días</label>
+                    <label><input type="radio" name="p4" value="3"> Casi todos los días</label>
                 </div>
 
-                <div class="pregunta">
-                    <p>3. ¿Te has preocupado demasiado por diferentes cosas?</p>
-                    <div class="opciones">
-                        <label><input type="radio" name="p3" value="0" required> Nunca</label>
-                        <label><input type="radio" name="p3" value="1"> Varios días</label>
-                        <label><input type="radio" name="p3" value="2"> Más de la mitad de los días</label>
-                        <label><input type="radio" name="p3" value="3"> Casi todos los días</label>
-                    </div>
-                </div>
-
-                <div class="pregunta">
-                    <p>4. ¿Has tenido dificultad para relajarte?</p>
-                    <div class="opciones">
-                        <label><input type="radio" name="p4" value="0" required> Nunca</label>
-                        <label><input type="radio" name="p4" value="1"> Varios días</label>
-                        <label><input type="radio" name="p4" value="2"> Más de la mitad de los días</label>
-                        <label><input type="radio" name="p4" value="3"> Casi todos los días</label>
-                    </div>
-                </div>
-
-                <button type="button" class="btn-action" style="width:100%" onclick="calcularTest()">Ver Resultado Diagnóstico</button>
+                <button type="button" class="btn-calc" onclick="calcularResultado()">Ver Resultado</button>
             </form>
 
-            <div id="resultado"></div>
+            <div id="resultado-test"></div>
         </div>
-    </section>
+    </div>
 
-    <section id="telepsicologia" class="container">
-        <div class="tele-box">
-            <h2 class="section-title">Telepsicología: Terapia Segura</h2>
-            <p>Atención profesional desde la comodidad de tu hogar vía Zoom o Teams.</p>
-            <br>
-            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-                <a href="https://zoom.us/" target="_blank" class="btn-action" style="background: #2d8cff;">
-                    🎥 Ir a Sala de Espera (Zoom)
-                </a>
-                <a href="https://wa.me/593999999999" target="_blank" class="btn-action" style="background: #25D366;">
-                    💬 Agendar por WhatsApp
-                </a>
-            </div>
+    <div class="container" style="text-align:center; margin-bottom:50px;">
+        <h3 style="margin-bottom:20px;">Recursos Adicionales</h3>
+        <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap;">
+            <a href="https://zoom.us/" target="_blank" style="text-decoration:none; background:#0b5cff; color:white; padding:15px 30px; border-radius:10px;">
+                <i class="fas fa-video"></i> Ir a Sala de Telepsicología
+            </a>
+            <a href="#" onclick="alert('La biblioteca de PDFs se está actualizando. Escríbeme al WhatsApp para enviarte el material.');" style="text-decoration:none; background:#475569; color:white; padding:15px 30px; border-radius:10px;">
+                <i class="fas fa-book"></i> Descargar Artículos PDF
+            </a>
         </div>
-    </section>
-
-    <footer>
-        <p style="text-align: center; padding: 30px; color: #666; font-size: 0.9rem;">
-            &copy; 2026 Consultorio Psicológico Tello. Todos los derechos reservados.<br>
-            Hillsborough, NJ | Quito, Ecuador
-        </p>
-    </footer>
+    </div>
 
     <script>
-        // --- 1. LÓGICA DE ROTACIÓN DIARIA DE ARTÍCULOS ---
-        const baseDatosArticulos = [
-            { id:1, titulo: "Duelo Migratorio", desc: "Cómo manejar la tristeza al estar lejos de casa.", cat: "Emociones" },
-            { id:2, titulo: "Ansiedad vs Estrés", desc: "Claves para diferenciar y tratar cada uno.", cat: "Salud Mental" },
-            { id:3, titulo: "Crianza Positiva", desc: "Límites sin gritos: herramientas para padres.", cat: "Familia" },
-            { id:4, titulo: "Mindfulness Diario", desc: "5 minutos para reducir el cortisol.", cat: "Bienestar" },
-            { id:5, titulo: "Depresión Silenciosa", desc: "Síntomas que a menudo pasamos por alto.", cat: "Clínica" },
-            { id:6, titulo: "Terapia de Pareja", desc: "Mejorando la comunicación asertiva.", cat: "Relaciones" },
-            { id:7, titulo: "Higiene del Sueño", desc: "Técnicas para combatir el insomnio.", cat: "Salud" },
-            { id:8, titulo: "Autoestima Sana", desc: "Construyendo tu valor personal paso a paso.", cat: "Crecimiento" },
-            { id:9, titulo: "Resiliencia", desc: "Cómo levantarse después de una crisis.", cat: "Fortaleza" }
-        ];
+        // --- 1. LÓGICA DE CONSEJOS DIARIOS (ROTATIVOS) ---
+        // Esto hace que el texto gris dentro de cada ventana cambie cada día automáticamente.
+        const consejosDB = {
+            migracion: ["Valida tu tristeza, es parte de la adaptación.", "Mantén contacto con tu cultura de origen.", "Crea nuevas rutinas locales."],
+            finanzas: ["Antes de comprar, pregúntate: ¿Lo necesito o lo deseo?", "El ahorro es una forma de autocuidado.", "Revisa tus gastos hormiga hoy."],
+            duelo: ["El duelo no es lineal, ten paciencia contigo.", "Escribir una carta de despedida ayuda a sanar.", "Llorar limpia el alma, no lo reprimas."],
+            alimentacion: ["Come sin pantallas para mejorar tu digestión.", "Distingue hambre física de hambre emocional.", "Hidratarte mejora tu claridad mental."],
+            espiritualidad: ["Dedica 5 min al silencio hoy.", "La gratitud cambia la química de tu cerebro.", "Conecta con la naturaleza este fin de semana."],
+            ejercicio: ["Caminar 20 min reduce el cortisol.", "El mejor ejercicio es el que disfrutas.", "Estira tu cuerpo al despertar."],
+            tiempo: ["Decir 'no' también es saludable.", "Agenda tu descanso como si fuera una reunión.", "Desconecta el celular 1 hora antes de dormir."],
+            relaciones: ["Escucha para entender, no para responder.", "Usa mensajes 'Yo siento' en lugar de 'Tú haces'.", "Valora los pequeños detalles."],
+            clinica: ["La ansiedad no te define, es un estado temporal.", "Pedir ayuda es un acto de valentía.", "Respira en 4-7-8 para calmarte."]
+        };
 
-        function cargarArticulosDelDia() {
-            // Obtenemos el día del año (0-365) para que cambie cada 24h
+        function actualizarConsejos() {
             const hoy = new Date();
-            const inicio = new Date(hoy.getFullYear(), 0, 0);
-            const diff = hoy - inicio;
-            const diaDelAnio = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const diaDelAnio = Math.floor((hoy - new Date(hoy.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+            
+            // Asigna un consejo diferente cada día (ciclo de 3)
+            const indice = diaDelAnio % 3; 
 
-            const contenedor = document.getElementById('articulos-container');
-            contenedor.innerHTML = ''; // Limpiar
-
-            // Seleccionamos 3 artículos usando el día como índice
-            for (let i = 0; i < 3; i++) {
-                // Algoritmo circular: si se acaban, vuelve a empezar
-                let index = (diaDelAnio + i) % baseDatosArticulos.length;
-                let art = baseDatosArticulos[index];
-
-                // Crear HTML de la tarjeta
-                let cardHTML = `
-                    <div class="card">
-                        <div style="height:150px; background: #cbd5e1; display:flex; align-items:center; justify-content:center; color:#64748b;">
-                            (Imagen: ${art.cat})
-                        </div>
-                        <div class="card-body">
-                            <span class="card-tag">${art.cat}</span>
-                            <h3>${art.titulo}</h3>
-                            <p>${art.desc}</p>
-                            <a href="#" style="color:var(--primary); font-weight:bold; text-decoration:none;">Leer más →</a>
-                        </div>
-                    </div>
-                `;
-                contenedor.innerHTML += cardHTML;
-            }
+            document.getElementById('tip-migracion').innerText = "Tip del día: " + consejosDB.migracion[indice];
+            document.getElementById('tip-finanzas').innerText = "Tip del día: " + consejosDB.finanzas[indice];
+            document.getElementById('tip-duelo').innerText = "Tip del día: " + consejosDB.duelo[indice];
+            document.getElementById('tip-alimentacion').innerText = "Tip del día: " + consejosDB.alimentacion[indice];
+            document.getElementById('tip-espiritualidad').innerText = "Tip del día: " + consejosDB.espiritualidad[indice];
+            document.getElementById('tip-ejercicio').innerText = "Tip del día: " + consejosDB.ejercicio[indice];
+            document.getElementById('tip-tiempo').innerText = "Tip del día: " + consejosDB.tiempo[indice];
+            document.getElementById('tip-relaciones').innerText = "Tip del día: " + consejosDB.relaciones[indice];
+            document.getElementById('tip-clinica').innerText = "Tip del día: " + consejosDB.clinica[indice];
         }
 
-        // --- 2. LÓGICA DEL TEST DE ANSIEDAD (CALCULADORA) ---
-        function calcularTest() {
-            const form = document.getElementById('form-ansiedad');
+        // --- 2. LÓGICA DEL TEST (SUMA REAL) ---
+        function calcularResultado() {
+            const form = document.getElementById('gad7-form');
             const inputs = form.querySelectorAll('input[type="radio"]:checked');
-            const resultadoBox = document.getElementById('resultado');
-
-            // Validación: ¿Respondió las 4 preguntas? (En el GAD-7 real son 7, aquí puse 4 de ejemplo)
+            
             if (inputs.length < 4) {
-                alert("Por favor, responde todas las preguntas para obtener un resultado.");
+                alert("Por favor responde todas las preguntas para tener un resultado preciso.");
                 return;
             }
 
-            let suma = 0;
-            inputs.forEach(input => {
-                suma += parseInt(input.value);
-            });
+            let total = 0;
+            inputs.forEach(input => total += parseInt(input.value));
 
-            // Interpretación Clínica
-            let mensaje = "";
-            let claseColor = "";
-
-            if (suma <= 4) {
-                mensaje = "<strong>Ansiedad Mínima:</strong> Tus niveles están dentro del rango saludable.";
-                claseColor = "resultado-verde";
-            } else if (suma <= 9) {
-                mensaje = "<strong>Ansiedad Leve:</strong> Se recomienda monitorear y practicar relajación.";
-                claseColor = "resultado-naranja";
+            const box = document.getElementById('resultado-test');
+            box.style.display = 'block';
+            
+            if(total <= 4) {
+                box.style.background = "#dcfce7"; 
+                box.style.color = "#166534";
+                box.innerHTML = `Puntaje: ${total}/12 - ANSIEDAD MÍNIMA. <br>Estás manejando bien tus emociones.`;
+            } else if (total <= 8) {
+                box.style.background = "#ffedd5"; 
+                box.style.color = "#9a3412";
+                box.innerHTML = `Puntaje: ${total}/12 - ANSIEDAD LEVE. <br>Te sugiero revisar los tips de Ejercicio y Tiempo Personal.`;
             } else {
-                mensaje = "<strong>Ansiedad Moderada/Alta:</strong> Se sugiere agendar una consulta profesional.";
-                claseColor = "resultado-rojo";
+                box.style.background = "#fee2e2"; 
+                box.style.color = "#991b1b";
+                box.innerHTML = `Puntaje: ${total}/12 - ANSIEDAD MODERADA. <br>Sería recomendable agendar una cita para evaluar mejor.`;
             }
-
-            // Mostrar Resultado
-            resultadoBox.style.display = 'block';
-            resultadoBox.className = claseColor;
-            resultadoBox.innerHTML = `<h3>Puntaje Total: ${suma} / 12</h3><p>${mensaje}</p>`;
         }
 
-        // Iniciar la página
-        document.addEventListener('DOMContentLoaded', cargarArticulosDelDia);
+        // Iniciar
+        document.addEventListener('DOMContentLoaded', actualizarConsejos);
     </script>
+
 </body>
 </html>
