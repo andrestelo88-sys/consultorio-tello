@@ -4,121 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienestar & Vida | Psic. Tello</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f0fdf4; color: #1e293b; margin: 0; }
-        
-        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #16a34a; }
-        .btn-back { text-decoration: none; color: #64748b; font-weight: bold; }
+        :root {
+            --primary: #2563eb;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+        }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text-dark); }
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
-        .grid-9 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        
-        .window-card { 
-            background: white; border-radius: 12px; padding: 25px; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 4px solid #16a34a;
+        /* HEADER */
+        header { background: white; padding: 20px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .btn-back { text-decoration: none; color: var(--text-light); font-weight: 600; transition: 0.3s; }
+        .btn-back:hover { color: var(--primary); }
+
+        /* HERO TITLE */
+        .page-header { text-align: center; padding: 60px 20px; max-width: 800px; margin: 0 auto; }
+        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; color: #0f172a; letter-spacing: -1px; }
+        .page-header p { font-size: 1.1rem; color: var(--text-light); }
+
+        /* GRID DE FOTOS */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 60px; }
+        .grid-9 { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+
+        .card { 
+            background: white; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex; flex-direction: column;
         }
-        
-        .icon { font-size: 2rem; color: #16a34a; margin-bottom: 15px; }
-        .title { font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; }
-        .desc { font-size: 0.95rem; color: #475569; flex-grow: 1; margin-bottom: 15px; }
-        
-        .source-link { 
-            font-size: 0.85rem; color: #2563eb; text-decoration: none; 
-            background: #eff6ff; padding: 8px; border-radius: 5px; text-align: center; font-weight: 600;
-        }
-        .source-link:hover { background: #dbeafe; }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 30px rgba(0,0,0,0.1); }
 
-        /* FOOTER DE EMERGENCIA */
-        .emergency-footer { background: #1e293b; color: white; padding: 30px; text-align: center; margin-top: 50px; }
-        .emergency-title { color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
-        .emergency-text { font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; }
+        /* IMAGEN */
+        .card-img { height: 200px; width: 100%; object-fit: cover; }
+        
+        .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+        .tag { display: inline-block; padding: 5px 12px; border-radius: 50px; font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 15px; }
+        
+        /* Colores de etiquetas */
+        .t-blue { background: #dbeafe; color: #1e40af; }
+        .t-green { background: #dcfce7; color: #166534; }
+        .t-purple { background: #f3e8ff; color: #6b21a8; }
+        .t-orange { background: #ffedd5; color: #9a3412; }
+        .t-red { background: #fee2e2; color: #991b1b; }
+
+        .card-title { font-size: 1.25rem; font-weight: 800; margin: 0 0 10px 0; color: #0f172a; }
+        .card-desc { font-size: 0.95rem; color: #64748b; line-height: 1.6; margin-bottom: 20px; flex-grow: 1; }
+
+        .btn-link { 
+            text-decoration: none; font-weight: 700; color: var(--primary); 
+            display: flex; align-items: center; gap: 5px; font-size: 0.9rem;
+        }
+        .btn-link:hover { text-decoration: underline; }
+
+        /* FOOTER EMERGENCIA */
+        .emergency-footer { background: #0f172a; color: white; padding: 40px 20px; text-align: center; margin-top: 50px; }
+        .emergency-box { max-width: 600px; margin: 0 auto; border: 1px solid #334155; padding: 20px; border-radius: 10px; background: rgba(255,255,255,0.05); }
+
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><i class="fas fa-leaf"></i> Bienestar & Vida</div>
-        <a href="index.html" class="btn-back">← Volver al Inicio</a>
+        <div class="logo"><i class="fas fa-leaf"></i> Bienestar</div>
+        <a href="index.html" class="btn-back">← Menú Principal</a>
     </header>
 
+    <div class="page-header">
+        <h1>9 Ventanas de Crecimiento</h1>
+        <p>Recursos seleccionados para tu equilibrio mental y emocional.</p>
+    </div>
+
     <div class="container">
-        <h2 style="text-align:center; margin-bottom:40px;">9 Ventanas para tu Crecimiento</h2>
         <div class="grid-9">
-            
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-plane"></i></div>
-                <div class="title">Migración y Adaptación</div>
-                <p class="desc">Entender el duelo migratorio es el primer paso para sentirte en casa.</p>
-                <a href="https://www.apa.org/topics/immigration/estres-aculturacion" target="_blank" class="source-link">Leer en APA (Asociación Americana de Psicología) →</a>
+
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1520106212299-d99c443e4568?auto=format&fit=crop&w=600&q=80" alt="Migración" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-blue">Adaptación</span>
+                    <h3 class="card-title">Duelo Migratorio</h3>
+                    <p class="card-desc">Emigrar es ganar, pero también perder. Aprende a manejar la nostalgia y construir un nuevo hogar.</p>
+                    <a href="https://www.redalyc.org/journal/778/77855949003/html/" target="_blank" class="btn-link">Leer en Redalyc <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-wallet"></i></div>
-                <div class="title">Psicología Financiera</div>
-                <p class="desc">Cómo tus emociones afectan tus decisiones de gasto y ahorro.</p>
-                <a href="https://www.investopedia.com/terms/b/behavioral-finance.asp" target="_blank" class="source-link">Verificar en Investopedia →</a>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=600&q=80" alt="Finanzas" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-green">Economía</span>
+                    <h3 class="card-title">Psicología Financiera</h3>
+                    <p class="card-desc">El dinero es emocional. Descubre cómo tu estado de ánimo afecta tus gastos.</p>
+                    <a href="https://www.menteamente.com/blog-salud-mental/educacion-financiera" target="_blank" class="btn-link">Artículo MenteAmente <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-heart-broken"></i></div>
-                <div class="title">Manejo del Duelo</div>
-                <p>El duelo es un proceso natural, no una enfermedad. Conoce sus etapas.</p>
-                <a href="https://www.mayoclinic.org/es/diseases-conditions/complicated-grief/symptoms-causes/syc-20360374" target="_blank" class="source-link">Leer en Mayo Clinic →</a>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1499728603963-393205ff93fa?auto=format&fit=crop&w=600&q=80" alt="Duelo" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-purple">Pérdida</span>
+                    <h3 class="card-title">Procesar el Duelo</h3>
+                    <p class="card-desc">No hay una forma "correcta" de doler. Conoce los síntomas del duelo complicado.</p>
+                    <a href="https://www.mayoclinic.org/es/diseases-conditions/complicated-grief/symptoms-causes/syc-20360374" target="_blank" class="btn-link">Guía Mayo Clinic <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-apple-alt"></i></div>
-                <div class="title">Psiconutrición</div>
-                <p>La conexión directa entre tu intestino y tu cerebro (Eje Intestino-Cerebro).</p>
-                <a href="https://www.health.harvard.edu/diseases-and-conditions/the-gut-brain-connection" target="_blank" class="source-link">Leer en Harvard Health →</a>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Salud" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-green">Nutrición</span>
+                    <h3 class="card-title">Eje Intestino-Cerebro</h3>
+                    <p class="card-desc">Lo que comes alimenta tus emociones. La conexión científica entre dieta y ansiedad.</p>
+                    <a href="https://www.bannerhealth.com/es/healthcareblog/teach-me/gut-brain-axis-what-you-need-to-know" target="_blank" class="btn-link">Leer en Banner Health <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-dove"></i></div>
-                <div class="title">Espiritualidad</div>
-                <p>Beneficios de la meditación y la oración en la estructura cerebral.</p>
-                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3969046/" target="_blank" class="source-link">Ver Estudio Científico (NIH) →</a>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1507433589417-6419f8ef5e17?auto=format&fit=crop&w=600&q=80" alt="Zen" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-blue">Conexión</span>
+                    <h3 class="card-title">Espiritualidad</h3>
+                    <p class="card-desc">Más allá de la religión: cómo el propósito y la conexión mejoran la resiliencia mental.</p>
+                    <a href="https://www.psychologytoday.com/gt/blog/la-espiritualidad-y-su-contribucion-a-la-salud-mental" target="_blank" class="btn-link">Leer en Psychology Today <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-running"></i></div>
-                <div class="title">Ejercicio Físico</div>
-                <p>El ejercicio libera BDNF, una proteína que repara tus neuronas.</p>
-                <a href="https://www.cdc.gov/physicalactivity/basics/pa-health/index.htm" target="_blank" class="source-link">Fuente: CDC (Salud Pública) →</a>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1538805060512-e28281348988?auto=format&fit=crop&w=600&q=80" alt="Deporte" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-orange">Actividad</span>
+                    <h3 class="card-title">Ejercicio y Depresión</h3>
+                    <p class="card-desc">El movimiento es medicina. Cómo la actividad física libera químicos naturales de bienestar.</p>
+                    <a href="https://www.mayoclinic.org/es/diseases-conditions/depression/in-depth/depression-and-exercise/art-20046495" target="_blank" class="btn-link">Artículo Mayo Clinic <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-clock"></i></div>
-                <div class="title">Autocuidado</div>
-                <p>Por qué el descanso es productivo para la consolidación de la memoria.</p>
-                <a href="https://www.sleepfoundation.org/how-sleep-works/memory-and-sleep" target="_blank" class="source-link">Leer en Sleep Foundation →</a>
+            <div class="card">
+                <img src="https://images.unsplash.com/photo-1517174637996-22abba22a362?auto=format&fit=crop&w=600&q=80" alt="Reloj" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-purple">Descanso</span>
+                    <h3 class="card-title">Higiene del Sueño</h3>
+                    <p class="card-desc">Dormir bien es esencial para la memoria y el control emocional. Tips prácticos.</p>
+                    <a href="https://www.kidsmentalhealthfoundation.org/es/mental-health-resources/sleep/healthy-sleep-habits" target="_blank" class="btn-link">Tips de Sueño <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-users"></i></div>
-                <div class="title">Relaciones Sanas</div>
-                <p>La calidad de tus relaciones predice tu salud a largo plazo.</p>
-                <a href="https://news.harvard.edu/gazette/story/2017/04/over-nearly-80-years-harvard-study-has-been-showing-how-to-live-a-healthy-and-happy-life/" target="_blank" class="source-link">Ver Estudio Harvard →</a>
+             <div class="card">
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=600&q=80" alt="Amigos" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-red">Vínculos</span>
+                    <h3 class="card-title">Relaciones Sanas</h3>
+                    <p class="card-desc">El estudio de Harvard que demostró que las relaciones de calidad son la clave de la felicidad.</p>
+                    <a href="https://fitonapp.com/bienestar/lo-que-el-estudio-de-harvard-sobre-la-felicidad-de-hace-85-anos-descubrio-es-la-clave-para-una-vida-feliz/?lang=es" target="_blank" class="btn-link">Ver Estudio Harvard <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
-            <div class="window-card">
-                <div class="icon"><i class="fas fa-brain"></i></div>
-                <div class="title">Psicología Clínica</div>
-                <p>Diferencia entre tristeza normal y Depresión Mayor (DSM-5).</p>
-                <a href="https://www.nimh.nih.gov/health/publications/espanol/depresion-sp" target="_blank" class="source-link">Fuente: Instituto Salud Mental (NIMH) →</a>
+             <div class="card">
+                <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?auto=format&fit=crop&w=600&q=80" alt="Cerebro" class="card-img">
+                <div class="card-body">
+                    <span class="tag t-blue">Salud Mental</span>
+                    <h3 class="card-title">¿Tristeza o Depresión?</h3>
+                    <p class="card-desc">Aprende a diferenciar una emoción normal de un trastorno clínico que requiere atención.</p>
+                    <a href="https://www.mayoclinic.org/es/diseases-conditions/depression/symptoms-causes/syc-20356007" target="_blank" class="btn-link">Diagnóstico Mayo Clinic <i class="fas fa-external-link-alt"></i></a>
+                </div>
             </div>
 
         </div>
     </div>
 
     <footer class="emergency-footer">
-        <div class="emergency-title">⚠️ AVISO DE CRISIS Y EMERGENCIA</div>
-        <p class="emergency-text">
-            Si usted o alguien que conoce está en peligro inmediato, llame al <strong>911</strong> (Ecuador/USA) o acuda a emergencias.
-        </p>
+        <div class="emergency-box">
+            <h3 style="color:#ef4444; margin-top:0;"><i class="fas fa-exclamation-triangle"></i> ¿En Crisis?</h3>
+            <p>Si tienes pensamientos suicidas o estás en peligro inmediato, este sitio no sustituye la ayuda profesional urgente.</p>
+            <p style="font-weight:bold; font-size:1.2rem;">Llama al 911 (Ecuador/USA)</p>
+        </div>
+        <p style="margin-top:20px; font-size:0.8rem; opacity:0.7;">&copy; 2026 Psicólogo Andrés Tello. Todos los derechos reservados.</p>
     </footer>
 
 </body>

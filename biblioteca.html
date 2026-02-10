@@ -3,86 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca | Psic. Tello</title>
+    <title>Biblioteca Digital | Psic. Tello</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #fefce8; color: #1e293b; margin: 0; }
-        /* HEADER (Igual a los otros) */
+        :root { --accent: #7c3aed; --bg: #f5f3ff; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: #333; }
+
         header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #a16207; }
-        .btn-back { text-decoration: none; color: #64748b; font-weight: bold; }
-        
-        .container { max-width: 900px; margin: 40px auto; padding: 20px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
+        .btn-back { text-decoration: none; color: #64748b; font-weight: 600; }
+
+        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
         
         .article-card { 
-            background: white; padding: 25px; margin-bottom: 20px; border-radius: 10px; 
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05); border-left: 5px solid #a16207;
-            display: flex; justify-content: space-between; align-items: center;
+            background: white; border-radius: 15px; overflow: hidden; margin-bottom: 30px; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; transition: transform 0.3s;
         }
-        .article-info h3 { margin: 0 0 5px 0; color: #333; }
-        .article-info p { margin: 0; color: #666; font-size: 0.9rem; }
+        .article-card:hover { transform: translateX(10px); }
+
+        .art-img { width: 250px; object-fit: cover; display: block; }
+        
+        .art-content { padding: 30px; flex-grow: 1; }
+        .art-meta { font-size: 0.8rem; color: #8b5cf6; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .art-title { margin: 0 0 10px 0; font-size: 1.4rem; color: #1e293b; }
+        .art-excerpt { color: #64748b; margin-bottom: 20px; line-height: 1.6; }
         
         .btn-read { 
-            background: #fef08a; color: #854d0e; padding: 10px 20px; border-radius: 50px; 
-            text-decoration: none; font-weight: bold; border: 1px solid #facc15; transition: 0.3s;
+            background: var(--accent); color: white; padding: 10px 25px; border-radius: 50px; 
+            text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s;
         }
-        .btn-read:hover { background: #a16207; color: white; }
+        .btn-read:hover { background: #6d28d9; }
 
-        /* FOOTER DE EMERGENCIA */
-        .emergency-footer { background: #1e293b; color: white; padding: 30px; text-align: center; margin-top: 50px; }
-        .emergency-title { color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
-        .emergency-text { font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; }
+        /* Responsive para móviles */
+        @media (max-width: 768px) {
+            .article-card { flex-direction: column; }
+            .art-img { width: 100%; height: 200px; }
+        }
+
+        /* FOOTER */
+        .emergency-footer { background: #1e293b; color: white; padding: 40px; text-align: center; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><i class="fas fa-book-open"></i> Biblioteca Digital</div>
-        <a href="index.html" class="btn-back">← Volver al Inicio</a>
+        <div class="logo"><i class="fas fa-book-reader"></i> Biblioteca</div>
+        <a href="index.html" class="btn-back">← Menú Principal</a>
     </header>
 
     <div class="container">
-        <h2 style="text-align:center; margin-bottom:30px;">Artículos Científicos (Enlaces Externos)</h2>
-        
-        <div class="article-card">
-            <div class="article-info">
-                <h3><i class="fas fa-file-pdf"></i> Ansiedad y Estrés (Guía Técnica)</h3>
-                <p>Fuente: Sociedad Española para el Estudio de la Ansiedad y el Estrés.</p>
-            </div>
-            <a href="http://www.ansiedadyestres.org/content/que-es-la-ansiedad" target="_blank" class="btn-read">Leer Artículo</a>
-        </div>
+        <h1 style="text-align:center; margin-bottom:50px; color:#4c1d95;">Recursos Científicos Actualizados</h1>
 
-        <div class="article-card">
-            <div class="article-info">
-                <h3><i class="fas fa-brain"></i> Neurobiología de la Depresión</h3>
-                <p>Fuente: Revista Scielo (Artículo Médico).</p>
+        <article class="article-card">
+            <img src="https://images.unsplash.com/photo-1456406111435-8773945d903f?auto=format&fit=crop&w=400&q=80" alt="Ansiedad" class="art-img">
+            <div class="art-content">
+                <span class="art-meta">Guía Clínica • SEAS</span>
+                <h2 class="art-title">Ansiedad y Estrés: Guía Informativa</h2>
+                <p class="art-excerpt">Documento oficial de la Sociedad Española para el Estudio de la Ansiedad y el Estrés. Definiciones claras, síntomas y manejo.</p>
+                <a href="https://ansiedadyestres.org/" target="_blank" class="btn-read">Leer Artículo Oficial</a>
             </div>
-            <a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0016-38132003000200012" target="_blank" class="btn-read">Leer Artículo</a>
-        </div>
+        </article>
 
-        <div class="article-card">
-            <div class="article-info">
-                <h3><i class="fas fa-child"></i> TDAH en Niños: Diagnóstico</h3>
-                <p>Fuente: CDC Centers for Disease Control and Prevention.</p>
+        <article class="article-card">
+            <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=400&q=80" alt="Cerebro" class="art-img">
+            <div class="art-content">
+                <span class="art-meta">Neurociencia • SciELO</span>
+                <h2 class="art-title">Neurobiología de la Depresión Mayor</h2>
+                <p class="art-excerpt">Una revisión profunda sobre qué ocurre químicamente en el cerebro deprimido y por qué no es solo "tristeza".</p>
+                <a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0016-38132003000200012" target="_blank" class="btn-read">Ver PDF Científico</a>
             </div>
-            <a href="https://www.cdc.gov/ncbddd/spanish/adhd/diagnosis.html" target="_blank" class="btn-read">Leer Artículo</a>
-        </div>
+        </article>
 
-        <div class="article-card">
-            <div class="article-info">
-                <h3><i class="fas fa-users"></i> Duelo Migratorio</h3>
-                <p>Fuente: Psicología y Mente (Artículo divulgativo).</p>
+        <article class="article-card">
+            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" alt="Niños" class="art-img">
+            <div class="art-content">
+                <span class="art-meta">Infantil • CDC</span>
+                <h2 class="art-title">TDAH: Diagnóstico y Tratamiento</h2>
+                <p class="art-excerpt">Guía para padres del Centro para el Control de Enfermedades (CDC) sobre el Déficit de Atención en niños.</p>
+                <a href="https://www.cdc.gov/ncbddd/spanish/adhd/diagnosis.html" target="_blank" class="btn-read">Leer Guía CDC</a>
             </div>
-            <a href="https://psicologiaymente.com/clinica/duelo-migratorio" target="_blank" class="btn-read">Leer Artículo</a>
-        </div>
-        
+        </article>
+
+         <article class="article-card">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" alt="Viaje" class="art-img">
+            <div class="art-content">
+                <span class="art-meta">Social • Redalyc</span>
+                <h2 class="art-title">Impacto Psicosocial de la Migración</h2>
+                <p class="art-excerpt">Estudio sobre el sufrimiento psicológico y malestar emocional en personas que emigran. Claves para la adaptación.</p>
+                <a href="https://www.redalyc.org/pdf/2650/265032622007.pdf" target="_blank" class="btn-read">Descargar PDF</a>
+            </div>
+        </article>
+
     </div>
 
     <footer class="emergency-footer">
-        <div class="emergency-title">⚠️ AVISO DE CRISIS Y EMERGENCIA</div>
-        <p class="emergency-text">
-            Si usted o alguien que conoce está en peligro inmediato, llame al <strong>911</strong> (Ecuador/USA) o acuda a emergencias.
-        </p>
+        <p>⚠️ <strong>Aviso:</strong> Si estás en peligro, llama al 911. Este sitio es informativo.</p>
     </footer>
 
 </body>
