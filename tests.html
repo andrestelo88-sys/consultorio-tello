@@ -3,100 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Centro de Evaluación | Psic. Tello</title>
+    <title>Centro de Evaluación | Psicología Integral</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #f8fafc; color: #1e293b; margin: 0; }
-        
+        :root { --primary: #ef4444; --text: #1e293b; --bg: #f8fafc; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+
         /* HEADER */
-        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: #ef4444; } /* Rojo para Tests */
-        .btn-back { text-decoration: none; color: #64748b; font-weight: bold; }
+        header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 10px; }
+        .btn-back { text-decoration: none; color: #64748b; font-weight: 600; display: flex; align-items: center; gap: 5px; transition: 0.3s; }
+        .btn-back:hover { color: var(--primary); }
 
-        .container { max-width: 1200px; margin: 40px auto; padding: 20px; }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px 60px; }
         
-        /* GRID DE EDADES */
-        .ages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        /* GRID DE SELECCIÓN (Menú de Tests) */
+        #menu-tests { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
         
-        .age-column { background: white; border-radius: 15px; padding: 25px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); border-top: 5px solid #ef4444; }
-        .age-title { font-size: 1.5rem; font-weight: bold; margin-bottom: 20px; text-align: center; color: #334155; }
-        .age-icon { font-size: 2.5rem; text-align: center; display: block; margin-bottom: 15px; color: #ef4444; }
+        .age-column { background: white; border-radius: 16px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border-top: 5px solid var(--primary); }
+        .age-header { text-align: center; margin-bottom: 25px; }
+        .age-icon { font-size: 2.5rem; color: var(--primary); margin-bottom: 10px; display: block; }
+        .age-title { font-size: 1.4rem; font-weight: 800; margin: 0; }
 
-        /* LISTA DE TESTS */
-        .test-list { list-style: none; padding: 0; }
-        .test-item { 
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 12px; border-bottom: 1px solid #f1f5f9; transition: 0.2s; cursor: pointer;
+        .test-btn { 
+            display: flex; align-items: center; width: 100%; padding: 15px; margin-bottom: 10px; 
+            background: #fef2f2; border: 1px solid #fee2e2; border-radius: 8px; 
+            cursor: pointer; transition: 0.2s; text-align: left; font-weight: 600; color: #475569;
         }
-        .test-item:hover { background: #fef2f2; color: #ef4444; padding-left: 15px; }
-        .test-item i { margin-right: 10px; color: #cbd5e1; }
-        .test-item:hover i { color: #ef4444; }
+        .test-btn:hover { background: var(--primary); color: white; border-color: var(--primary); }
+        .test-btn i { margin-right: 10px; width: 20px; text-align: center; }
 
-        /* FOOTER DE EMERGENCIA */
-        .emergency-footer { background: #1e293b; color: white; padding: 30px; text-align: center; margin-top: 50px; }
-        .emergency-title { color: #ef4444; font-weight: bold; font-size: 1.1rem; margin-bottom: 10px; }
-        .emergency-text { font-size: 0.9rem; color: #94a3b8; max-width: 800px; margin: 0 auto; line-height: 1.5; }
+        /* ÁREA DE EJECUCIÓN DEL TEST (Oculta al inicio) */
+        #zona-test { display: none; background: white; max-width: 800px; margin: 0 auto; padding: 40px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); }
+        
+        .test-header { text-align: center; margin-bottom: 30px; border-bottom: 2px solid #f1f5f9; padding-bottom: 20px; }
+        .question { margin-bottom: 25px; }
+        .q-text { font-size: 1.1rem; font-weight: 600; margin-bottom: 10px; display: block; }
+        .options label { display: block; padding: 10px 15px; border: 1px solid #e2e8f0; margin-bottom: 8px; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+        .options label:hover { background: #f8fafc; border-color: var(--primary); }
+        .options input { margin-right: 10px; }
+
+        .btn-action { background: var(--primary); color: white; border: none; padding: 15px 40px; font-size: 1rem; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; margin-top: 20px; }
+        .btn-cancel { background: transparent; color: #64748b; border: none; cursor: pointer; display: block; margin: 20px auto 0; text-decoration: underline; }
+
+        /* CAJA DE RESULTADO */
+        #resultado-box { display: none; text-align: center; padding: 30px; background: #f0fdf4; border-radius: 15px; margin-top: 30px; }
+        .res-score { font-size: 2.5rem; font-weight: 800; color: #166534; }
+        .res-text { font-size: 1.1rem; margin-top: 10px; color: #14532d; }
+
+        /* TARJETA DE "REQUIERE CITA" (Para WISC, etc) */
+        #zona-pro { display: none; text-align: center; background: white; padding: 50px; border-radius: 20px; max-width: 600px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo"><i class="fas fa-clipboard-list"></i> Centro de Evaluación</div>
-        <a href="index.html" class="btn-back">← Volver al Inicio</a>
+        <div class="logo"><i class="fas fa-clipboard-check"></i> Centro de Evaluación</div>
+        <a href="index.html" class="btn-back"><i class="fas fa-arrow-left"></i> Menú Principal</a>
     </header>
 
     <div class="container">
-        <h2 style="text-align:center; margin-bottom:40px;">Selecciona el Test según el Grupo de Edad</h2>
         
-        <div class="ages-grid">
+        <div id="menu-tests">
             
             <div class="age-column">
-                <span class="age-icon"><i class="fas fa-child"></i></span>
-                <div class="age-title">Niños (6 - 12 años)</div>
-                <ul class="test-list">
-                    <li class="test-item" onclick="alert('Abriendo Test de TDAH...')"><i class="fas fa-check"></i> Escala de Conners (TDAH)</li>
-                    <li class="test-item" onclick="alert('Abriendo Test Emocional...')"><i class="fas fa-check"></i> Test del Dibujo de la Familia</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Aprendizaje...')"><i class="fas fa-check"></i> Detección de Dislexia</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Conducta...')"><i class="fas fa-check"></i> Escala de Conducta (BASC)</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Inteligencia...')"><i class="fas fa-check"></i> WISC-V (Screening)</li>
-                </ul>
+                <div class="age-header">
+                    <i class="fas fa-child age-icon"></i>
+                    <h2 class="age-title">Niños (6-12)</h2>
+                </div>
+                <button class="test-btn" onclick="mostrarPro('Escala de Conners (TDAH)')"><i class="fas fa-brain"></i> TDAH - Conners</button>
+                <button class="test-btn" onclick="mostrarPro('WISC-V (Inteligencia)')"><i class="fas fa-puzzle-piece"></i> Inteligencia (WISC-V)</button>
+                <button class="test-btn" onclick="mostrarPro('Test Proyectivo de Familia')"><i class="fas fa-paint-brush"></i> Dibujo de la Familia</button>
+                <button class="test-btn" onclick="mostrarPro('Detección de Dislexia')"><i class="fas fa-book"></i> Detección Dislexia</button>
+                <button class="test-btn" onclick="mostrarPro('Escala Conductual')"><i class="fas fa-user-clock"></i> Problemas de Conducta</button>
             </div>
 
             <div class="age-column">
-                <span class="age-icon"><i class="fas fa-user-graduate"></i></span>
-                <div class="age-title">Adolescentes (13 - 17)</div>
-                <ul class="test-list">
-                    <li class="test-item" onclick="alert('Abriendo Orientación Vocacional...')"><i class="fas fa-check"></i> Test de Orientación Vocacional</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Autoestima...')"><i class="fas fa-check"></i> Escala de Autoestima Rosenberg</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Ansiedad Social...')"><i class="fas fa-check"></i> Escala de Ansiedad Social</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Bullying...')"><i class="fas fa-check"></i> Cuestionario de Acoso Escolar</li>
-                    <li class="test-item" onclick="alert('Abriendo Test de Hábitos...')"><i class="fas fa-check"></i> Inventario de Hábitos de Estudio</li>
-                </ul>
+                <div class="age-header">
+                    <i class="fas fa-user-graduate age-icon"></i>
+                    <h2 class="age-title">Adolescentes</h2>
+                </div>
+                <button class="test-btn" onclick="mostrarPro('Orientación Vocacional')"><i class="fas fa-compass"></i> Orientación Vocacional</button>
+                <button class="test-btn" onclick="iniciarTest('ansiedad')"><i class="fas fa-heartbeat"></i> Ansiedad (GAD-7)</button>
+                <button class="test-btn" onclick="iniciarTest('depresion')"><i class="fas fa-cloud-rain"></i> Depresión (PHQ-9)</button>
+                <button class="test-btn" onclick="mostrarPro('Autoestima Rosenberg')"><i class="fas fa-smile"></i> Autoestima Rosenberg</button>
+                <button class="test-btn" onclick="mostrarPro('Acoso Escolar')"><i class="fas fa-user-shield"></i> Bullying / Acoso</button>
             </div>
 
             <div class="age-column">
-                <span class="age-icon"><i class="fas fa-user-tie"></i></span>
-                <div class="age-title">Adultos (+18 años)</div>
-                <ul class="test-list">
-                    <li class="test-item" onclick="window.location.href='index.html#test'"><i class="fas fa-play-circle"></i> <strong>Ansiedad Generalizada (GAD-7)</strong></li>
-                    <li class="test-item" onclick="alert('Próximamente: Test de Depresión')"><i class="fas fa-check"></i> Depresión (Beck - BDI-II)</li>
-                    <li class="test-item" onclick="alert('Próximamente: Test de Burnout')"><i class="fas fa-check"></i> Estrés Laboral (Burnout)</li>
-                    <li class="test-item" onclick="alert('Próximamente: Test de Pareja')"><i class="fas fa-check"></i> Satisfacción de Pareja</li>
-                    <li class="test-item" onclick="alert('Próximamente: Test de Personalidad')"><i class="fas fa-check"></i> Personalidad (Big Five)</li>
-                </ul>
+                <div class="age-header">
+                    <i class="fas fa-user-tie age-icon"></i>
+                    <h2 class="age-title">Adultos (+18)</h2>
+                </div>
+                <button class="test-btn" onclick="iniciarTest('ansiedad')"><i class="fas fa-play-circle" style="color:#ef4444;"></i> <strong>Ansiedad (GAD-7)</strong></button>
+                <button class="test-btn" onclick="iniciarTest('depresion')"><i class="fas fa-play-circle" style="color:#ef4444;"></i> <strong>Depresión (PHQ-9)</strong></button>
+                <button class="test-btn" onclick="mostrarPro('Burnout Laboral')"><i class="fas fa-fire"></i> Estrés Laboral (Burnout)</button>
+                <button class="test-btn" onclick="mostrarPro('Terapia de Pareja')"><i class="fas fa-heart-broken"></i> Satisfacción de Pareja</button>
+                <button class="test-btn" onclick="mostrarPro('Personalidad Big Five')"><i class="fas fa-fingerprint"></i> Personalidad</button>
             </div>
-
         </div>
+
+        <div id="zona-test">
+            <div class="test-header">
+                <h2 id="titulo-test">Nombre del Test</h2>
+                <p>Responde con sinceridad pensando en las últimas 2 semanas.</p>
+            </div>
+            <form id="form-test">
+                </form>
+            <div id="resultado-box"></div>
+            <button class="btn-cancel" onclick="cerrarTest()">Cancelar y Volver</button>
+        </div>
+
+        <div id="zona-pro">
+            <i class="fas fa-user-md" style="font-size:4rem; color:#ef4444; margin-bottom:20px;"></i>
+            <h2 id="titulo-pro">Evaluación Profesional</h2>
+            <p style="font-size:1.1rem; color:#475569; margin-bottom:30px;">
+                Esta prueba clínica (<strong><span id="nombre-test-pro"></span></strong>) requiere ser administrada y calificada manualmente por el psicólogo para garantizar un diagnóstico ético y preciso.
+            </p>
+            <a href="https://wa.me/593999999999" class="btn-action" style="text-decoration:none; display:inline-block;">Agendar Evaluación Online</a>
+            <button class="btn-cancel" onclick="cerrarTest()">Volver al menú</button>
+        </div>
+
     </div>
 
-    <footer class="emergency-footer">
-        <div class="emergency-title">⚠️ AVISO DE CRISIS Y EMERGENCIA</div>
-        <p class="emergency-text">
-            Este sitio web y sus herramientas de evaluación <strong>NO</strong> son un servicio de emergencia. Si usted o alguien que conoce está en peligro inmediato, tiene pensamientos suicidas o de autolesión, por favor llame inmediatamente al <strong>911</strong> (Ecuador/USA) o acuda a la sala de emergencias más cercana.<br><br>
-            <strong>Línea de Prevención del Suicidio (Ecuador):</strong> 171 Opción 6<br>
-            <strong>Línea 988 (USA):</strong> Suicide & Crisis Lifeline
-        </p>
-    </footer>
+    <script>
+        // BASE DE DATOS DE PREGUNTAS
+        const testsDB = {
+            ansiedad: {
+                titulo: "Escala de Ansiedad (GAD-7)",
+                preguntas: [
+                    "1. ¿Te has sentido nervioso(a), ansioso(a) o con los nervios de punta?",
+                    "2. ¿No has podido dejar de preocuparte?",
+                    "3. ¿Te has preocupado demasiado por diferentes cosas?",
+                    "4. ¿Has tenido dificultad para relajarte?",
+                    "5. ¿Has estado tan inquieto(a) que no podías quedarte quieto(a)?",
+                    "6. ¿Te has molestado o irritado fácilmente?",
+                    "7. ¿Has sentido miedo como si algo terrible fuera a pasar?"
+                ],
+                opciones: ["Nunca", "Varios días", "Más de la mitad de los días", "Casi todos los días"],
+                baremo: [5, 10, 15] // Leve, Moderado, Severo
+            },
+            depresion: {
+                titulo: "Escala de Depresión (PHQ-9)",
+                preguntas: [
+                    "1. ¿Has tenido poco interés o placer en hacer cosas?",
+                    "2. ¿Te has sentido decaído(a), deprimido(a) o sin esperanza?",
+                    "3. ¿Has tenido dificultad para dormir o has dormido demasiado?",
+                    "4. ¿Te has sentido cansado(a) o con poca energía?",
+                    "5. ¿Has tenido poco apetito o has comido en exceso?",
+                    "6. ¿Te has sentido mal contigo mismo(a) o que has fallado?",
+                    "7. ¿Has tenido dificultad para concentrarte?",
+                    "8. ¿Te has movido o hablado tan lento que otros lo han notado?",
+                    "9. ¿Has tenido pensamientos de que estarías mejor muerto(a)?"
+                ],
+                opciones: ["Nunca", "Varios días", "Más de la mitad de los días", "Casi todos los días"],
+                baremo: [5, 10, 15, 20]
+            }
+        };
+
+        // FUNCIONES DE NAVEGACIÓN
+        function iniciarTest(tipo) {
+            const data = testsDB[tipo];
+            const menu = document.getElementById('menu-tests');
+            const zona = document.getElementById('zona-test');
+            const form = document.getElementById('form-test');
+            
+            // Generar HTML
+            document.getElementById('titulo-test').innerText = data.titulo;
+            form.innerHTML = ''; // Limpiar
+            
+            data.preguntas.forEach((preg, i) => {
+                let html = `
+                    <div class="question">
+                        <span class="q-text">${preg}</span>
+                        <div class="options">
+                            ${data.opciones.map((opt, val) => `
+                                <label><input type="radio" name="p${i}" value="${val}" required> ${opt}</label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                form.innerHTML += html;
+            });
+
+            form.innerHTML += `<button type="button" class="btn-action" onclick="calcular('${tipo}')">Ver Resultado</button>`;
+
+            // Mostrar/Ocultar
+            menu.style.display = 'none';
+            document.getElementById('zona-pro').style.display = 'none';
+            zona.style.display = 'block';
+            document.getElementById('resultado-box').style.display = 'none';
+            window.scrollTo(0,0);
+        }
+
+        function mostrarPro(nombre) {
+            document.getElementById('menu-tests').style.display = 'none';
+            document.getElementById('zona-test').style.display = 'none';
+            document.getElementById('zona-pro').style.display = 'block';
+            document.getElementById('nombre-test-pro').innerText = nombre;
+        }
+
+        function cerrarTest() {
+            document.getElementById('zona-test').style.display = 'none';
+            document.getElementById('zona-pro').style.display = 'none';
+            document.getElementById('menu-tests').style.display = 'grid';
+        }
+
+        function calcular(tipo) {
+            const inputs = document.querySelectorAll('#form-test input:checked');
+            const totalPreguntas = testsDB[tipo].preguntas.length;
+
+            if(inputs.length < totalPreguntas) {
+                alert("Por favor responde todas las preguntas.");
+                return;
+            }
+
+            let suma = 0;
+            inputs.forEach(inp => suma += parseInt(inp.value));
+
+            // Interpretar
+            const box = document.getElementById('resultado-box');
+            let texto = "";
+            let color = "";
+            
+            // Lógica simple de baremos
+            if(suma <= 4) {
+                texto = "Mínimo / Sin síntomas significativos.";
+                color = "#166534"; // Verde
+            } else if(suma <= 9) {
+                texto = "Síntomas Leves. Se sugiere monitoreo.";
+                color = "#ca8a04"; // Amarillo
+            } else if(suma <= 14) {
+                texto = "Síntomas Moderados. Recomendamos consulta.";
+                color = "#ea580c"; // Naranja
+            } else {
+                texto = "Síntomas Moderados a Severos. Importante buscar apoyo profesional.";
+                color = "#dc2626"; // Rojo
+            }
+
+            box.style.display = 'block';
+            box.style.background = color + "20"; // Fondo transparente del color
+            box.innerHTML = `
+                <div class="res-score" style="color:${color}">${suma} pts</div>
+                <div class="res-text" style="color:${color}">${texto}</div>
+                <p style="font-size:0.9rem; margin-top:20px; color:#666;">*Este resultado es orientativo y no sustituye un diagnóstico clínico.</p>
+            `;
+            box.scrollIntoView({behavior: "smooth"});
+        }
+    </script>
 
 </body>
 </html>
