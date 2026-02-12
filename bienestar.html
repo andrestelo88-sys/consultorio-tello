@@ -25,11 +25,11 @@
         .page-header h1 { font-size: 2.5rem; margin: 0 0 10px 0; color: #0f172a; letter-spacing: -1px; }
         .page-header p { font-size: 1.1rem; color: #64748b; max-width: 600px; margin: 0 auto; }
 
-        /* GRID DE VENTANAS */
+        /* GRID */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 80px; }
         .grid-9 { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 30px; }
 
-        /* TARJETA MEJORADA */
+        /* TARJETA */
         .card { 
             background: white; border-radius: 16px; overflow: hidden; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #e2e8f0;
@@ -38,30 +38,30 @@
         }
         .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--primary); }
 
-        .card-img { height: 200px; width: 100%; object-fit: cover; }
+        .card-img { height: 220px; width: 100%; object-fit: cover; }
         
         .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
         
         .tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--primary); margin-bottom: 10px; display: block; }
         
         .card-title { font-size: 1.25rem; font-weight: 800; margin: 0 0 15px 0; color: #0f172a; }
-        
-        /* Texto ampliado */
         .card-desc { font-size: 0.95rem; color: #475569; line-height: 1.6; margin-bottom: 15px; flex-grow: 1; }
         
-        .key-concept { background: #f1f5f9; padding: 12px; border-radius: 8px; font-size: 0.85rem; color: #334155; margin-bottom: 20px; border-left: 3px solid var(--primary); font-style: italic; }
+        /* Caja de Dato Científico */
+        .science-box { 
+            background: #f0f9ff; border-left: 4px solid var(--primary); 
+            padding: 12px; font-size: 0.85rem; color: #334155; 
+            margin-bottom: 20px; font-style: italic;
+        }
 
-        /* Botón Link */
         .btn-link { 
             display: inline-block; width: 100%; text-align: center;
             background: white; color: var(--primary); border: 1px solid var(--primary);
-            padding: 10px 0; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s;
+            padding: 12px 0; border-radius: 8px; text-decoration: none; font-weight: 600; transition: 0.3s;
         }
         .btn-link:hover { background: var(--primary); color: white; }
 
-        /* FOOTER */
         footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.9rem; border-top: 1px solid #e2e8f0; }
-
     </style>
 </head>
 <body>
@@ -73,107 +73,107 @@
 
     <div class="page-header">
         <h1>9 Áreas de Crecimiento</h1>
-        <p>Información clave y recursos validados para tu desarrollo integral.</p>
+        <p>Recursos seleccionados y evidencia científica para tu equilibrio.</p>
     </div>
 
     <div class="container">
         <div class="grid-9">
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" alt="Avión" class="card-img">
+                <img src="https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa?auto=format&fit=crop&w=800&q=80" alt="Viaje" class="card-img">
                 <div class="card-body">
-                    <span class="tag">Adaptación Cultural</span>
+                    <span class="tag">Adaptación</span>
                     <h3 class="card-title">Duelo Migratorio</h3>
-                    <p class="card-desc">Emigrar implica una pérdida parcial de la identidad, el idioma y el estatus. No es solo "extrañar", es un proceso de reconstrucción psicológica.</p>
-                    <div class="key-concept">"El Síndrome de Ulises describe el estrés crónico que viven los migrantes al enfrentar soledad y miedo al fracaso."</div>
+                    <p class="card-desc">Emigrar conlleva 7 tipos de duelo: familia, lengua, cultura, tierra, estatus social, contacto con el grupo y riesgos físicos.</p>
+                    <div class="science-box">Evidencia: El "Síndrome de Ulises" afecta a millones de migrantes con síntomas de estrés crónico y ansiedad.</div>
                     <a href="https://www.redalyc.org/journal/778/77855949003/html/" target="_blank" class="btn-link">Leer Artículo Científico →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80" alt="Finanzas" class="card-img">
+                <img src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=800&q=80" alt="Finanzas" class="card-img">
                 <div class="card-body">
-                    <span class="tag">Salud Financiera</span>
-                    <h3 class="card-title">Psicología del Dinero</h3>
-                    <p class="card-desc">Tus patrones de gasto suelen ser mecanismos de defensa emocional. Comprar compulsivamente puede ser un intento de llenar vacíos de ansiedad.</p>
-                    <div class="key-concept">Clave: Antes de comprar, aplica la regla de las 24 horas para distinguir deseo de necesidad.</div>
+                    <span class="tag">Economía</span>
+                    <h3 class="card-title">Psicología Financiera</h3>
+                    <p class="card-desc">El gasto emocional busca llenar vacíos inmediatos. La ansiedad financiera es una de las principales causas de insomnio en adultos.</p>
+                    <div class="science-box">Tip: Aplica la regla de las 48 horas antes de cualquier compra no esencial para desactivar el impulso.</div>
                     <a href="https://www.menteamente.com/blog-salud-mental/educacion-financiera" target="_blank" class="btn-link">Ver Guía MenteAmente →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?auto=format&fit=crop&w=800&q=80" alt="Luz" class="card-img">
+                <img src="https://images.unsplash.com/photo-1516585427167-9f4af9627e6c?auto=format&fit=crop&w=800&q=80" alt="Apoyo" class="card-img">
                 <div class="card-body">
-                    <span class="tag">Manejo de Pérdidas</span>
+                    <span class="tag">Pérdida</span>
                     <h3 class="card-title">Procesar el Duelo</h3>
-                    <p class="card-desc">El duelo no es lineal (Negación, Ira, Negociación, Depresión, Aceptación). Puedes saltar entre etapas y eso es completamente normal.</p>
-                    <div class="key-concept">Importante: El dolor no se "cura", se integra en la vida para poder seguir adelante con significado.</div>
+                    <p class="card-desc">El duelo no es olvidar, es aprender a recordar sin dolor agudo. Las etapas (Kübler-Ross) no son lineales, puedes ir y venir entre ellas.</p>
+                    <div class="science-box">Dato: El duelo patológico dura más de 12 meses e impide la funcionalidad diaria.</div>
                     <a href="https://www.mayoclinic.org/es/diseases-conditions/complicated-grief/symptoms-causes/syc-20360374" target="_blank" class="btn-link">Leer en Mayo Clinic →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800&q=80" alt="Comida Sana" class="card-img">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Nutrición" class="card-img">
                 <div class="card-body">
                     <span class="tag">Psiconutrición</span>
                     <h3 class="card-title">Eje Intestino-Cerebro</h3>
-                    <p class="card-desc">El 90% de la serotonina (hormona de la felicidad) se produce en el intestino. Una dieta alta en inflamatorios aumenta el riesgo de depresión.</p>
-                    <div class="key-concept">Tip: Incorporar probióticos y omega-3 puede mejorar significativamente tu respuesta al estrés.</div>
+                    <p class="card-desc">El nervio vago conecta tu estómago con tu cerebro. Una microbiota dañada envía señales de ansiedad directamente a tu mente.</p>
+                    <div class="science-box">Evidencia: El 95% de la serotonina corporal se produce en el tracto gastrointestinal.</div>
                     <a href="https://www.bannerhealth.com/es/healthcareblog/teach-me/gut-brain-axis-what-you-need-to-know" target="_blank" class="btn-link">Leer sobre Conexión Digestiva →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1519834785169-98be25ec3f84?auto=format&fit=crop&w=800&q=80" alt="Meditación" class="card-img">
+                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Paz" class="card-img">
                 <div class="card-body">
                     <span class="tag">Propósito</span>
                     <h3 class="card-title">Espiritualidad y Salud</h3>
-                    <p class="card-desc">Independiente de la religión, tener un sentido de trascendencia reduce el cortisol y mejora la resiliencia ante crisis vitales.</p>
-                    <div class="key-concept">Práctica: La gratitud diaria cambia físicamente la estructura neuronal del cerebro.</div>
+                    <p class="card-desc">Tener un sentido de propósito vital reduce los marcadores inflamatorios y el cortisol. La meditación engrosa la corteza prefrontal.</p>
+                    <div class="science-box">Práctica: La gratitud diaria ha demostrado aumentar los niveles de bienestar subjetivo un 25%.</div>
                     <a href="https://www.psychologytoday.com/gt/blog/la-espiritualidad-y-su-contribucion-a-la-salud-mental" target="_blank" class="btn-link">Leer en Psychology Today →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1552674605-46d536d2e681?auto=format&fit=crop&w=800&q=80" alt="Deporte" class="card-img">
+                <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=800&q=80" alt="Deporte" class="card-img">
                 <div class="card-body">
                     <span class="tag">Fisiología</span>
-                    <h3 class="card-title">Movimiento como Medicina</h3>
-                    <p class="card-desc">El ejercicio aeróbico libera BDNF, una proteína que actúa como "fertilizante" para tus neuronas, mejorando la memoria y el ánimo.</p>
-                    <div class="key-concept">Dato: 30 minutos de caminata rápida pueden tener efectos similares a un antidepresivo leve.</div>
+                    <h3 class="card-title">Movimiento y Cerebro</h3>
+                    <p class="card-desc">El ejercicio aeróbico libera BDNF (Factor Neurotrófico), una proteína que repara neuronas y mejora la plasticidad cerebral.</p>
+                    <div class="science-box">Dato: 30 minutos de caminata al día tienen efectos comparables a antidepresivos leves.</div>
                     <a href="https://www.mayoclinic.org/es/diseases-conditions/depression/in-depth/depression-and-exercise/art-20046495" target="_blank" class="btn-link">Ver Evidencia Mayo Clinic →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1541781777621-39165d6d1b89?auto=format&fit=crop&w=800&q=80" alt="Descanso" class="card-img">
+                <img src="https://images.unsplash.com/photo-1520206183501-b80df61043c2?auto=format&fit=crop&w=800&q=80" alt="Sueño" class="card-img">
                 <div class="card-body">
-                    <span class="tag">Higiene del Sueño</span>
-                    <h3 class="card-title">El Poder del Descanso</h3>
-                    <p class="card-desc">Durante el sueño REM, el cerebro procesa las emociones del día. Sin descanso adecuado, la reactividad emocional se dispara un 60%.</p>
-                    <div class="key-concept">Tip: Evita la luz azul (celulares) 1 hora antes de dormir para no bloquear la melatonina.</div>
+                    <span class="tag">Descanso</span>
+                    <h3 class="card-title">Higiene del Sueño</h3>
+                    <p class="card-desc">Durante el sueño REM, el cerebro procesa las emociones del día. La falta de sueño aumenta la reactividad de la amígdala (centro del miedo).</p>
+                    <div class="science-box">Tip: Evita pantallas 1 hora antes de dormir para no inhibir la melatonina.</div>
                     <a href="https://www.kidsmentalhealthfoundation.org/es/mental-health-resources/sleep/healthy-sleep-habits" target="_blank" class="btn-link">Guía de Sueño Saludable →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80" alt="Amistad" class="card-img">
+                <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=800&q=80" alt="Comunidad" class="card-img">
                 <div class="card-body">
                     <span class="tag">Vínculos</span>
                     <h3 class="card-title">Relaciones Sanas</h3>
-                    <p class="card-desc">El estudio más largo de Harvard (80 años) demostró que la calidad de nuestras relaciones es el predictor #1 de salud y felicidad en la vejez.</p>
-                    <div class="key-concept">Reflexión: No es la cantidad de amigos, sino la seguridad de contar con ellos.</div>
+                    <p class="card-desc">El estudio Harvard de 80 años concluyó que la calidad de nuestras relaciones es el predictor #1 de longevidad y felicidad.</p>
+                    <div class="science-box">Clave: La soledad crónica es tan dañina para la salud como fumar 15 cigarrillos al día.</div>
                     <a href="https://fitonapp.com/bienestar/lo-que-el-estudio-de-harvard-sobre-la-felicidad-de-hace-85-anos-descubrio-es-la-clave-para-una-vida-feliz/?lang=es" target="_blank" class="btn-link">Leer Estudio Harvard →</a>
                 </div>
             </div>
 
             <div class="card">
-                <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=800&q=80" alt="Terapia" class="card-img">
+                <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Salud Mental" class="card-img">
                 <div class="card-body">
                     <span class="tag">Salud Mental</span>
-                    <h3 class="card-title">¿Tristeza o Depresión?</h3>
-                    <p class="card-desc">La tristeza es una emoción pasajera. La depresión es un estado persistente de anhedonia (incapacidad de sentir placer) que requiere tratamiento.</p>
-                    <div class="key-concept">Alerta: Si los síntomas duran más de 2 semanas e interfieren con tu vida, busca ayuda.</div>
+                    <h3 class="card-title">Depresión vs Tristeza</h3>
+                    <p class="card-desc">La tristeza es una emoción temporal. La depresión clínica implica anhedonia (incapacidad de sentir placer) y fatiga persistente.</p>
+                    <div class="science-box">Alerta: Si los síntomas duran más de 2 semanas, es necesario evaluar con un profesional.</div>
                     <a href="https://www.mayoclinic.org/es/diseases-conditions/depression/symptoms-causes/syc-20356007" target="_blank" class="btn-link">Criterios Diagnósticos →</a>
                 </div>
             </div>
@@ -182,7 +182,7 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 Consultorio Psicología Integral. Todos los derechos reservados.</p>
+        <p>&copy; 2026 Psicología Integral. Basado en Evidencia.</p>
     </footer>
 
 </body>
