@@ -3,103 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Biblioteca Digital | Psic. Tello</title>
+    <title>Biblioteca | Psicología Integral</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --accent: #7c3aed; --bg: #f5f3ff; }
         body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: #333; }
 
+        /* Header */
         header { background: white; padding: 20px 5%; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); }
-        .btn-back { text-decoration: none; color: #64748b; font-weight: 600; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent); display: flex; align-items: center; gap: 10px; }
+        .btn-back { text-decoration: none; color: #64748b; font-weight: 600; transition: 0.3s; }
+        .btn-back:hover { color: var(--accent); }
 
-        .container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px 60px; }
         
+        /* TARJETA ARTÍCULO */
         .article-card { 
-            background: white; border-radius: 15px; overflow: hidden; margin-bottom: 30px; 
+            background: white; border-radius: 12px; overflow: hidden; margin-bottom: 30px; 
             box-shadow: 0 5px 15px rgba(0,0,0,0.05); display: flex; transition: transform 0.3s;
         }
-        .article-card:hover { transform: translateX(10px); }
+        .article-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
 
-        .art-img { width: 250px; object-fit: cover; display: block; }
+        /* Imágenes ajustadas para que no se rompan */
+        .art-img { width: 220px; min-height: 100%; object-fit: cover; display: block; background: #e0e7ff; }
         
-        .art-content { padding: 30px; flex-grow: 1; }
-        .art-meta { font-size: 0.8rem; color: #8b5cf6; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; display: block; }
-        .art-title { margin: 0 0 10px 0; font-size: 1.4rem; color: #1e293b; }
-        .art-excerpt { color: #64748b; margin-bottom: 20px; line-height: 1.6; }
+        .art-content { padding: 30px; flex-grow: 1; display: flex; flex-direction: column; justify-content: center; }
+        .art-meta { font-size: 0.75rem; color: #8b5cf6; font-weight: 800; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .art-title { margin: 0 0 10px 0; font-size: 1.3rem; color: #1e293b; line-height: 1.3; }
+        .art-excerpt { color: #64748b; margin-bottom: 20px; line-height: 1.6; font-size: 0.95rem; }
         
         .btn-read { 
-            background: var(--accent); color: white; padding: 10px 25px; border-radius: 50px; 
+            display: inline-block; width: fit-content; background: var(--accent); color: white; padding: 10px 25px; border-radius: 50px; 
             text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s;
         }
         .btn-read:hover { background: #6d28d9; }
 
-        /* Responsive para móviles */
+        /* Responsive */
         @media (max-width: 768px) {
             .article-card { flex-direction: column; }
             .art-img { width: 100%; height: 200px; }
         }
-
-        /* FOOTER */
-        .emergency-footer { background: #1e293b; color: white; padding: 40px; text-align: center; margin-top: 50px; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo"><i class="fas fa-book-reader"></i> Biblioteca</div>
-        <a href="index.html" class="btn-back">← Menú Principal</a>
+        <a href="index.html" class="btn-back">← Volver al Menú</a>
     </header>
 
     <div class="container">
-        <h1 style="text-align:center; margin-bottom:50px; color:#4c1d95;">Recursos Científicos Actualizados</h1>
+        <h1 style="text-align:center; margin-bottom:40px; color:#4c1d95;">Recursos Científicos Actualizados</h1>
 
         <article class="article-card">
-            <img src="https://images.unsplash.com/photo-1456406111435-8773945d903f?auto=format&fit=crop&w=400&q=80" alt="Ansiedad" class="art-img">
+            <img src="https://images.unsplash.com/photo-1474418397713-7ede21d49118?auto=format&fit=crop&w=500&q=80" alt="Calma y Naturaleza" class="art-img">
             <div class="art-content">
                 <span class="art-meta">Guía Clínica • SEAS</span>
                 <h2 class="art-title">Ansiedad y Estrés: Guía Informativa</h2>
-                <p class="art-excerpt">Documento oficial de la Sociedad Española para el Estudio de la Ansiedad y el Estrés. Definiciones claras, síntomas y manejo.</p>
+                <p class="art-excerpt">Documento oficial de la Sociedad Española para el Estudio de la Ansiedad y el Estrés. Definiciones claras, síntomas y técnicas de manejo.</p>
                 <a href="https://ansiedadyestres.org/" target="_blank" class="btn-read">Leer Artículo Oficial</a>
             </div>
         </article>
 
         <article class="article-card">
-            <img src="https://images.unsplash.com/photo-1505576399279-565b52d4ac71?auto=format&fit=crop&w=400&q=80" alt="Cerebro" class="art-img">
+            <img src="https://images.unsplash.com/photo-1559757175-5700dde675bc?auto=format&fit=crop&w=500&q=80" alt="Cerebro Concepto" class="art-img">
             <div class="art-content">
                 <span class="art-meta">Neurociencia • SciELO</span>
                 <h2 class="art-title">Neurobiología de la Depresión Mayor</h2>
-                <p class="art-excerpt">Una revisión profunda sobre qué ocurre químicamente en el cerebro deprimido y por qué no es solo "tristeza".</p>
+                <p class="art-excerpt">Una revisión profunda sobre qué ocurre químicamente en el cerebro deprimido y por qué no es solo "estar triste".</p>
                 <a href="https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0016-38132003000200012" target="_blank" class="btn-read">Ver PDF Científico</a>
             </div>
         </article>
 
         <article class="article-card">
-            <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=400&q=80" alt="Niños" class="art-img">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=500&q=80" alt="Niño Estudiando" class="art-img">
             <div class="art-content">
                 <span class="art-meta">Infantil • CDC</span>
                 <h2 class="art-title">TDAH: Diagnóstico y Tratamiento</h2>
-                <p class="art-excerpt">Guía para padres del Centro para el Control de Enfermedades (CDC) sobre el Déficit de Atención en niños.</p>
+                <p class="art-excerpt">Guía completa para padres del Centro para el Control de Enfermedades (CDC) sobre el Déficit de Atención en niños.</p>
                 <a href="https://www.cdc.gov/ncbddd/spanish/adhd/diagnosis.html" target="_blank" class="btn-read">Leer Guía CDC</a>
             </div>
         </article>
 
          <article class="article-card">
-            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=400&q=80" alt="Viaje" class="art-img">
+            <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=500&q=80" alt="Personas Caminando" class="art-img">
             <div class="art-content">
                 <span class="art-meta">Social • Redalyc</span>
                 <h2 class="art-title">Impacto Psicosocial de la Migración</h2>
-                <p class="art-excerpt">Estudio sobre el sufrimiento psicológico y malestar emocional en personas que emigran. Claves para la adaptación.</p>
+                <p class="art-excerpt">Estudio académico sobre el malestar emocional en personas que emigran y las claves para una adaptación saludable.</p>
                 <a href="https://www.redalyc.org/pdf/2650/265032622007.pdf" target="_blank" class="btn-read">Descargar PDF</a>
             </div>
         </article>
 
     </div>
-
-    <footer class="emergency-footer">
-        <p>⚠️ <strong>Aviso:</strong> Si estás en peligro, llama al 911. Este sitio es informativo.</p>
-    </footer>
 
 </body>
 </html>
