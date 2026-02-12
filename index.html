@@ -3,144 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psic. Andrés Tello | Inicio</title>
+    <title>Psicología Integral | Basada en Evidencia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary: #2563eb;
-            --accent: #16a34a;
+            --primary: #0f172a; /* Azul oscuro serio */
+            --accent: #2563eb;  /* Azul vibrante */
             --bg: #f8fafc;
-            --text: #1e293b;
+            --text: #334155;
         }
-        body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); margin: 0; padding: 0; }
-        
-        /* HEADER SENCILLO */
-        header { background: white; padding: 15px 5%; box-shadow: 0 2px 10px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); }
-        .btn-agendar { background: var(--primary); color: white; padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
 
-        /* PORTADA */
+        /* HEADER */
+        header { background: white; padding: 15px 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
+        .brand { display: flex; flex-direction: column; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
+        .slogan { font-size: 0.8rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+        .btn-cta { background: var(--accent); color: white; padding: 10px 25px; border-radius: 50px; font-weight: bold; transition: 0.3s; }
+        .btn-cta:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
+
+        /* HERO */
         .hero { 
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); 
-            color: white; 
-            text-align: center; 
-            padding: 80px 20px; 
-            margin-bottom: -50px; /* Para que las tarjetas suban un poco */
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center; color: white; text-align: center; padding: 100px 20px 140px;
         }
-        .hero h1 { font-size: 3rem; margin: 0; }
-        .hero p { font-size: 1.2rem; opacity: 0.9; margin-top: 10px; }
+        .hero h1 { font-size: 3.5rem; margin: 0 0 20px 0; font-weight: 800; letter-spacing: -1px; }
+        .hero p { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
 
-        /* CONTENEDOR DE LAS 4 PUERTAS PRINCIPALES */
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
-        
-        .main-menu { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 30px; 
-            position: relative; 
-            z-index: 10;
-        }
+        /* MENU PRINCIPAL (TARJETAS) */
+        .container { max-width: 1100px; margin: -80px auto 50px; padding: 0 20px; position: relative; z-index: 10; }
+        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
 
-        /* DISEÑO DE LAS TARJETAS (PUERTAS) */
         .menu-card {
-            background: white;
-            padding: 40px 20px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-decoration: none; /* Quitar subrayado de enlaces */
-            color: var(--text);
-            border-top: 5px solid transparent;
-            display: block; /* Hacer que toda la tarjeta sea clicable */
+            background: white; border-radius: 16px; padding: 40px 25px; text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s ease, border-color 0.3s;
+            text-decoration: none; color: var(--text); border-bottom: 4px solid transparent; display: flex; flex-direction: column; align-items: center;
+        }
+        .menu-card:hover { transform: translateY(-10px); }
+        
+        /* Iconos con fondo */
+        .icon-box { 
+            width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.8rem; margin-bottom: 20px; transition: 0.3s;
         }
 
-        .menu-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .card-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; color: var(--primary); }
+        .card-desc { font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
+        .link-text { font-weight: 700; font-size: 0.9rem; margin-top: auto; }
 
-        .icon-circle {
-            width: 80px; height: 80px;
-            background: #eff6ff;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 2rem;
-        }
+        /* Estilos específicos */
+        .c-eval .icon-box { background: #fee2e2; color: #ef4444; } 
+        .c-eval:hover { border-bottom-color: #ef4444; } .c-eval .link-text { color: #ef4444; }
 
-        .card-title { font-size: 1.5rem; font-weight: 700; margin-bottom: 15px; }
-        .card-desc { color: #64748b; font-size: 0.95rem; line-height: 1.5; margin-bottom: 20px;}
-        .btn-go { display: inline-block; padding: 8px 20px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; }
+        .c-tele .icon-box { background: #dbeafe; color: #2563eb; } 
+        .c-tele:hover { border-bottom-color: #2563eb; } .c-tele .link-text { color: #2563eb; }
 
-        /* COLORES POR SECCIÓN */
-        /* 1. Centro de Evaluación (Tests) */
-        .card-tests { border-top-color: #ef4444; }
-        .card-tests .icon-circle { background: #fee2e2; color: #ef4444; }
-        .card-tests .btn-go { background: #ef4444; color: white; }
+        .c-biblio .icon-box { background: #f3e8ff; color: #9333ea; } 
+        .c-biblio:hover { border-bottom-color: #9333ea; } .c-biblio .link-text { color: #9333ea; }
 
-        /* 2. Telepsicología (Sala de Espera) */
-        .card-tele { border-top-color: #3b82f6; }
-        .card-tele .icon-circle { background: #dbeafe; color: #3b82f6; }
-        .card-tele .btn-go { background: #3b82f6; color: white; }
+        .c-life .icon-box { background: #dcfce7; color: #16a34a; } 
+        .c-life:hover { border-bottom-color: #16a34a; } .c-life .link-text { color: #16a34a; }
 
-        /* 3. Biblioteca */
-        .card-lib { border-top-color: #8b5cf6; }
-        .card-lib .icon-circle { background: #f3e8ff; color: #8b5cf6; }
-        .card-lib .btn-go { background: #8b5cf6; color: white; }
-
-        /* 4. Bienestar & Vida (Las 9 ventanas) */
-        .card-life { border-top-color: #16a34a; }
-        .card-life .icon-circle { background: #dcfce7; color: #16a34a; }
-        .card-life .btn-go { background: #16a34a; color: white; }
-
+        /* FOOTER */
+        footer { background: white; padding: 40px; text-align: center; border-top: 1px solid #e2e8f0; margin-top: 80px; }
+        .footer-text { color: #94a3b8; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Ψ Consultorio Tello</div>
-        <a href="https://wa.me/593999999999" class="btn-agendar">Agendar Cita</a>
+        <div class="brand">
+            <span class="logo">Ψ Psicología Integral</span>
+            <span class="slogan">Basada en Evidencia</span>
+        </div>
+        <nav>
+            <a href="tests.html">Evaluaciones</a>
+            <a href="bienestar.html">Recursos</a>
+            <a href="https://wa.me/593999999999" class="btn-cta">Agendar Cita</a>
+        </nav>
     </header>
 
     <section class="hero">
-        <h1>Bienestar & Vida</h1>
-        <p>Psicología profunda para tus desafíos reales</p>
+        <h1>Tu bienestar mental es prioridad</h1>
+        <p>Un espacio seguro con enfoque científico para sanar, crecer y encontrar el equilibrio que buscas.</p>
     </section>
 
     <div class="container">
-        <div class="main-menu">
+        <div class="grid-menu">
             
-            <a href="tests.html" class="menu-card card-tests">
-                <div class="icon-circle"><i class="fas fa-clipboard-list"></i></div>
+            <a href="tests.html" class="menu-card c-eval">
+                <div class="icon-box"><i class="fas fa-clipboard-check"></i></div>
                 <div class="card-title">Centro de Evaluación</div>
-                <p class="card-desc">Tests estandarizados para detectar ansiedad, depresión y TDAH (Adultos, Niños y Adolescentes).</p>
-                <span class="btn-go">Realizar Tests</span>
+                <p class="card-desc">Pruebas psicométricas validadas para detectar ansiedad, TDAH y depresión por grupos de edad.</p>
+                <span class="link-text">Realizar Test →</span>
             </a>
 
-            <a href="sala-espera.html" class="menu-card card-tele">
-                <div class="icon-circle"><i class="fas fa-video"></i></div>
+            <a href="sala-espera.html" class="menu-card c-tele">
+                <div class="icon-box"><i class="fas fa-video"></i></div>
                 <div class="card-title">Telepsicología</div>
-                <p class="card-desc">Sesiones privadas y seguras vía Zoom/Teams desde la comodidad de tu hogar.</p>
-                <span class="btn-go">Ir a Sala de Espera</span>
+                <p class="card-desc">Atención clínica privada y segura vía Zoom o Teams desde la comodidad de tu hogar.</p>
+                <span class="link-text">Ir a Sala de Espera →</span>
             </a>
 
-            <a href="biblioteca.html" class="menu-card card-lib">
-                <div class="icon-circle"><i class="fas fa-book-reader"></i></div>
-                <div class="card-title">Biblioteca</div>
-                <p class="card-desc">Artículos científicos, guías de descarga (PDF) y noticias actualizadas.</p>
-                <span class="btn-go">Leer Artículos</span>
+            <a href="biblioteca.html" class="menu-card c-biblio">
+                <div class="icon-box"><i class="fas fa-book-open"></i></div>
+                <div class="card-title">Biblioteca Científica</div>
+                <p class="card-desc">Acceso a artículos actualizados, guías en PDF y recursos de la APA y Mayo Clinic.</p>
+                <span class="link-text">Leer Artículos →</span>
             </a>
 
-            <a href="bienestar.html" class="menu-card card-life">
-                <div class="icon-circle"><i class="fas fa-leaf"></i></div>
+            <a href="bienestar.html" class="menu-card c-life">
+                <div class="icon-box"><i class="fas fa-seedling"></i></div>
                 <div class="card-title">Bienestar & Vida</div>
-                <p class="card-desc">Herramientas prácticas: Migración, Finanzas, Duelo, Alimentación y más.</p>
-                <span class="btn-go">Explorar las 9 Áreas</span>
+                <p class="card-desc">9 áreas de crecimiento: Duelo, Migración, Finanzas, Sueño y Espiritualidad.</p>
+                <span class="link-text">Explorar Áreas →</span>
             </a>
 
         </div>
     </div>
 
-    <footer style="text-align: center; padding: 40px; color: #64748b; margin-top: 50px;">
-        <p>&copy; 2026 Psicólogo Andrés Tello. Todos los derechos reservados.</p>
+    <footer>
+        <p class="footer-text">&copy; 2026 Consultorio Psicología Integral. Todos los derechos reservados.</p>
+        <p class="footer-text" style="font-size: 0.8rem; margin-top: 10px;">
+            <i class="fas fa-map-marker-alt"></i> Atención Online y Presencial (Hillsborough, NJ / Quito, EC)
+        </p>
     </footer>
 
 </body>
