@@ -2,74 +2,44 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Consultorio Tello</title>
 
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Psicología">
-    <link rel="apple-touch-icon" href="img/icono-app.png">
-    
     <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <link rel="apple-touch-icon" href="img/icono-app.png">
 
     <style>
-        /* ESTILOS BÁSICOS */
         body {
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            
-            /* SENSACIÓN DE APP SOLO EN MÓVIL */
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* BARRA SUPERIOR AZUL */
-        .header-app {
-            background-color: #007AFF;
-            color: white;
-            padding: 20px; 
-            /* En iPhone añadimos un poco más de espacio arriba para la hora */
-            padding-top: env(safe-area-inset-top, 20px); 
-            text-align: center;
-            font-weight: bold;
-            font-size: 20px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        /* CONTENEDOR PRINCIPAL */
-        .contenido {
             padding: 20px;
-            /* Aquí está el truco: En PC usa el 100%, pero no se estira infinitamente */
-            max-width: 1200px; 
-            margin: 0 auto; /* Centrado */
+            
+            /* Esto centra todo en la pantalla, como lo tenías al principio */
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            min-height: 100vh; /* Altura completa */
+            text-align: center;
         }
 
-        .boton {
-            display: inline-block; /* Para que no ocupe todo el ancho en PC */
-            padding: 15px 30px;
-            margin-top: 20px;
-            background-color: #007AFF;
-            color: white;
-            text-align: center;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #333;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-app">
-        Consultorio Tello
-    </div>
-
-    <div class="contenido">
-        <h2>Bienvenido</h2>
-        <p>Ahora verás que en la computadora ocupo todo el ancho de la pantalla, pero en el celular sigo siendo una App.</p>
-        
-        <a href="#" class="boton">Reservar Cita</a>
-    </div>
+    <h1>Consultorio Tello</h1>
+    <p>Bienvenido a la aplicación web.</p>
 
 </body>
 </html>
