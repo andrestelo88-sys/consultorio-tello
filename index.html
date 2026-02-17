@@ -2,71 +2,74 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
     <title>Consultorio Tello</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Psicología">
     <link rel="apple-touch-icon" href="img/icono-app.png">
-
+    
     <link rel="manifest" href="manifest.json">
 
     <style>
-        /* ESTILOS GENERALES (Para todos los dispositivos) */
-        * {
-            box-sizing: border-box; /* Evita que los bordes rompan el diseño */
-        }
-
+        /* ESTILOS BÁSICOS */
         body {
-            /* Fuente moderna tipo sistema (se ve bien en cualquier móvil) */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #ffffff;
             
-            /* SENSACIÓN DE APP NATIVA */
-            /* Evita que se seleccione el texto al dejar presionado */
-            -webkit-user-select: none;
-            user-select: none;
-            /* Quita el color azul al tocar botones */
+            /* SENSACIÓN DE APP SOLO EN MÓVIL */
             -webkit-tap-highlight-color: transparent;
-            /* Evita el rebote elástico en iPhone */
-            overscroll-behavior-y: none;
         }
 
-        /* Reactiva la selección de texto SOLO donde se escribe */
-        input, textarea {
-            -webkit-user-select: text;
-            user-select: text;
+        /* BARRA SUPERIOR AZUL */
+        .header-app {
+            background-color: #007AFF;
+            color: white;
+            padding: 20px; 
+            /* En iPhone añadimos un poco más de espacio arriba para la hora */
+            padding-top: env(safe-area-inset-top, 20px); 
+            text-align: center;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
 
-        /* 5. PROTECCIÓN PARA COMPUTADORA (Evita que se estire) */
-        @media (min-width: 768px) {
-            html {
-                background-color: #f0f2f5; /* Fondo gris claro fuera de la app */
-                height: 100%;
-            }
-            
-            body {
-                max-width: 480px; /* Ancho máximo de un celular */
-                margin: 0 auto;   /* Centrar en la pantalla */
-                min-height: 100vh; /* Que llegue hasta abajo */
-                background-color: #ffffff; /* Fondo blanco de tu app */
-                box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Sombrita elegante a los lados */
-                border-left: 1px solid #e0e0e0;
-                border-right: 1px solid #e0e0e0;
-            }
+        /* CONTENEDOR PRINCIPAL */
+        .contenido {
+            padding: 20px;
+            /* Aquí está el truco: En PC usa el 100%, pero no se estira infinitamente */
+            max-width: 1200px; 
+            margin: 0 auto; /* Centrado */
+        }
+
+        .boton {
+            display: inline-block; /* Para que no ocupe todo el ancho en PC */
+            padding: 15px 30px;
+            margin-top: 20px;
+            background-color: #007AFF;
+            color: white;
+            text-align: center;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <div style="padding: 20px; text-align: center;">
-        <h1>Consultorio Tello</h1>
-        <p>Bienvenido a la aplicación web.</p>
-        </div>
+    <div class="header-app">
+        Consultorio Tello
+    </div>
 
-    </body>
+    <div class="contenido">
+        <h2>Bienvenido</h2>
+        <p>Ahora verás que en la computadora ocupo todo el ancho de la pantalla, pero en el celular sigo siendo una App.</p>
+        
+        <a href="#" class="boton">Reservar Cita</a>
+    </div>
+
+</body>
 </html>
