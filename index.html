@@ -2,137 +2,71 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicología Integral | Basada en Evidencia</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Consultorio Tello</title>
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Psicología">
+    <link rel="apple-touch-icon" href="img/icono-app.png">
+
+    <link rel="manifest" href="manifest.json">
+
     <style>
-        :root {
-            --primary: #0f172a; /* Azul oscuro serio */
-            --accent: #2563eb;  /* Azul vibrante */
-            --bg: #f8fafc;
-            --text: #334155;
-        }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
-
-        /* HEADER */
-        header { background: white; padding: 15px 5%; box-shadow: 0 4px 20px rgba(0,0,0,0.05); display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 1000; }
-        .brand { display: flex; flex-direction: column; }
-        .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; }
-        .slogan { font-size: 0.8rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
-        
-        nav { display: flex; gap: 20px; align-items: center; }
-        nav a { text-decoration: none; color: #64748b; font-weight: 600; font-size: 0.95rem; transition: 0.3s; }
-        nav a:hover { color: var(--accent); }
-        .btn-cta { background: var(--accent); color: white; padding: 10px 25px; border-radius: 50px; font-weight: bold; transition: 0.3s; }
-        .btn-cta:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3); }
-
-        /* HERO */
-        .hero { 
-            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&w=1350&q=80');
-            background-size: cover; background-position: center; color: white; text-align: center; padding: 100px 20px 140px;
-        }
-        .hero h1 { font-size: 3.5rem; margin: 0 0 20px 0; font-weight: 800; letter-spacing: -1px; }
-        .hero p { font-size: 1.25rem; opacity: 0.9; max-width: 700px; margin: 0 auto; line-height: 1.6; font-weight: 300; }
-
-        /* MENU PRINCIPAL (TARJETAS) */
-        .container { max-width: 1100px; margin: -80px auto 50px; padding: 0 20px; position: relative; z-index: 10; }
-        .grid-menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 30px; }
-
-        .menu-card {
-            background: white; border-radius: 16px; padding: 40px 25px; text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: transform 0.3s ease, border-color 0.3s;
-            text-decoration: none; color: var(--text); border-bottom: 4px solid transparent; display: flex; flex-direction: column; align-items: center;
-        }
-        .menu-card:hover { transform: translateY(-10px); }
-        
-        /* Iconos con fondo */
-        .icon-box { 
-            width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-size: 1.8rem; margin-bottom: 20px; transition: 0.3s;
+        /* ESTILOS GENERALES (Para todos los dispositivos) */
+        * {
+            box-sizing: border-box; /* Evita que los bordes rompan el diseño */
         }
 
-        .card-title { font-size: 1.4rem; font-weight: 800; margin-bottom: 10px; color: var(--primary); }
-        .card-desc { font-size: 0.9rem; color: #64748b; line-height: 1.5; margin-bottom: 20px; }
-        .link-text { font-weight: 700; font-size: 0.9rem; margin-top: auto; }
+        body {
+            /* Fuente moderna tipo sistema (se ve bien en cualquier móvil) */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            
+            /* SENSACIÓN DE APP NATIVA */
+            /* Evita que se seleccione el texto al dejar presionado */
+            -webkit-user-select: none;
+            user-select: none;
+            /* Quita el color azul al tocar botones */
+            -webkit-tap-highlight-color: transparent;
+            /* Evita el rebote elástico en iPhone */
+            overscroll-behavior-y: none;
+        }
 
-        /* Estilos específicos */
-        .c-eval .icon-box { background: #fee2e2; color: #ef4444; } 
-        .c-eval:hover { border-bottom-color: #ef4444; } .c-eval .link-text { color: #ef4444; }
+        /* Reactiva la selección de texto SOLO donde se escribe */
+        input, textarea {
+            -webkit-user-select: text;
+            user-select: text;
+        }
 
-        .c-tele .icon-box { background: #dbeafe; color: #2563eb; } 
-        .c-tele:hover { border-bottom-color: #2563eb; } .c-tele .link-text { color: #2563eb; }
-
-        .c-biblio .icon-box { background: #f3e8ff; color: #9333ea; } 
-        .c-biblio:hover { border-bottom-color: #9333ea; } .c-biblio .link-text { color: #9333ea; }
-
-        .c-life .icon-box { background: #dcfce7; color: #16a34a; } 
-        .c-life:hover { border-bottom-color: #16a34a; } .c-life .link-text { color: #16a34a; }
-
-        /* FOOTER */
-        footer { background: white; padding: 40px; text-align: center; border-top: 1px solid #e2e8f0; margin-top: 80px; }
-        .footer-text { color: #94a3b8; font-size: 0.9rem; }
+        /* 5. PROTECCIÓN PARA COMPUTADORA (Evita que se estire) */
+        @media (min-width: 768px) {
+            html {
+                background-color: #f0f2f5; /* Fondo gris claro fuera de la app */
+                height: 100%;
+            }
+            
+            body {
+                max-width: 480px; /* Ancho máximo de un celular */
+                margin: 0 auto;   /* Centrar en la pantalla */
+                min-height: 100vh; /* Que llegue hasta abajo */
+                background-color: #ffffff; /* Fondo blanco de tu app */
+                box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Sombrita elegante a los lados */
+                border-left: 1px solid #e0e0e0;
+                border-right: 1px solid #e0e0e0;
+            }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="brand">
-            <span class="logo">Ψ Psicología Integral</span>
-            <span class="slogan">Basada en Evidencia</span>
+    <div style="padding: 20px; text-align: center;">
+        <h1>Consultorio Tello</h1>
+        <p>Bienvenido a la aplicación web.</p>
         </div>
-        <nav>
-            <a href="tests.html">Evaluaciones</a>
-            <a href="bienestar.html">Recursos</a>
-            <a href="https://wa.me/593999999999" class="btn-cta">Agendar Cita</a>
-        </nav>
-    </header>
 
-    <section class="hero">
-        <h1>Tu bienestar mental es prioridad</h1>
-        <p>Un espacio seguro con enfoque científico para sanar, crecer y encontrar el equilibrio que buscas.</p>
-    </section>
-
-    <div class="container">
-        <div class="grid-menu">
-            
-            <a href="tests.html" class="menu-card c-eval">
-                <div class="icon-box"><i class="fas fa-clipboard-check"></i></div>
-                <div class="card-title">Centro de Evaluación</div>
-                <p class="card-desc">Pruebas psicométricas validadas para detectar ansiedad, TDAH y depresión por grupos de edad.</p>
-                <span class="link-text">Realizar Test →</span>
-            </a>
-
-            <a href="sala-espera.html" class="menu-card c-tele">
-                <div class="icon-box"><i class="fas fa-video"></i></div>
-                <div class="card-title">Telepsicología</div>
-                <p class="card-desc">Atención clínica privada y segura vía Zoom o Teams desde la comodidad de tu hogar.</p>
-                <span class="link-text">Ir a Sala de Espera →</span>
-            </a>
-
-            <a href="biblioteca.html" class="menu-card c-biblio">
-                <div class="icon-box"><i class="fas fa-book-open"></i></div>
-                <div class="card-title">Biblioteca Científica</div>
-                <p class="card-desc">Acceso a artículos actualizados, guías en PDF y recursos de la APA y Mayo Clinic.</p>
-                <span class="link-text">Leer Artículos →</span>
-            </a>
-
-            <a href="bienestar.html" class="menu-card c-life">
-                <div class="icon-box"><i class="fas fa-seedling"></i></div>
-                <div class="card-title">Bienestar & Vida</div>
-                <p class="card-desc">9 áreas de crecimiento: Duelo, Migración, Finanzas, Sueño y Espiritualidad.</p>
-                <span class="link-text">Explorar Áreas →</span>
-            </a>
-
-        </div>
-    </div>
-
-    <footer>
-        <p class="footer-text">&copy; 2026 Consultorio Psicología Integral. Todos los derechos reservados.</p>
-        <p class="footer-text" style="font-size: 0.8rem; margin-top: 10px;">
-            <i class="fas fa-map-marker-alt"></i> Atención Online y Presencial (Hillsborough, NJ / Quito, EC)
-        </p>
-    </footer>
-
-</body>
+    </body>
 </html>
